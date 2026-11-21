@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es"> <!-- Vista solo para el Director, dibujada desde Implementar Cambio.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Implementar Cambio</title>
+	<style>
+		@layer base, variables, semantica, utilidad, semantica_local, utilidad_local, excepciones; /* Orden de las capas de USE, declarado aquí porque esta página no tiene un CSS global. */
+
+		@layer base {
+
+			:root { /* Base: deja que el navegador use sus colores claros u oscuros según el sistema del Director. */
+				color-scheme: light dark;
+			}
+
+			body { /* Base: fondo y texto del sistema, que cambian solos entre el modo claro y el oscuro. */
+				margin: 0;
+				background: Canvas;
+				color: CanvasText;
+				font-family: system-ui, 'Segoe UI', sans-serif;
+			}
+
+		}
+
+		@layer semantica_local {
+
+			.flujo { /* Contenedor raíz de la página: centra el contenido y declara los colores locales de los diagramas, por eso va en la capa local semántica. */
+				--flujo-texto: #2C2C2A;
+				--flujo-texto-secundario: #5F5E5A;
+				--flujo-linea: #888780;
+				--flujo-neutro-fondo: #F1EFE8;
+				--flujo-neutro-borde: #B4B2A9;
+				--flujo-director-fondo: #EEEDFE;
+				--flujo-director-borde: #534AB7;
+				--flujo-director-titulo: #3C3489;
+				--flujo-director-secundario: #534AB7;
+				--flujo-misma-empresa-fondo: #E1F5EE;
+				--flujo-misma-empresa-borde: #0F6E56;
+				--flujo-misma-empresa-titulo: #085041;
+				--flujo-misma-empresa-secundario: #0F6E56;
+				--flujo-otra-empresa-fondo: #FAECE7;
+				--flujo-otra-empresa-borde: #993C1D;
+				--flujo-otra-empresa-titulo: #712B13;
+				--flujo-otra-empresa-secundario: #993C1D;
+				--flujo-preferencia-fondo: #FAEEDA;
+				--flujo-preferencia-borde: #BA7517;
+				--flujo-preferencia-texto: #633806;
+				max-width: 980px;
+				margin-inline: auto;
+				padding: 24px 16px 48px;
+				line-height: 1.6;
+
+				@media (prefers-color-scheme: dark) { /* Modo oscuro: fondos oscuros con bordes y textos claros de la misma familia de color, para que todo se siga leyendo. */
+					--flujo-texto: #F1EFE8;
+					--flujo-texto-secundario: #B4B2A9;
+					--flujo-linea: #888780;
+					--flujo-neutro-fondo: #2C2C2A;
+					--flujo-neutro-borde: #5F5E5A;
+					--flujo-director-fondo: #3C3489;
+					--flujo-director-borde: #AFA9EC;
+					--flujo-director-titulo: #EEEDFE;
+					--flujo-director-secundario: #CECBF6;
+					--flujo-misma-empresa-fondo: #085041;
+					--flujo-misma-empresa-borde: #5DCAA5;
+					--flujo-misma-empresa-titulo: #E1F5EE;
+					--flujo-misma-empresa-secundario: #9FE1CB;
+					--flujo-otra-empresa-fondo: #712B13;
+					--flujo-otra-empresa-borde: #F0997B;
+					--flujo-otra-empresa-titulo: #FAECE7;
+					--flujo-otra-empresa-secundario: #F5C4B3;
+					--flujo-preferencia-fondo: #633806;
+					--flujo-preferencia-borde: #EF9F27;
+					--flujo-preferencia-texto: #FAEEDA;
+				}
+
+				& h1 { /* Título de la página, más liviano que el del navegador para que no compita con los diagramas. */
+					font-size: 22px;
+					font-weight: 500;
+				}
+
+				& h2 { /* Título de cada diagrama, más chico que el de la página y con aire arriba para separar los dos diagramas. */
+					margin-block: 32px 8px;
+					font-size: 18px;
+					font-weight: 500;
+				}
+
+				& .diagrama { /* Cada diagrama ocupa todo el ancho disponible y conserva su proporción. */
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+
+				& .caja { /* Base de todas las cajas de los diagramas: solo fija el borde fino, el color lo ponen sus variantes. */
+					stroke-width: 0.5;
+				}
+
+				& .caja-director { /* Variante de caja para lo que hace el Director: encabezado, aprobaciones, revisiones y leyenda. */
+					fill: var(--flujo-director-fondo);
+					stroke: var(--flujo-director-borde);
+				}
+
+				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio menor. */
+					fill: var(--flujo-misma-empresa-fondo);
+					stroke: var(--flujo-misma-empresa-borde);
+				}
+
+				& .caja-otra-empresa { /* Variante de caja para los revisores, que por lo general son la IA de la otra empresa. */
+					fill: var(--flujo-otra-empresa-fondo);
+					stroke: var(--flujo-otra-empresa-borde);
+				}
+
+				& .caja-neutra { /* Variante de caja para el Verificador, que es un programa sin IA, y para las franjas de cada fase. */
+					fill: var(--flujo-neutro-fondo);
+					stroke: var(--flujo-neutro-borde);
+				}
+
+				& .texto-titulo { /* Base de los títulos dentro de las cajas: tamaño y peso iguales en todos los diagramas. */
+					fill: var(--flujo-texto);
+					font-size: 14px;
+					font-weight: 500;
+				}
+
+				& .texto-titulo-director { /* Variante de título sobre las cajas moradas, con el tono oscuro de su misma familia. */
+					fill: var(--flujo-director-titulo);
+				}
+
+				& .texto-titulo-misma-empresa { /* Variante de título sobre las cajas de la misma empresa. */
+					fill: var(--flujo-misma-empresa-titulo);
+				}
+
+				& .texto-titulo-otra-empresa { /* Variante de título sobre las cajas de la otra empresa. */
+					fill: var(--flujo-otra-empresa-titulo);
+				}
+
+				& .texto-secundario { /* Base del texto pequeño: subtítulos, mensajes entre actores, franjas, notas y leyenda. */
+					fill: var(--flujo-texto-secundario);
+					font-size: 12px;
+				}
+
+				& .texto-secundario-director { /* Variante de subtítulo sobre las cajas moradas. */
+					fill: var(--flujo-director-secundario);
+				}
+
+				& .texto-secundario-misma-empresa { /* Variante de subtítulo sobre las cajas de la misma empresa. */
+					fill: var(--flujo-misma-empresa-secundario);
+				}
+
+				& .texto-secundario-otra-empresa { /* Variante de subtítulo sobre las cajas de la otra empresa. */
+					fill: var(--flujo-otra-empresa-secundario);
+				}
+
+				& .linea-de-vida { /* Línea vertical punteada de cada actor, que marca su columna a lo largo del tiempo. */
+					fill: none;
+					stroke: var(--flujo-linea);
+					stroke-width: 0.5;
+					stroke-dasharray: 3 3;
+				}
+
+				& .flecha { /* Base de los mensajes entre actores: una línea continua es un pedido. */
+					fill: none;
+					stroke: var(--flujo-texto-secundario);
+					stroke-width: 1.2;
+				}
+
+				& .flecha-respuesta { /* Variante de flecha punteada: es la respuesta a un pedido. */
+					stroke-dasharray: 4 3;
+				}
+
+				& .cabeza-flecha { /* Punta abierta de las flechas, del mismo color que su línea. */
+					fill: none;
+					stroke: var(--flujo-texto-secundario);
+					stroke-width: 1.5;
+					stroke-linecap: round;
+					stroke-linejoin: round;
+				}
+
+				& .marco-ciclo { /* Recuadro punteado de un ciclo que se repite hasta cumplir su condición, o de un bloque que solo pasa si hace falta. */
+					fill: none;
+					stroke: var(--flujo-linea);
+					stroke-width: 0.5;
+					stroke-dasharray: 6 4;
+				}
+
+				& .bola-preferencia { /* Círculo que marca lo que el Director ajusta en sus preferencias, con un número que explica la lista de debajo del diagrama. Es local porque solo lo usan estos diagramas. */
+					fill: var(--flujo-preferencia-fondo);
+					stroke: var(--flujo-preferencia-borde);
+					stroke-width: 1;
+				}
+
+				& .texto-preferencia { /* Número dentro de la bola de una preferencia, con el tono oscuro de su misma familia de color. */
+					fill: var(--flujo-preferencia-texto);
+					font-size: 11px;
+					font-weight: 600;
+				}
+
+			}
+
+		}
+	</style>
+</head>
+<body>
+	<main class="flujo">
+		<h1>Implementar Cambio</h1>
+		<p>Cada columna es un actor y el tiempo corre hacia abajo. Las flechas continuas son pedidos, y las punteadas, respuestas. Los recuadros punteados son ciclos que se repiten hasta cumplir su condición, o bloques que solo pasan si hace falta.</p>
+		<p>Las flechas al Verificador que dicen «completo» corren el Verificador completo, con todas las pruebas y la revisión de sus tipos. Las demás corren el Verificador ligero, que salta esa revisión, las pruebas de interfaz, las de errores ya arreglados y las pesadas, que son las pruebas que tardan más de 1 segundo.</p>
+		<p>Este diagrama se dibuja a partir de Implementar Cambio.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<section>
+			<h2>Cómo se hace un cambio menor</h2>
+			<svg class="diagrama" viewBox="0 0 940 1772" role="img" aria-labelledby="titulo-cambios descripcion-cambios"> <!-- Diagrama de secuencia de un cambio menor, con cuatro actores en columnas: una sola sesión hace de Líder y de Implementador. -->
+				<title id="titulo-cambios">Quién habla con quién en un cambio menor</title>
+				<desc id="descripcion-cambios">Con /implementar-cambio, un cambio menor funciona como un paso de una sola etapa que hace una sola sesión, como Líder y como Implementador, directo en la rama principal, sin rama y sin copia de trabajo. Escribe un plan corto que aprueba el Director sin pasar por el Revisor Principal, comprueba que la rama principal pase el Verificador completo y programa, empezando por la prueba que atrape el error, si es uno. Mientras programa corre solo las pruebas enfocadas, y las de interfaz solo en Chromium, y cuando termina, el Verificador completo hasta que pase, con un techo de 10 vueltas. Nunca prepara ni confirma nada, y conversa con el Revisor de Etapa, al que le pasa en cada vuelta todo lo no preparado y los archivos nuevos, hasta que apruebe o se llegue a su techo de vueltas, cuyo valor predeterminado es 3. Después limpia las pruebas con /limpiar-pruebas y corre el Verificador completo. Al final, la sesión escribe el resumen, que es el registro completo de lo que pasó, anota sus cifras en Métricas.csv, borra las respuestas del Revisor de Etapa y le enlaza el resumen al Director, y sus cambios le quedan sin preparar en la rama principal, sin fusión. El resumen trae los aprendizajes que dejó el cambio, y si el error se escapó de un paso o de un cambio anterior, uno de ellos es la capa que debió atraparlo. El Director decide qué se hace con ellos. El Director lleva las correcciones que elija, una a una, a /incorporar-idea, y después prepara, confirma, sube y despliega. Las bolas numeradas marcan lo que el Director ajusta en sus preferencias.</desc>
+				<defs>
+					<marker id="cabeza-cambios" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
+				</defs>
+				<path class="linea-de-vida" d="M245 72V88M245 110V250M245 298V1144M245 1192V1254M245 1302V1476M245 1524V1540M245 1588V1602"/> <!-- Cada línea de vida va en tramos que se cortan en las franjas y en las cajas, para que ninguna línea las atraviese. -->
+				<path class="linea-de-vida" d="M395 72V88M395 110V156M395 204V404M395 452V598M395 660V790M395 838V870M395 918V1050M395 1098V1348M395 1396V1412M395 1460V1602"/>
+				<path class="linea-de-vida" d="M545 72V88M545 110V1602"/>
+				<path class="linea-de-vida" d="M695 72V88M695 110V1602"/>
+				<rect class="caja caja-director" x="177" y="20" width="136" height="52" rx="8"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="38" text-anchor="middle" dominant-baseline="central">Director</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="56" text-anchor="middle" dominant-baseline="central">Decide</text>
+				<rect class="caja caja-misma-empresa" x="327" y="20" width="136" height="52" rx="8"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="38" text-anchor="middle" dominant-baseline="central">Sesión</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="56" text-anchor="middle" dominant-baseline="central">Planea e implementa</text>
+				<g><title>Preferencia: el modelo y el razonamiento de este papel.</title><circle class="bola-preferencia" cx="463" cy="20" r="9"/><text class="texto-preferencia" x="463" y="20" text-anchor="middle" dominant-baseline="central">1</text></g>
+				<rect class="caja caja-neutra" x="477" y="20" width="136" height="52" rx="8"/>
+				<text class="texto-titulo" x="545" y="38" text-anchor="middle" dominant-baseline="central">Verificador</text>
+				<text class="texto-secundario" x="545" y="56" text-anchor="middle" dominant-baseline="central">Programa, sin IA</text>
+				<rect class="caja caja-otra-empresa" x="627" y="20" width="136" height="52" rx="8"/>
+				<text class="texto-titulo texto-titulo-otra-empresa" x="695" y="38" text-anchor="middle" dominant-baseline="central">Revisor de Etapa</text>
+				<text class="texto-secundario texto-secundario-otra-empresa" x="695" y="56" text-anchor="middle" dominant-baseline="central">Otra empresa</text>
+				<g><title>Preferencia: el programa, el modelo y el razonamiento del Revisor de Etapa, que puede ser de la misma empresa si hay una sola suscripción.</title><circle class="bola-preferencia" cx="763" cy="20" r="9"/><text class="texto-preferencia" x="763" y="20" text-anchor="middle" dominant-baseline="central">1</text></g>
+				<rect class="caja caja-neutra" x="20" y="88" width="900" height="22" rx="4"/> <!-- Cambios menores: todo es como en un paso, salvo el plan corto sin el Revisor Principal, las pruebas de aceptación, la rama y la copia de trabajo, la revisión integrada, la vista del código, la fusión y casi todo el punto 7. -->
+				<text class="texto-secundario" x="32" y="99" dominant-baseline="central">Cambio menor, con /implementar-cambio: un paso de una sola etapa, directo en la rama principal</text>
+				<text class="texto-secundario" x="320" y="134" text-anchor="middle">/implementar-cambio</text>
+				<line class="flecha" x1="249" y1="142" x2="391" y2="142" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-misma-empresa" x="293" y="156" width="204" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="172" text-anchor="middle" dominant-baseline="central">Escribe un plan corto</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="189" text-anchor="middle" dominant-baseline="central">sin el Revisor Principal</text>
+				<text class="texto-secundario" x="320" y="228" text-anchor="middle">Plan corto</text>
+				<line class="flecha" x1="391" y1="236" x2="249" y2="236" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-director" x="177" y="250" width="136" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="266" text-anchor="middle" dominant-baseline="central">Aprueba</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="283" text-anchor="middle" dominant-baseline="central">o pide cambios</text>
+				<g><title>Preferencia: aprobar el plan. Encendida o apagada, y de forma predeterminada está encendida.</title><circle class="bola-preferencia" cx="313" cy="250" r="9"/><text class="texto-preferencia" x="313" y="250" text-anchor="middle" dominant-baseline="central">2</text></g>
+				<text class="texto-secundario" x="320" y="322" text-anchor="middle">Aprobado</text>
+				<line class="flecha" x1="249" y1="330" x2="391" y2="330" marker-end="url(#cabeza-cambios)"/>
+				<text class="texto-secundario" x="470" y="352" text-anchor="middle">Corre el completo</text>
+				<line class="flecha" x1="399" y1="360" x2="541" y2="360" marker-end="url(#cabeza-cambios)"/>
+				<text class="texto-secundario" x="470" y="382" text-anchor="middle">Pasa</text>
+				<line class="flecha flecha-respuesta" x1="541" y1="390" x2="399" y2="390" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-misma-empresa" x="280" y="404" width="230" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="420" text-anchor="middle" dominant-baseline="central">Programa</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="437" text-anchor="middle" dominant-baseline="central">primero la prueba, si es un error</text>
+				<rect class="marco-ciclo" x="320" y="466" width="300" height="116" rx="6"/> <!-- Cuando el cambio está listo, la sesión corre el Verificador completo y corrige hasta que pase, con un techo de 10 vueltas. -->
+				<text class="texto-secundario" x="470" y="484" text-anchor="middle">Hasta que pase,</text>
+				<text class="texto-secundario" x="470" y="500" text-anchor="middle">o 10 vueltas</text>
+				<text class="texto-secundario" x="470" y="530" text-anchor="middle">Corre el completo</text>
+				<line class="flecha" x1="399" y1="538" x2="541" y2="538" marker-end="url(#cabeza-cambios)"/>
+				<text class="texto-secundario" x="470" y="560" text-anchor="middle">Pasa o falla</text>
+				<line class="flecha flecha-respuesta" x1="541" y1="568" x2="399" y2="568" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-misma-empresa" x="288" y="598" width="214" height="62" rx="6"/> <!-- En cada vuelta, la sesión le pasa al Revisor de Etapa todo lo no preparado y los archivos nuevos, sin preparar nada, porque la preparación es del Director. -->
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="614" text-anchor="middle" dominant-baseline="central">Junta sus cambios</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="631" text-anchor="middle" dominant-baseline="central">lo no preparado</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="647" text-anchor="middle" dominant-baseline="central">y los archivos nuevos</text>
+				<rect class="marco-ciclo" x="320" y="674" width="450" height="180" rx="6"/> <!-- Ciclo con el Revisor de Etapa, igual que en una etapa de un paso. -->
+				<text class="texto-secundario" x="470" y="692" text-anchor="middle">Hasta aprobado</text>
+				<text class="texto-secundario" x="470" y="708" text-anchor="middle">o las vueltas máximas</text>
+				<g><title>Preferencia: las vueltas máximas del Revisor de Etapa. Su valor predeterminado es 3.</title><circle class="bola-preferencia" cx="320" cy="674" r="9"/><text class="texto-preferencia" x="320" y="674" text-anchor="middle" dominant-baseline="central">4</text></g>
+				<text class="texto-secundario" x="470" y="738" text-anchor="middle">Revisa el cambio</text>
+				<line class="flecha" x1="399" y1="746" x2="691" y2="746" marker-end="url(#cabeza-cambios)"/>
+				<text class="texto-secundario" x="620" y="768" text-anchor="middle">Observaciones</text>
+				<line class="flecha flecha-respuesta" x1="691" y1="776" x2="399" y2="776" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-misma-empresa" x="341.5" y="790" width="107" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="806" text-anchor="middle" dominant-baseline="central">Corrige</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="823" text-anchor="middle" dominant-baseline="central">o argumenta</text>
+				<rect class="caja caja-misma-empresa" x="302" y="870" width="186" height="48" rx="6"/> <!-- Cuando el Revisor de Etapa aprueba, la sesión limpia con /limpiar-pruebas las pruebas que agregó o cambió el cambio, sin tocar las de aceptación de los pasos anteriores. Al terminar corre el Verificador completo. -->
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="886" text-anchor="middle" dominant-baseline="central">Limpia las pruebas</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="903" text-anchor="middle" dominant-baseline="central">con /limpiar-pruebas</text>
+				<text class="texto-secundario" x="470" y="942" text-anchor="middle">Corre el completo</text>
+				<line class="flecha" x1="399" y1="950" x2="541" y2="950" marker-end="url(#cabeza-cambios)"/>
+				<text class="texto-secundario" x="470" y="972" text-anchor="middle">Pasa</text>
+				<line class="flecha flecha-respuesta" x1="541" y1="980" x2="399" y2="980" marker-end="url(#cabeza-cambios)"/>
+				<rect class="marco-ciclo" x="170" y="994" width="315.5" height="120" rx="6"/> <!-- Solo si el error se escapó de un paso o de un cambio anterior: la sesión anota en el resumen qué capa debió atraparlo, con la regla, la prueba o la línea de las Instrucciones de los Revisores que lo habría atrapado. -->
+				<text class="texto-secundario" x="320" y="1012" text-anchor="middle">Solo si el error</text>
+				<text class="texto-secundario" x="320" y="1028" text-anchor="middle">se escapó</text>
+				<rect class="caja caja-misma-empresa" x="312.5" y="1050" width="165" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1066" text-anchor="middle" dominant-baseline="central">Anota la capa</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1083" text-anchor="middle" dominant-baseline="central">que debió atraparlo</text>
+				<text class="texto-secundario" x="320" y="1122" text-anchor="middle">Resumen</text> <!-- Al terminar, la sesión solo le enlaza el resumen al Director, sin repetirlo en el chat. Trae los aprendizajes, y si el error se escapó, la capa que debió atraparlo. -->
+				<line class="flecha" x1="391" y1="1130" x2="249" y2="1130" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-director" x="168" y="1144" width="154" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="1160" text-anchor="middle" dominant-baseline="central">Decide</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="1177" text-anchor="middle" dominant-baseline="central">qué se hace con ellos</text>
+				<rect class="caja caja-director" x="195" y="1254" width="100" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="1270" text-anchor="middle" dominant-baseline="central">Revisa</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="1287" text-anchor="middle" dominant-baseline="central">y aprueba</text>
+				<text class="texto-secundario" x="320" y="1326" text-anchor="middle">Las que elija</text>
+				<line class="flecha" x1="249" y1="1334" x2="391" y2="1334" marker-end="url(#cabeza-cambios)"/>
+				<rect class="caja caja-misma-empresa" x="294.5" y="1348" width="201" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1364" text-anchor="middle" dominant-baseline="central">Incorpora una a una</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1381" text-anchor="middle" dominant-baseline="central">con /incorporar-idea</text>
+				<rect class="caja caja-misma-empresa" x="307" y="1412" width="176" height="48" rx="6"/> <!-- Al terminar, los cambios de la sesión quedan sin preparar, porque nunca prepara nada: no hay fusión, porque trabajó directo en la rama principal. -->
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1428" text-anchor="middle" dominant-baseline="central">Quedan sin preparar</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1445" text-anchor="middle" dominant-baseline="central">en la principal</text>
+				<rect class="caja caja-director" x="177" y="1476" width="136" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="1492" text-anchor="middle" dominant-baseline="central">Prepara</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="1509" text-anchor="middle" dominant-baseline="central">lo que aprueba</text>
+				<rect class="caja caja-director" x="164" y="1540" width="162" height="48" rx="6"/>
+				<text class="texto-titulo texto-titulo-director" x="245" y="1556" text-anchor="middle" dominant-baseline="central">Confirma, sube</text>
+				<text class="texto-secundario texto-secundario-director" x="245" y="1573" text-anchor="middle" dominant-baseline="central">y despliega</text>
+				<g><title>Preferencia: aprobar antes de subir. Siempre encendida: no se puede apagar.</title><circle class="bola-preferencia" cx="326" cy="1540" r="9"/><text class="texto-preferencia" x="326" y="1540" text-anchor="middle" dominant-baseline="central">3</text></g>
+				<text class="texto-secundario" x="470" y="1628" text-anchor="middle">Lo que no aparece aquí funciona igual que en un paso.</text> <!-- Notas de lo que no cabe en las flechas: lo que pasa cuando algo falla y lo que solo pasa a veces. -->
+				<text class="texto-secundario" x="470" y="1650" text-anchor="middle">↻ Si la rama principal tiene cambios sin preparar, le avisa al Director y no empieza.</text>
+				<text class="texto-secundario" x="470" y="1672" text-anchor="middle">↻ Si el cambio crece demasiado para esta vía, se detiene y propone /incorporar-idea y después /implementar-paso.</text>
+				<text class="texto-secundario" x="470" y="1694" text-anchor="middle">↻ Si la rama principal ya falla antes de empezar, le avisa al Director antes de seguir.</text>
+				<rect class="caja caja-director" x="219" y="1724" width="12" height="12" rx="2"/> <!-- Leyenda de colores de los actores de este diagrama. -->
+				<text class="texto-secundario" x="237" y="1730" dominant-baseline="central">Director</text>
+				<rect class="caja caja-misma-empresa" x="304" y="1724" width="12" height="12" rx="2"/>
+				<text class="texto-secundario" x="322" y="1730" dominant-baseline="central">La empresa de la sesión</text>
+				<rect class="caja caja-neutra" x="472" y="1724" width="12" height="12" rx="2"/>
+				<text class="texto-secundario" x="490" y="1730" dominant-baseline="central">Verificador, sin IA</text>
+				<rect class="caja caja-otra-empresa" x="610" y="1724" width="12" height="12" rx="2"/>
+				<text class="texto-secundario" x="628" y="1730" dominant-baseline="central">La otra empresa</text>
+				<circle class="bola-preferencia" cx="393" cy="1752" r="6"/> <!-- Segunda fila de la leyenda: lo que se ajusta en las preferencias. -->
+				<text class="texto-secundario" x="405" y="1752" dominant-baseline="central">Se ajusta en las preferencias</text>
+			</svg>
+			<p>Las bolas numeradas marcan lo que el Director ajusta en sus preferencias, en <code>Locales/Preferencias.json</code>:</p>
+			<ol>
+				<li>El modelo y el razonamiento de cada papel: La sesión y el Revisor de Etapa.</li>
+				<li>Aprobar el plan: Encendida o apagada. De forma predeterminada, está encendida.</li>
+				<li>Aprobar antes de subir: Siempre encendida. No se puede apagar.</li>
+				<li>Las vueltas máximas del Revisor de Etapa: Cuántas veces vuelve a revisar mientras siga encontrando algo bloqueante. Su valor predeterminado es 3.</li>
+			</ol>
+		</section>
+	</main>
+</body>
+</html>

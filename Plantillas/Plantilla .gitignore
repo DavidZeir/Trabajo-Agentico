@@ -1,0 +1,20 @@
+# Caché local de Visual Studio: índices y ajustes de cada PC, que nunca entran al repositorio.
+.vs/
+
+# Lo temporal de los pasos y los cambios menores: las copias de trabajo de las etapas, las respuestas de los revisores, y las capturas y los registros de la aplicación.
+/Temporal/
+
+# La configuración personal de Claude Code en este proyecto, como los permisos que cada quien aprueba con «No volver a preguntar». La compartida, .claude/settings.json, con las reglas duras del proyecto, sí entra.
+.claude/settings.local.json
+
+# Lo del proyecto que no es código ni bases, como las notas, los documentos, los diseños, los datos y las referencias del Director. Lo organiza él, y no entra al repositorio porque es personal, puede tener datos privados y suele pesar mucho. Solo entra su Leeme.md, para que la carpeta llegue con cada clon y diga para qué es.
+/Archivos/*
+!/Archivos/Leeme.md
+
+# Las bases y el historial de los pasos y los cambios no se ignoran: en el repositorio, todo cambio queda en su historial y se aprueba con git, y fuera de él, una IA los puede cambiar sin que nadie se entere.
+# Para compartir el código sin ellos, no se hace público este repositorio, porque su historial guarda todas sus versiones. Cada versión se copia a otro repositorio público con Programas/Compartir/Copiar.mjs de Trabajo Agéntico, que deja fuera las bases, los pasos y lo demás del flujo.
+# /Bases/
+# /Pasos/
+
+# Las capturas de los pasos, los cambios y las exploraciones de diseño, que van en JPEG: sirven al revisar, envejecen con el siguiente cambio y lo que entra a git ya no sale. Se quedan solo en este computador, donde los resúmenes y las páginas de comparación las siguen mostrando.
+/Pasos/**/*.jpg

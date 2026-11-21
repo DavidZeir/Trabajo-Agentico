@@ -1,0 +1,20 @@
+{
+	"Claude": {
+		"Familias": {
+			"haiku": "claude-haiku-5-5",
+			"sonnet": "claude-sonnet-5-5",
+			"opus": "claude-opus-5-5",
+			"fable": "claude-fable-5-2"
+		},
+		"Razonamientos": ["low", "medium", "high", "xhigh", "max"]
+	},
+	"Codex": {
+		"Familias": {
+			"luna": "gpt-6-luna",
+			"terra": "gpt-6.1-terra",
+			"sol": "gpt-6.2-sol",
+			"astra": "gpt-6.2-astra"
+		},
+		"Razonamientos": ["low", "medium", "high", "xhigh", "max"]
+	}
+}

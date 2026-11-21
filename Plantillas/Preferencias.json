@@ -1,0 +1,33 @@
+{
+	"Modelos": {
+		"Claude": {
+			"Líder": { "Modelo": "opus", "Razonamiento": "medium" },
+			"Implementador": { "Modelo": "sonnet", "Razonamiento": "medium" },
+			"RevisorEtapa": { "Programa": "Claude", "Modelo": "sonnet", "Razonamiento": "high" },
+			"RevisorPrincipal": { "Programa": "Claude", "Modelo": "opus", "Razonamiento": "high" }
+		},
+		"Codex": {
+			"Líder": { "Modelo": "sol", "Razonamiento": "medium" },
+			"Implementador": { "Modelo": "terra", "Razonamiento": "medium" },
+			"RevisorEtapa": { "Programa": "Codex", "Modelo": "terra", "Razonamiento": "high" },
+			"RevisorPrincipal": { "Programa": "Codex", "Modelo": "sol", "Razonamiento": "high" }
+		}
+	},
+	"Paradas": {
+		"RevisarLasPruebas": false,
+		"AprobarElPlan": true,
+		"RevisarCadaEtapa": false,
+		"AprobarAntesDeSubir": true
+	},
+	"VueltasMáximas": {
+		"RevisorPlan": 3,
+		"RevisorPruebas": 5,
+		"RevisorEtapa": 3,
+		"RevisorPuerta": 3,
+		"RevisorFinal": 5,
+		"RevisarYCorregir": 5
+	},
+	"PruebasGemelas": true,
+	"LíneasParaEtapaPropia": 300,
+	"SugerirMcpDiseño": true
+}

@@ -1,0 +1,6 @@
+# Los archivos de texto van en LF, en el repositorio y en la carpeta de trabajo, también en Windows y aunque el computador tenga activado core.autocrlf. Así no se mezclan con las líneas que escriben Claude y Codex, que siempre escriben en LF.
+* text=auto eol=lf
+
+# Los .bat y los .cmd van en CRLF, porque Windows puede leerlos mal en LF.
+*.bat text eol=crlf
+*.cmd text eol=crlf

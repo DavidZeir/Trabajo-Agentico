@@ -1,0 +1,12 @@
+# La bandeja del Director: sus notas sin ordenar en .txt, que maneja él solo, fuera de git (Procesos/Incorporar Idea.md, "Nuevas Ideas").
+*.txt
+
+# Caché local de Visual Studio: índices y ajustes de cada PC, que nunca entran al repositorio.
+.vs/
+
+# Lo que no va en git: de Locales/ solo va su Leeme.md. Lo propio del Director se copia a mano a cada computador, como dice Configuración.md, y lo que se arma en cada uno, como el AGENTS.md que leen Claude y Codex o el inventario de sus proyectos, no se copia.
+/Locales/*
+!/Locales/Leeme.md
+
+# Lo temporal de las habilidades que corren aquí, como las respuestas de los revisores en revisar-y-corregir, que se borra al terminar y nunca entra al repositorio.
+/Temporal/
