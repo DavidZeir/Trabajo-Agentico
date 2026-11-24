@@ -9,9 +9,9 @@
 - **Verificador:** El programa sin IA que comprueba el trabajo de un proyecto con un solo comando, en su raíz o en la de cada subproyecto. Responde si pasa o no pasa, y qué falló. En el software corre el linter, los tipos, las pruebas y las reglas de estructura, siempre en uno de sus dos modos: el Verificador ligero, `npm run verificador ligero`, que salta la revisión de los tipos de las pruebas, las pruebas pesadas, las de interfaz y las de errores ya arreglados, y el Verificador completo, `npm run verificador completo`, que corre todo.
 - **Revisor de Etapa:** Una IA en solo lectura, que revisa cada etapa con su plan y sus cambios. Su programa, su modelo y su razonamiento los fijan mis preferencias, como los del Revisor Principal.
 - **Revisor Principal:** Una IA en solo lectura, por lo general de otra empresa. Su programa, su modelo y su razonamiento los fijan mis preferencias, en `<Trabajo Agéntico>/Locales/Preferencias.json`, cuando lo llama una habilidad, o los elijo yo cuando lo abro en su propia aplicación. En el software, con `/implementar-paso`, revisa como Revisor de Plan los planes del paso, como Revisor de Pruebas las pruebas de aceptación, como Revisor de Puerta cada etapa antes de que se fusione y como Revisor Final el conjunto completo.
-- **Bases:** Los documentos de cada proyecto que dicen lo que el proyecto ya es y lo que se va a hacer, con sus razones. Son su fuente de verdad, junto con el resultado del trabajo, y cada cambio en ellas lo aprueba el Director con `/incorporar-idea` o con el traslado de una idea aprobada a su documento dueño.
-- **Pasos Pendientes:** El documento del proyecto con los pasos que faltan por terminar, incluido el que está en curso, en orden y con sus criterios de aceptación.
-- **Pasos Terminados:** El documento único del proyecto con los pasos finalizados, sus criterios de aceptación y su fecha de cierre.
+- **Bases:** Los documentos de cada proyecto que dicen lo que el proyecto ya es y lo que se va a hacer, con sus razones. Son su fuente de verdad, junto con el resultado del trabajo, y cada cambio en ellas lo aprueba el Director con `/incorporar-idea`, con `/iniciar-subproyecto` o con el traslado de una idea aprobada a su documento dueño.
+- **Pasos Pendientes:** El documento del proyecto, o de un subproyecto, con los pasos que faltan por terminar, incluido el que está en curso, en orden y con sus criterios de aceptación.
+- **Pasos Terminados:** El documento del proyecto, o de un subproyecto, con los pasos finalizados, sus criterios de aceptación y su fecha de cierre.
 - **Paso:** Un avance previsto en los pasos pendientes del proyecto, que en el software se implementa con `/implementar-paso`:
   - Debe estar acotado. Antes de empezar, queda claro qué resultado se va a entregar y qué cambios quedan fuera del paso, aunque estén relacionados con el mismo tema.
   - Se hace en una sola sesión del Líder.
@@ -26,13 +26,13 @@
   - **Costó:** Tiempo investigando, un intento que no funcionó o un error que alguien tuvo que atrapar, sea el Verificador, un revisor o yo.
   - **Se puede repetir:** La próxima sesión, sin saberlo, caería igual.
   - **No se ve:** No se descubre leyendo el código o los documentos.
+- **Subproyecto:** Una parte del proyecto con sus propios documentos, como una línea de productos en un negocio o la aplicación de escritorio en un servicio de software. Se crea con `/iniciar-subproyecto`, y sus bases pueden ir en su propia carpeta dentro de `Bases`, pero siguen siendo parte de las del proyecto: se leen junto con las de arriba, como si fueran un solo documento. Si tiene código, su carpeta en la raíz lleva su propio `AGENTS.md` y su Verificador.
 
 ### En el software
 
 - **Pruebas enfocadas:** Un subconjunto de las pruebas (ligeras, pesadas, de interfaz y de errores) de lo que se está tocando, que se corren aparte mientras el Implementador programa, como dice el `AGENTS.md` del proyecto. Sirven para ir probando el código escrito.
 - **Rama de integración:** La rama donde el Líder fusiona las etapas de un paso. Sale de la rama principal y vuelve a ella con la fusión a la rama principal.
 - **Copia de trabajo:** Una carpeta aparte con los archivos de una rama, para trabajar en ella sin tocar la carpeta del proyecto (en git, worktree). Cada etapa tiene la suya, en `Temporal/`, y lo que se cambia ahí llega al proyecto solo cuando se fusiona.
-- **Subproyecto:** Una carpeta dentro del proyecto con una parte de su código que funciona por su cuenta, como la web o la aplicación de escritorio, con su propio `AGENTS.md` y su propio Verificador. Solo los tiene un proyecto con varias partes así: si tiene una sola, su código va en la raíz.
 
 ## Reglas de Git
 

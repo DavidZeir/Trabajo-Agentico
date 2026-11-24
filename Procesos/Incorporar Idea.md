@@ -1,6 +1,6 @@
 # Incorporar Idea
 
-Las bases de un proyecto se construyen y se mantienen conversando con la IA. Todo termina en `/incorporar-idea`, venga de donde venga: de una idea del Director, de lo que encuentra el Revisor Principal en las bases o de una diferencia entre lo que ya está hecho y las bases. Su diagrama es `Incorporar Idea.html`.
+Las bases de un proyecto se construyen y se mantienen conversando con la IA. Todo termina en `/incorporar-idea`, venga de donde venga: de una idea del Director, de lo que encuentra el Revisor Principal en las bases o de una diferencia entre lo que ya está hecho y las bases. La excepción es darle a una parte del proyecto su propia carpeta en las bases, que se hace con `/iniciar-subproyecto`. Su diagrama es `Incorporar Idea.html`.
 
 Las bases quedan siempre bajo el control del Director, porque un error en ellas cuesta más que uno en el trabajo. Un trabajo mal hecho se repite hasta que cumpla con las bases, pero una idea mal incorporada daña todos los trabajos que vienen después.
 

@@ -24,6 +24,8 @@ Ninguno de los dos necesita pasos a mano. Si algo falla, cada uno se detiene con
 
 ## Las copias de un proyecto con subproyectos
 
+Aquí, los subproyectos son los de código, los que nombra la sección «Subproyectos» del `AGENTS.md` del proyecto. Un subproyecto que solo tiene su carpeta dentro de `Bases` no cuenta, porque `Bases` llega completa a cada copia.
+
 La copia de trabajo trae solo los archivos de la raíz, `Bases` y los subproyectos que toca su paso o su etapa. Se crea así:
 
 1. `git worktree add --no-checkout <ruta> <rama>`.

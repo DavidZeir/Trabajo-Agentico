@@ -1,4 +1,4 @@
-import fs from 'node:fs'; // Comprueba las citas de las bases de un proyecto: que cada enlace y cada documento nombrado existan, que cada sección citada esté en su documento, que el índice nombre todos los documentos y que cada idea aprobada tenga su enlace en su documento dueño. No juzga lo que dicen los documentos, porque eso necesita criterio y lo hacen las habilidades. Lo corren incorporar-idea, revisar-bases y revisar-codigo-vs-bases desde la raíz del proyecto, como dice Habilidades/Comprobar Bases.md. Si algo está mal, lo dice todo y sale con el código 1. También avisa, sin fallar, cuando a un documento le quedan corchetes dobles de su plantilla, que todavía hay que llenar.
+import fs from 'node:fs'; // Comprueba las citas de las bases de un proyecto: que cada enlace y cada documento nombrado existan, que cada sección citada esté en su documento, que cada índice nombre los documentos de su carpeta y que cada idea aprobada tenga su enlace en su documento dueño. Con subproyectos, que tienen su propia carpeta dentro de las bases, un documento citado por su nombre se busca primero en la carpeta de quien lo cita y después en las de arriba. No juzga lo que dicen los documentos, porque eso necesita criterio y lo hacen las habilidades. Lo corren incorporar-idea, iniciar-subproyecto, revisar-bases y revisar-codigo-vs-bases desde la raíz del proyecto, como dice Habilidades/Comprobar Bases.md. Si algo está mal, lo dice todo y sale con el código 1. También avisa, sin fallar, cuando a un documento le quedan corchetes dobles de su plantilla, que todavía hay que llenar.
 import path from 'node:path';
 
 
@@ -17,7 +17,7 @@ if (!fs.existsSync(CarpetaBases)) Detener('No encontré las bases:',
 	[`No existe ${CarpetaBases}. Corre el programa desde la raíz del proyecto, donde está la carpeta Bases, o dile dónde están con --carpeta.`]);
 
 const Documentos = LeerDocumentos(CarpetaBases);
-const DocumentosPorNombre = new Map([...Documentos.values()].map(documento => [path.basename(documento.ruta), documento])); // Las citas nombran los documentos sin su carpeta, como Pasos Pendientes.md.
+const ConSubcarpetas = [...Documentos.keys()].some(relativa => relativa.includes('/')); // Si las bases tienen documentos en subcarpetas, como los de un subproyecto. Sin ellos, el índice se revisa exactamente como antes de los subproyectos.
 const DocumentosDelProyecto = BuscarDocumentos(RaízDelProyecto);
 const Citas = BuscarCitasDeSección(); // Las citas de sección de todas las bases. Las usan la comprobación de las secciones y la de las ideas aprobadas.
 ComprobarEnlaces();
@@ -128,7 +128,7 @@ function BuscarCitasDeSección() { // Las secciones citadas con su documento en 
 				if (comillasAntes % 2 === 0) citas.push(cita);
 
 			}
-			if (relativa === 'Decisiones.md') for (const [, citado, sección] of revisada.matchAll(DueñoDeDecisión)) citas.push(
+			if (EsDecisiones(relativa)) for (const [, citado, sección] of revisada.matchAll(DueñoDeDecisión)) citas.push(
 				{ relativa, número: i + 1, sección: LimpiarFormato(sección), citado });
 
 		}
@@ -139,14 +139,47 @@ function BuscarCitasDeSección() { // Las secciones citadas con su documento en 
 }
 
 
-function PartePorRevisar(relativa, línea) { // Lo que se revisa de una línea. En Decisiones.md es solo lo que va después de la flecha, el documento dueño y su sección, porque lo demás es historia y puede nombrar documentos que ya cambiaron de nombre o que desaparecieron. Y de una decisión reemplazada no se revisa nada, porque ya no vale.
+function PartePorRevisar(relativa, línea) { // Lo que se revisa de una línea. En unas Decisiones.md, las del proyecto o las de un subproyecto, es solo lo que va después de la flecha, el documento dueño y su sección, porque lo demás es historia y puede nombrar documentos que ya cambiaron de nombre o que desaparecieron. Y de una decisión reemplazada no se revisa nada, porque ya no vale.
 
-	if (relativa !== 'Decisiones.md') {
+	if (!EsDecisiones(relativa)) {
 		return línea;
 	} else if (línea.includes('*[Reemplazada por') || !línea.includes('→')) {
 		return '';
 	} else {
 		return línea.slice(línea.lastIndexOf('→') + 1);
+	}
+
+}
+
+
+function EsDecisiones(relativa) { // Si un documento de las bases es un registro de decisiones, el del proyecto o el de un subproyecto.
+	return path.posix.basename(relativa) === 'Decisiones.md';
+}
+
+
+function HaciaArriba(carpeta, nombre) { // El documento con ese nombre en esa carpeta de las bases o, si no está ahí, en la más cercana hacia arriba, hasta la carpeta principal. Es la regla de los subproyectos: los documentos de una carpeta valen para ella y para las de adentro, y uno de adentro con el mismo nombre, como las Decisiones.md de un subproyecto, solo agrega lo suyo, así que es el primero que se busca.
+
+	let actual = carpeta;
+	while (actual !== '.' && !Documentos.has(`${actual}/${nombre}`)) actual = path.posix.dirname(actual); // El nombre se busca tal cual, sin normalizarlo, como lo hizo siempre el programa, así que una cita como ./Reglas.md no se revisa.
+	return Documentos.get(actual === '.' ? nombre : `${actual}/${nombre}`);
+
+}
+
+
+function DocumentoCitado(relativa, nombre) { // El documento que cita por su nombre un documento de las bases: el más cercano hacia arriba desde su carpeta, y si no hay, el único con ese nombre en las carpetas de adentro, como el de un subproyecto citado desde el proyecto. Devuelve undefined si ningún documento de las bases se llama así, porque entonces es de otra parte del proyecto, como un AGENTS.md, y no se revisa.
+
+	const carpeta = path.posix.dirname(relativa);
+	const arriba = HaciaArriba(carpeta, nombre);
+	const conEseNombre = [...Documentos.values()].filter(documento => path.posix.basename(documento.relativa) === nombre);
+	const adentro = conEseNombre.filter(documento => carpeta === '.' || documento.relativa.startsWith(`${carpeta}/`));
+	if (arriba !== undefined) {
+		return arriba;
+	} else if (conEseNombre.length === 0) {
+		return undefined;
+	} else if (adentro.length === 1) {
+		return adentro[0];
+	} else {
+		return null; // Está en las bases, pero en otra rama, como un subproyecto hermano, o varias veces adentro, así que no se sabe cuál es, y quien la llama lo reporta.
 	}
 
 }
@@ -240,12 +273,15 @@ function ComprobarNombres() { // Cada documento nombrado entre comillas invertid
 }
 
 
-function ComprobarSecciones() { // Cada sección citada con su documento, como 'Chatbot de WhatsApp' en Ideas Aprobadas.md, tiene que ser un título de ese documento o el principio de uno de sus párrafos, como una etiqueta en negrita. Si el documento no es de las bases, no se revisa, y si no existe, ya lo dice ComprobarNombres.
+function ComprobarSecciones() { // Cada sección citada con su documento, como 'Chatbot de WhatsApp' en Ideas Aprobadas.md, tiene que ser un título de ese documento o el principio de uno de sus párrafos, como una etiqueta en negrita. Si el documento no es de las bases, no se revisa, si no existe, ya lo dice ComprobarNombres, y si no se sabe cuál de las bases es, se reporta.
 
 	for (const cita of Citas) {
 
-		const citado = DocumentosPorNombre.get(cita.citado);
-		if (citado !== undefined) {
+		const citado = DocumentoCitado(cita.relativa, cita.citado);
+		if (citado === null) {
+			Errores.push(
+				`${cita.relativa}, línea ${cita.número}: cita la sección «${cita.sección}» de ${cita.citado}, y no se sabe cuál es, porque no está en su carpeta, ni en las de arriba, ni una sola vez en las de adentro.`);
+		} else if (citado !== undefined) {
 
 			Revisados.secciones++;
 			if (!TieneSección(citado, cita.sección)) Errores.push(
@@ -258,20 +294,48 @@ function ComprobarSecciones() { // Cada sección citada con su documento, como '
 }
 
 
-function ComprobarÍndice() { // El índice, Leeme.md, tiene que nombrar cada documento de las bases, con un enlace o entre comillas invertidas, porque es donde se ve cuál es el documento dueño de cada tema. Los de las subcarpetas no se revisan.
+function ComprobarÍndice() { // Cada documento de las bases tiene que estar nombrado en su índice, con un enlace o entre comillas invertidas, porque es donde se ve cuál es el documento dueño de cada tema. El índice de la carpeta principal es su Leeme.md, y cada subproyecto puede tener el suyo.
 
-	const índice = Documentos.get('Leeme.md');
-	if (índice === undefined) {
-		Errores.push('Las bases no tienen su índice, Leeme.md, que dice cuál es el documento dueño de cada tema.');
+	if (!Documentos.has('Leeme.md')) Errores.push(
+		'Las bases no tienen su índice, Leeme.md, que dice cuál es el documento dueño de cada tema.');
+	const nombrados = new Map(); // Lo que nombra cada índice se calcula una sola vez, porque un índice puede nombrar cientos de documentos.
+	for (const relativa of [...Documentos.keys()].filter(r => r !== 'Leeme.md')) {
+
+		const índice = ÍndiceDe(relativa);
+		if (índice !== undefined && !nombrados.has(índice.relativa)) nombrados.set(índice.relativa, NombradosEn(índice));
+		if (índice !== undefined && !nombrados.get(índice.relativa).has(relativa)) Errores.push(relativa.includes('/') // Un documento de la carpeta principal se reporta como siempre, y uno de una subcarpeta dice cuál índice lo tiene que nombrar.
+			? `${relativa} no está en su índice, ${índice.relativa}, que tiene que nombrar cada documento de su carpeta y el índice de cada subproyecto.`
+			: `${relativa} no está en el índice, Leeme.md, que tiene que nombrar cada documento de las bases.`);
+
+	}
+
+}
+
+
+function ÍndiceDe(relativa) { // El índice que tiene que nombrar a un documento: el Leeme.md más cercano hacia arriba desde su carpeta. Para el Leeme.md de un subproyecto, la búsqueda empieza en la carpeta de arriba, porque es el índice de arriba el que lleva a él.
+	const carpeta = path.posix.dirname(relativa);
+	return HaciaArriba(path.posix.basename(relativa) === 'Leeme.md' ? path.posix.dirname(carpeta) : carpeta, 'Leeme.md');
+}
+
+
+function NombradosEn(índice) { // Los documentos que nombra un índice. Sin subcarpetas, como siempre, basta con que un enlace o una mención entre comillas invertidas termine en el nombre del documento. Con subcarpetas, cada mención nombra al documento al que lleva, resuelta desde la carpeta del índice, porque dos documentos pueden llamarse igual.
+
+	const texto = índice.líneas.join('\n');
+	const enlazados = [...texto.matchAll(/\]\(([^)#\s]+)/g)].map(m => Decodificar(m[1], ruta => ruta)); // Los enlaces van codificados, como Pasos%20Pendientes.md, y quedan en null si están mal codificados.
+	if (!ConSubcarpetas) {
+
+		const entreComillas = [...texto.matchAll(/`([^`\n]+\.md)`/g)].map(m => m[1]);
+		return new Set([...enlazados, ...entreComillas].filter(ruta => ruta !== null).map(ruta => path.basename(ruta)));
+
 	} else {
 
-		const texto = índice.líneas.join('\n');
-		const enlazados = [...texto.matchAll(/\]\(([^)#\s]+)/g)].map(m => Decodificar(m[1], ruta => path.basename(ruta))); // Los enlaces, como Pasos%20Pendientes.md, decodificados y sin su carpeta.
-		const entreComillas = [...texto.matchAll(/`([^`\n]+\.md)`/g)].map(m => path.basename(m[1]));
-		const nombrados = new Set([...enlazados, ...entreComillas]);
-		const sinÍndice = [...Documentos.keys()].filter(r => !r.includes('/') && r !== 'Leeme.md' && !nombrados.has(r)); // Los documentos de la carpeta principal de las bases que el índice no nombra.
-		for (const relativa of sinÍndice) Errores.push(
-			`${relativa} no está en el índice, Leeme.md, que tiene que nombrar cada documento de las bases.`);
+		const destino = ruta => path.relative(CarpetaBases, path.resolve(path.dirname(índice.ruta), ruta)).replaceAll('\\', '/'); // La ruta dentro de las bases a la que lleva una mención, desde la carpeta del índice.
+		const desdeLaRaíz = ruta => path.relative(CarpetaBases, path.resolve(RaízDelProyecto, ruta)).replaceAll('\\', '/'); // La misma, si la mención se escribió desde la raíz del proyecto, como Bases/Producto/Reglas.md.
+		const sinEnlaces = texto.replace(/\[[^\]]*\]\(([^)#\s]*)[^)]*\)/g, (enlace, ruta) => ruta === '' ? enlace : ''); // Un enlace a otro archivo, dentro o fuera de las bases, nombra solo a su destino, así que el texto que muestra no cuenta como otra mención. Un enlace a una sección del mismo índice conserva su texto.
+		const entreComillas = [...sinEnlaces.matchAll(/`([^`\n]+\.md)`/g)].map(m => m[1]);
+		const mencionados = entreComillas.map(ruta => // Una mención entre comillas invertidas nombra al documento al que lleva desde la carpeta del índice o desde la raíz del proyecto. Si no lleva a ninguno, como <Proyecto>/Bases/Reglas.md, nombra por su nombre al de la carpeta principal, como siempre.
+			[destino(ruta), desdeLaRaíz(ruta)].find(posible => Documentos.has(posible)) ?? path.basename(ruta));
+		return new Set([...enlazados.filter(ruta => ruta !== null).map(destino), ...mencionados]); // Un enlace nombra solo a su destino.
 
 	}
 
@@ -283,11 +347,11 @@ function TieneSección(documento, sección) { // Si un documento tiene esa secci
 }
 
 
-function ComprobarIdeasAprobadas() { // Cada idea de Ideas Aprobadas.md, que es un título de tercer nivel, dice dónde va a quedar: su documento dueño y, si la nombra, su sección. El documento dueño tiene que estar en las bases y citar la idea, para que quien lea ese tema sepa que existe, y la sección tiene que estar.
+function ComprobarIdeasAprobadas() { // Cada idea de unas Ideas Aprobadas.md, las del proyecto o las de un subproyecto, es un título de tercer nivel y dice dónde va a quedar: su documento dueño y, si la nombra, su sección. El documento dueño tiene que estar en las bases y citar la idea, para que quien lea ese tema sepa que existe, y la sección tiene que estar.
 
-	const ideas = Documentos.get(ArchivoIdeasAprobadas);
-	if (ideas !== undefined) {
-		for (const idea of IdeasDe(ideas)) ComprobarIdea(idea);
+	const todas = [...Documentos.values()].filter(documento => path.posix.basename(documento.relativa) === ArchivoIdeasAprobadas); // Las del proyecto y las de cada subproyecto.
+	for (const ideas of todas) {
+		for (const idea of IdeasDe(ideas)) ComprobarIdea(idea, ideas);
 	}
 
 }
@@ -317,18 +381,22 @@ function IdeasDe(documento) { // Las ideas de Ideas Aprobadas.md, cada una con s
 }
 
 
-function ComprobarIdea(idea) { // Comprueba una idea aprobada: que diga dónde va a quedar, que su documento dueño esté en las bases y la cite, y que tenga la sección que nombra.
+function ComprobarIdea(idea, ideas) { // Comprueba una idea aprobada: que diga dónde va a quedar, que su documento dueño esté en las bases y la cite, y que tenga la sección que nombra. El documento dueño tiene que estar en la misma carpeta que sus ideas.
 
-	const prefijo = `${ArchivoIdeasAprobadas}, línea ${idea.número}: la idea «${idea.nombre}»`;
-	const dueño = idea.dueño === undefined ? undefined : DocumentosPorNombre.get(idea.dueño);
+	const prefijo = `${ideas.relativa}, línea ${idea.número}: la idea «${idea.nombre}»`;
+	const carpeta = path.posix.dirname(ideas.relativa);
+	const dueño = idea.dueño === undefined ? undefined : Documentos.get(carpeta === '.' ? idea.dueño : `${carpeta}/${idea.dueño}`); // El documento dueño está en la misma carpeta que sus ideas, porque una idea va en la lista de la carpeta de su documento dueño.
 	if (idea.dueño === undefined) {
 		Errores.push(
 			`${prefijo} no dice dónde va a quedar, con su documento dueño entre comillas invertidas, como pide la plantilla.`);
+	} else if (dueño === undefined && [...Documentos.keys()].some(r => path.posix.basename(r) === idea.dueño)) {
+		Errores.push(
+			`${prefijo} va a quedar en ${idea.dueño}, que no está en la carpeta de sus ideas: una idea va en la lista de la carpeta de su documento dueño.`);
 	} else if (dueño === undefined) {
 		Errores.push(`${prefijo} va a quedar en ${idea.dueño}, que no está en las bases.`);
 	} else {
 
-		const citasDelDueño = Citas.filter(c => c.relativa === dueño.relativa && c.citado === ArchivoIdeasAprobadas); // La cita tiene que estar en el documento dueño, y no en cualquier otro, porque es ahí donde se lee ese tema.
+		const citasDelDueño = Citas.filter(c => c.relativa === dueño.relativa && DocumentoCitado(c.relativa, c.citado) === ideas); // La cita tiene que estar en el documento dueño, y no en cualquier otro, porque es ahí donde se lee ese tema, y tiene que llevar a estas ideas, y no a las de otra carpeta.
 		const citada = citasDelDueño.some(c => c.sección === idea.nombre);
 		if (idea.sección !== undefined) Revisados.secciones++;
 		if (idea.sección !== undefined && !TieneSección(dueño, idea.sección)) Errores.push(

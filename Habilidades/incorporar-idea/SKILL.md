@@ -20,6 +20,7 @@ Quitar algo del plan también es una idea, y pasa por este mismo proceso.
 - Lee su índice (normalmente `Leeme.md`): cuál es el documento dueño de cada tema y dónde va cada cosa.
 - Lee los documentos relacionados con la idea, y también `Decisiones.md`, `Ideas Aprobadas.md`, `Ideas por Decidir.md`, `Tareas Pendientes.md`, `Ideas Descartadas.md` y `Glosario.md` si existen.
 - Busca las palabras clave de la idea en todos los `.md` de `Bases`, para encontrar lo relacionado que esté en otra parte.
+- Si la idea es de un subproyecto, con su propia carpeta dentro de `Bases`, lee sus documentos junto con los de las carpetas de arriba, como si fueran uno solo. La idea se escribe en su carpeta, y su documento dueño también es de su carpeta: si cambia un documento de arriba, es una idea de arriba, y va en las ideas de arriba. Y como un subproyecto solo agrega lo suyo, también choca con lo decidido si contradice las bases de arriba.
 
 ## 2. Analizar y preguntar
 

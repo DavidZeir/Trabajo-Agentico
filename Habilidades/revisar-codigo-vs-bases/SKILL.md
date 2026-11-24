@@ -22,6 +22,7 @@ Si no viene nada, revisa el proyecto completo. Si viene un tema, un paso o una c
 
 - Las bases están en la carpeta `Bases`, en la raíz del proyecto. Si no existe, detente y avísale al Director.
 - Antes de leer las bases, comprueba sus citas, como dice `<Trabajo Agéntico>/Habilidades/Comprobar Bases.md`.
+- Si las bases tienen subproyectos, con su propia carpeta dentro de `Bases`, compara el código con todas juntas: los documentos de cada carpeta y los de las de arriba, sobre todo los que se llaman igual, como las `Decisiones.md`, se leen como si fueran un solo documento, y los que ignoras, los ignoras en todas las carpetas. Si el código de un subproyecto sigue algo de su carpeta que contradice las bases de arriba, repórtalo como una diferencia, porque un subproyecto solo agrega lo suyo y nunca las contradice.
 - Si el proyecto es muy grande para revisarlo de una vez, revísalo por partes, según el mapa de carpetas del `AGENTS.md`, y di qué partes revisaste.
 - No decidas cuál de los dos está bien: reporta la diferencia. Esa decisión es del Director.
 - No te vuelvas excesivamente detallista: las bases no describen cada detalle del código, y lo que un buen implementador decidiría solo no es una diferencia.

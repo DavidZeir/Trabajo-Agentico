@@ -24,6 +24,7 @@ Si no viene nada, haz una revisión general de las bases. Si viene un tema o un 
 - No asumas nada: lo que tendrías que suponer porque los documentos no lo dicen, conviértelo en una pregunta.
 - No te vuelvas excesivamente detallista. La especificación no tiene que describir cada detalle. Lo que un buen implementador decidiría solo no es un hueco.
 - También son contradicciones: una idea que `Ideas Descartadas.md` ya descartó pero sigue apareciendo en otro documento, y un concepto con un nombre distinto al que le da el Glosario.
+- Si las bases tienen subproyectos, con su propia carpeta dentro de `Bases`, revisa todas juntas: los documentos de cada carpeta y los de las de arriba, sobre todo los que se llaman igual, como las `Decisiones.md`, se leen como si fueran un solo documento. Un subproyecto solo agrega lo suyo, así que también es una contradicción lo que dice distinto de las bases de arriba.
 - Comprueba si alguna decisión de las bases contradice una idea de `Ideas Aprobadas.md`. Señala también si falta la referencia en su documento dueño o si una referencia apunta a una idea que ya salió de `Ideas Aprobadas.md`.
 - No leas `Ideas por Decidir.md` durante la revisión.
 - No edites ningún archivo sin que el Director te lo pida.

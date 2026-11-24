@@ -6,7 +6,7 @@ Este proyecto se desarrolla con el flujo de Trabajo Agéntico. Las bases están 
 
 La carpeta `Archivos/` tiene lo del proyecto que no va en git: mis notas, referencias y recursos, las entregas, como un programa compilado o un informe enviado, y, en las áreas donde el resultado del trabajo es un archivo pesado, como un diseño o un video, el resultado mismo. La organizo yo: no la leas, no busques, no escribas ni borres en ella por tu cuenta, salvo lo que yo te pida o lo que cite una base. Algunas carpetas de `Archivos/` pueden ser enlaces a carpetas compartidas con otras personas. En ellas no cambies, muevas ni borres nada sin que yo te lo autorice, aunque te haya pedido leerlas o una base las cite, porque lo que cambies ahí les llega a esas personas y git no lo puede deshacer.
 
-Si el proyecto tiene código, su Verificador ligero se corre con `npm run verificador ligero`, el completo, con `npm run verificador completo`, y la aplicación se inicia con `npm run iniciar`, en la raíz, o en el subproyecto que tocas. Antes de trabajar en un subproyecto, lee su `AGENTS.md`.
+Si el proyecto tiene código, su Verificador ligero se corre con `npm run verificador ligero`, el completo, con `npm run verificador completo`, y la aplicación se inicia con `npm run iniciar`, en la raíz, o en el subproyecto que tocas. Antes de trabajar en un subproyecto, lee su `AGENTS.md`, si tiene.
 
 Si te pido una habilidad y no la tienes, no la improvises: avísame, porque es posible que en este equipo falte configurar las habilidades de Trabajo Agéntico, como explica su `Habilidades/Leeme.md`.
 
