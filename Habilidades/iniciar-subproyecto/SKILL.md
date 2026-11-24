@@ -43,6 +43,14 @@ En `Bases/[ruta]/` crea siempre tres documentos:
 
 Los demás documentos, como `Tareas Pendientes.md`, las listas de ideas o `Pasos Pendientes.md` con `Pasos Terminados.md`, se crean en la carpeta del subproyecto la primera vez que hacen falta, desde las plantillas de `<Trabajo Agéntico>/Plantillas/Bases/`. `Diseño.md` y el Glosario casi nunca hacen falta, porque lo común es que todo el proyecto comparta su marca y sus definiciones.
 
+Cada documento de la carpeta que se llame igual que uno de arriba, como `Leeme.md`, `Decisiones.md` o `Tareas Pendientes.md`, empieza, justo después de su título, con este aviso, que enlaza al de su mismo nombre más cercano hacia arriba. Así, una sesión que abre solo el de la carpeta sabe que le falta leer el otro:
+
+```
+> **Se lee junto con** [el documento de arriba](ruta al de arriba) de las bases del proyecto: aquí solo va lo propio de [el subproyecto].
+```
+
+Esto vale también para los que se crean después, la primera vez que hacen falta.
+
 Si el Director quiere una carpeta en la raíz, créala con la misma ruta de su carpeta en las bases, como `Marca/Producto/`.
 
 ## 4. Ordenar lo que ya había
