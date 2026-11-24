@@ -2,7 +2,7 @@
 
 > **Aviso para la IA:** Esta plantilla está sin llenar. Lo que va entre corchetes dobles se llena como dice `<Trabajo Agéntico>/Habilidades/Llenar las Plantillas.md`. Cuando no quede ninguno, borra este aviso.
 
-Los archivos de esta lista hacen falta para trabajar en [[El nombre del proyecto. Lo llena la IA al crear este archivo.]], pero git no los trae. En un computador nuevo, después de clonar, hay que copiarlos a mano a su lugar.
+Los archivos de esta lista hacen falta para trabajar en [[El nombre del proyecto. Lo llena la IA al crear este archivo.]], pero git no los trae. En un computador nuevo, después de clonar, hay que copiarlos a mano a su lugar, o enlazarlos, si son carpetas compartidas de `Archivos/`.
 
 Quedan fuera de git por una de tres razones:
 
@@ -15,3 +15,4 @@ Cuando se deja fuera de git otro archivo que hace falta para trabajar, se anota 
 | Archivo | Qué es | De dónde se copia | Si falta |
 | --- | --- | --- | --- |
 | [[Una fila por archivo, que llena la IA al dejarlo fuera de git: su ruta desde la raíz del proyecto.]] | [[Qué es, en una frase.]] | [[De dónde se copia, como otro computador o una descarga.]] | [[Qué pasa si falta, como el error que sale y cuándo sale.]] |
+| [[Una fila por cada carpeta de `Archivos/` que sea un enlace a una carpeta compartida, si las hay: su ruta, como `Archivos/Gerencia`.]] | [[Qué guarda, en una frase.]] | [[No se copia: se enlaza, con el comando de `Archivos/Leeme.md`, a la carpeta compartida, nombrada por su servicio y su nombre en él, como la carpeta Gerencia de Dropbox, y no por su ruta, que cambia en cada computador.]] | [[Qué pasa si falta, como que la IA no encuentra lo que una base cita de ahí.]] |
