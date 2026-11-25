@@ -44,7 +44,7 @@ Paso, cambio y ajuste van de mayor a menor: se escoge una según el tamaño y el
 ### Incluir
 
 - **Qué nombra:** El verbo de `incluir-idea`, que recibe una idea nueva o algo que se quiere quitar del plan, lo revisa contra lo decidido y lo registra en las bases.
-- **Por qué:** Tiene un registro menos formal y menos acartonado, parejo con realizar. Y toda idea termina incluida en una de las tres listas de las bases, aunque se descarte.
+- **Por qué:** Tiene un registro menos formal y menos acartonado, parejo con realizar. Y toda idea que pasa por la habilidad queda incluida en las bases: en una de sus tres listas, aunque se descarte, o directo en su documento dueño.
 - **Lo descartado:**
   - **Incorporar:** Dice mejor que la idea tiene que encajar con lo que ya hay, pero su registro es más elevado.
   - **Integrar:** Es más técnico, choca con la rama de integración y sugiere que la idea siempre termina encajando, como si ya estuviera aprobada.
