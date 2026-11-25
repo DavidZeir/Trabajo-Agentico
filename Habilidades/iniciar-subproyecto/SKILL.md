@@ -31,7 +31,7 @@ Cada subproyecto tiene una letra, en el orden en que se crean: A para el primero
 
 En `Bases/[ruta]/` crea siempre tres documentos:
 
-- **`Leeme.md`:** Su índice. Dice qué es el subproyecto y cuál es su letra, con la que se numeran sus decisiones y sus pasos, enlaza las bases de arriba y el Glosario, y tiene su tabla «Por tema», como la del `Leeme.md` del proyecto.
+- **`Leeme.md`:** Su índice. Dice qué es el subproyecto y cuál es su letra, con la que se numeran sus decisiones y sus pasos, enlaza el Glosario y tiene su tabla «Por tema», como la del `Leeme.md` del proyecto.
 - **`Justificación.md`:** Con estas secciones:
   - **«El propósito»:** Por qué se inicia el subproyecto.
   - **«Por qué tiene su carpeta»:** Qué hace que sus documentos vayan en su propia carpeta, y no mezclados con los del resto del proyecto.
@@ -39,7 +39,7 @@ En `Bases/[ruta]/` crea siempre tres documentos:
   - **«El alcance»:** Qué incluye y qué deja por fuera.
   - **«Los involucrados»:** Quiénes participan y quién es su responsable.
   - **«Cuándo termina»:** Si tiene un final, como la renovación de una bodega, qué tiene que pasar para darlo por terminado. Si sigue mientras exista el proyecto, como una línea de productos, se omite.
-- **`Decisiones.md`:** Dice que sigue las reglas de las `Decisiones.md` de arriba y que sus decisiones se numeran con D y su letra.
+- **`Decisiones.md`:** Dice que sus decisiones se numeran con D y su letra.
 
 Los demás documentos, como `Tareas Pendientes.md`, las listas de ideas o `Pasos Pendientes.md` con `Pasos Terminados.md`, se crean en la carpeta del subproyecto la primera vez que hacen falta, desde las plantillas de `<Trabajo Agéntico>/Plantillas/Bases/`. `Diseño.md` y el Glosario casi nunca hacen falta, porque lo común es que todo el proyecto comparta su marca y sus definiciones.
 
