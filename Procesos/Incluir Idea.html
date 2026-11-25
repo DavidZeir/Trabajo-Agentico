@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es"> <!-- Vista solo para el Director, dibujada desde Incorporar Idea.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
+<html lang="es"> <!-- Vista solo para el Director, dibujada desde Incluir Idea.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Incorporar Idea</title>
+	<title>Incluir Idea</title>
 	<style>
 		@layer base, variables, semantica, utilidad, semantica_local, utilidad_local, excepciones; /* Orden de las capas de USE, declarado aquí porque esta página no tiene un CSS global. */
 
@@ -93,7 +93,7 @@
 					stroke: var(--flujo-director-borde);
 				}
 
-				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio menor. */
+				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio. */
 					fill: var(--flujo-misma-empresa-fondo);
 					stroke: var(--flujo-misma-empresa-borde);
 				}
@@ -182,14 +182,14 @@
 </head>
 <body>
 	<main class="flujo">
-		<h1>Incorporar Idea</h1>
+		<h1>Incluir Idea</h1>
 		<p>Cada columna es un actor y el tiempo corre hacia abajo. Las flechas continuas son pedidos, y las punteadas, respuestas. Los recuadros punteados son ciclos que se repiten hasta cumplir su condición, o bloques que solo pasan si hace falta.</p>
-		<p>Este diagrama se dibuja a partir de Incorporar Idea.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<p>Este diagrama se dibuja a partir de Incluir Idea.md, que es el que manda: si no coinciden, vale el .md.</p>
 		<section>
 			<h2>Cómo entra cada idea a las bases</h2>
 			<svg class="diagrama" viewBox="0 0 940 1412" role="img" aria-labelledby="titulo-idea descripcion-idea"> <!-- Diagrama de secuencia con tres actores en columnas: cómo entra cada idea a las bases. -->
-				<title id="titulo-idea">Quién habla con quién al incorporar una idea</title>
-				<desc id="descripcion-idea">Diseñar: el Director diseña en su cabeza. Cada idea entra con /incorporar-idea: el Líder la analiza, el Director indica si va en Ideas por Decidir, Ideas Aprobadas o Ideas Descartadas. Si es una idea aprobada, en el documento dueño queda una referencia hasta que se programa como paso o se implementa, salvo que ya esté hecha o que escribirla sea todo lo que pide: entonces va de una vez a su documento dueño. Las ideas por decidir y las ideas aprobadas llevan prioridad. Revisar las bases: el Revisor Principal, por lo general la IA de la otra empresa, lee en frío con /revisar-bases, y el Director resuelve con él cada punto, que esa misma sesión incorpora con /incorporar-idea. Revisar lo hecho contra las bases: en el software, con /revisar-codigo-vs-bases el Líder compara el código con las bases, y cada diferencia la decide el Director, primero con /incorporar-idea y, si hay que corregir el código, después con /implementar-cambio.</desc>
+				<title id="titulo-idea">Quién habla con quién al incluir una idea</title>
+				<desc id="descripcion-idea">Diseñar: el Director diseña en su cabeza. Cada idea entra con /incluir-idea: el Líder la analiza, el Director indica si va en Ideas por Decidir, Ideas Aprobadas o Ideas Descartadas. Si es una idea aprobada, en el documento dueño queda una referencia hasta que se programa como paso o se realiza, salvo que ya esté hecha o que escribirla sea todo lo que pide: entonces va de una vez a su documento dueño. Las ideas por decidir y las ideas aprobadas llevan prioridad. Revisar las bases: el Revisor Principal, por lo general la IA de la otra empresa, lee en frío con /revisar-bases, y el Director resuelve con él cada punto, que esa misma sesión incluye con /incluir-idea. Revisar lo hecho contra las bases: en el software, con /revisar-codigo-vs-bases el Líder compara el código con las bases, y cada diferencia la decide el Director, primero con /incluir-idea y, si hay que corregir el código, después con /realizar-cambio.</desc>
 				<defs>
 					<marker id="cabeza-idea" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
 				</defs>
@@ -210,8 +210,8 @@
 				<rect class="caja caja-director" x="20" y="126" width="150" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-director" x="95" y="142" text-anchor="middle" dominant-baseline="central">Diseña</text>
 				<text class="texto-secundario texto-secundario-director" x="95" y="159" text-anchor="middle" dominant-baseline="central">en su cabeza, sin IA</text>
-				<rect class="caja caja-neutra" x="20" y="192" width="900" height="22" rx="4"/> <!-- Puntos 2 y 4: cada idea entra por /incorporar-idea, que lee, analiza y pregunta antes de escribir. -->
-				<text class="texto-secundario" x="32" y="203" dominant-baseline="central">Incorporar cada idea, con /incorporar-idea, una a la vez</text>
+				<rect class="caja caja-neutra" x="20" y="192" width="900" height="22" rx="4"/> <!-- Puntos 2 y 4: cada idea entra por /incluir-idea, que lee, analiza y pregunta antes de escribir. -->
+				<text class="texto-secundario" x="32" y="203" dominant-baseline="central">Incluir cada idea, con /incluir-idea, una a la vez</text>
 				<text class="texto-secundario" x="170" y="238" text-anchor="middle">Idea nueva</text>
 				<line class="flecha" x1="99" y1="246" x2="241" y2="246" marker-end="url(#cabeza-idea)"/>
 				<rect class="caja caja-misma-empresa" x="173.5" y="260" width="143" height="48" rx="6"/>
@@ -235,8 +235,8 @@
 				<line class="flecha flecha-respuesta" x1="241" y1="594" x2="99" y2="594" marker-end="url(#cabeza-idea)"/>
 				<rect class="caja caja-director" x="51.5" y="608" width="87" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-director" x="95" y="624" text-anchor="middle" dominant-baseline="central">Revisa</text>
-				<text class="texto-secundario texto-secundario-director" x="95" y="641" text-anchor="middle" dominant-baseline="central">el diff</text>
-				<text class="texto-secundario" x="170" y="680" text-anchor="middle">«Prepara» y «Confirma»</text>
+				<text class="texto-secundario texto-secundario-director" x="95" y="641" text-anchor="middle" dominant-baseline="central">y prepara</text>
+				<text class="texto-secundario" x="170" y="680" text-anchor="middle">«Sube los cambios»</text>
 				<line class="flecha" x1="99" y1="688" x2="241" y2="688" marker-end="url(#cabeza-idea)"/>
 				<rect class="caja caja-neutra" x="20" y="704" width="900" height="22" rx="4"/> <!-- Punto 3: el Revisor Principal lee en frío con /revisar-bases, en su propia aplicación. -->
 				<text class="texto-secundario" x="32" y="715" dominant-baseline="central">Revisar las bases, con /revisar-bases</text>
@@ -247,15 +247,15 @@
 				<text class="texto-secundario texto-secundario-otra-empresa" x="845" y="805" text-anchor="middle" dominant-baseline="central">solo con los .md</text>
 				<text class="texto-secundario" x="770" y="844" text-anchor="middle">Problemas, dudas</text>
 				<line class="flecha flecha-respuesta" x1="841" y1="852" x2="99" y2="852" marker-end="url(#cabeza-idea)"/>
-				<rect class="marco-ciclo" x="20" y="864" width="900" height="150" rx="6"/> <!-- El Director resuelve cada punto con el Revisor Principal, en la misma sesión, que incorpora lo que él decida con /incorporar-idea. No hay un flujo automático. -->
+				<rect class="marco-ciclo" x="20" y="864" width="900" height="150" rx="6"/> <!-- El Director resuelve cada punto con el Revisor Principal, en la misma sesión, que incluye lo que él decida con /incluir-idea. No hay un flujo automático. -->
 				<text class="texto-secundario" x="470" y="882" text-anchor="middle">Cada punto,</text>
 				<text class="texto-secundario" x="470" y="898" text-anchor="middle">uno por uno</text>
-				<text class="texto-secundario" x="170" y="928" text-anchor="middle">Lo que decide incorporar</text>
+				<text class="texto-secundario" x="170" y="928" text-anchor="middle">Lo que decide incluir</text>
 				<line class="flecha" x1="99" y1="936" x2="841" y2="936" marker-end="url(#cabeza-idea)"/>
 				<rect class="caja caja-otra-empresa" x="773.5" y="950" width="143" height="48" rx="6"/>
-				<text class="texto-titulo texto-titulo-otra-empresa" x="845" y="966" text-anchor="middle" dominant-baseline="central">/incorporar-idea</text>
+				<text class="texto-titulo texto-titulo-otra-empresa" x="845" y="966" text-anchor="middle" dominant-baseline="central">/incluir-idea</text>
 				<text class="texto-secundario texto-secundario-otra-empresa" x="845" y="983" text-anchor="middle" dominant-baseline="central">igual que arriba</text>
-				<rect class="caja caja-neutra" x="20" y="1032" width="900" height="22" rx="4"/> <!-- Punto 5: cuando ya hay algo hecho, antes de un paso importante, después de muchos cambios menores o al retomar un proyecto quieto. Lo que sigue es cómo se hace en el software. -->
+				<rect class="caja caja-neutra" x="20" y="1032" width="900" height="22" rx="4"/> <!-- Punto 5: cuando ya hay algo hecho, antes de un paso importante, después de muchos cambios o al retomar un proyecto quieto. Lo que sigue es cómo se hace en el software. -->
 				<text class="texto-secundario" x="32" y="1043" dominant-baseline="central">Revisar lo hecho contra las bases, en el software con /revisar-codigo-vs-bases</text>
 				<text class="texto-secundario" x="170" y="1078" text-anchor="middle">Revisa el código</text>
 				<line class="flecha" x1="99" y1="1086" x2="241" y2="1086" marker-end="url(#cabeza-idea)"/>
@@ -264,14 +264,14 @@
 				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="1133" text-anchor="middle" dominant-baseline="central">código y bases</text>
 				<text class="texto-secundario" x="170" y="1172" text-anchor="middle">Diferencias</text>
 				<line class="flecha flecha-respuesta" x1="241" y1="1180" x2="99" y2="1180" marker-end="url(#cabeza-idea)"/>
-				<rect class="marco-ciclo" x="20" y="1192" width="322.5" height="150" rx="6"/> <!-- Cada diferencia la decide el Director: primero con /incorporar-idea y, si hay que corregir el código, después con /implementar-cambio. -->
+				<rect class="marco-ciclo" x="20" y="1192" width="322.5" height="150" rx="6"/> <!-- Cada diferencia la decide el Director: primero con /incluir-idea y, si hay que corregir el código, después con /realizar-cambio. -->
 				<text class="texto-secundario" x="170" y="1210" text-anchor="middle">Cada diferencia,</text>
 				<text class="texto-secundario" x="170" y="1226" text-anchor="middle">una por una</text>
 				<text class="texto-secundario" x="170" y="1256" text-anchor="middle">Qué corregir</text>
 				<line class="flecha" x1="99" y1="1264" x2="241" y2="1264" marker-end="url(#cabeza-idea)"/>
 				<rect class="caja caja-misma-empresa" x="149.5" y="1278" width="191" height="48" rx="6"/>
-				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="1294" text-anchor="middle" dominant-baseline="central">/incorporar-idea</text>
-				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="1311" text-anchor="middle" dominant-baseline="central">y luego /implementar-cambio</text>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="1294" text-anchor="middle" dominant-baseline="central">/incluir-idea</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="1311" text-anchor="middle" dominant-baseline="central">y luego /realizar-cambio</text>
 				<rect class="caja caja-director" x="275" y="1376" width="12" height="12" rx="2"/> <!-- Leyenda de colores de los actores de este diagrama. -->
 				<text class="texto-secundario" x="293" y="1382" dominant-baseline="central">Director</text>
 				<rect class="caja caja-misma-empresa" x="360" y="1376" width="12" height="12" rx="2"/>

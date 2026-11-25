@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 # Revisar el código contra las bases
 
-Compara el código actual con todos los documentos de `Bases`, empezando por su `Leeme.md`. Para esta comparación, ignora únicamente `Ideas por Decidir.md`, `Ideas Aprobadas.md`, `Ideas Descartadas.md` y `Pasos Terminados.md`. Lee `Pasos Pendientes.md` solo para no tener en cuenta lo que falta construir: lo que las bases especifican para un paso pendiente no es una diferencia, aunque el código todavía no lo haga aún o lo haga diferente. Si el alcance es un paso, usa su entrada en `Pasos Pendientes.md` o en `Pasos Terminados.md` solo para saber qué especificación revisar.
+Compara el código actual con todos los documentos de `Bases`, empezando por su `Leeme.md`. Para esta comparación, ignora únicamente `Ideas por Decidir.md`, `Ideas Aprobadas.md`, `Ideas Descartadas.md`, `Pasos Terminados.md` y `Tareas Terminadas.md`, también los de los subproyectos. Lee `Pasos Pendientes.md` solo para no tener en cuenta lo que falta construir: lo que las bases especifican para un paso pendiente no es una diferencia, aunque el código todavía no lo haga aún o lo haga diferente. La excepción es un paso que ya se realizó y solo espera que una persona confirme un criterio: su código ya está hecho, así que sí se compara. Si sus marcas no dicen si ya se realizó, pregúntaselo al Director. Si el alcance es un paso, usa su entrada en `Pasos Pendientes.md` o en `Pasos Terminados.md` solo para saber qué especificación revisar.
 
 - Lo que las bases especifican y el código no hace o hace de otra manera.
 - Lo que el código hace y las bases no describen, cuando es lógica de negocio o arquitectura.
@@ -37,4 +37,4 @@ En español, corto y concreto, y primero lo más importante. Lo que coincide no 
 3. **Sugerencias de limpieza**, con el código que sobra. Cada una en una línea: el archivo y por qué sobra.
 4. **Preguntas**, cuando no esté claro qué quisieron decir las bases.
 
-Después, el Director decide cada diferencia, una a una: primero con `/incorporar-idea` y, si hay que corregir el código, después con `/implementar-cambio`. Las sugerencias de limpieza que acepte se borran con `/implementar-cambio`.
+Después, el Director decide cada diferencia, una a una: primero con `/incluir-idea` y, si hay que corregir el código, después con `/realizar-cambio`. Las sugerencias de limpieza que acepte se borran con `/realizar-cambio`.

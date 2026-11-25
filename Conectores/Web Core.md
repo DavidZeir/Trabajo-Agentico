@@ -31,7 +31,7 @@ Lo que hace falta saber en los proyectos web hechos desde Web Core, la plantilla
   - **Las escalas de otros medios:** Si un medio necesita otra escala, que no va en proporción con la de la web, la tabla de los tamaños la trae en otra columna, como `| Tamaños | Normal | Compacto |`. Si se declara una columna que ninguna tabla tiene, la regla falla y lo dice.
   - **Lo demás propio de cada proyecto:** Como una página excluida, también va en `Programas/reglas-diseno-proyecto.mts`, que se carga solo si existe.
   - **Quien no la quiera:** La quita del script `reglas`.
-  - **Un proyecto que ya tiene páginas:** La enciende después de pasar a variables lo que tiene escrito a mano, con `/implementar-cambio`.
+  - **Un proyecto que ya tiene páginas:** La enciende después de pasar a variables lo que tiene escrito a mano, con `/realizar-cambio`.
   - **Sus pruebas:** `Programas/pruebas-reglas-diseno.mts` prueba a la regla por sí sola, sin mirar la web. No está en el Verificador porque puede tardar más de 5 segundos: Se corre a mano cada vez que se edita la regla, como dice su primer comentario.
   - **El original:** Está en Web Core, y cada proyecto que la use guarda una copia idéntica. Cuando cambia, el cambio se lleva a esos proyectos.
 - **La prueba de contraste:** `pruebas/interfaz/contraste.interfaz.ts`, como dice `Habilidades/Verificador.md`, mide con `@axe-core/playwright`. Sus límites se cambian en `ContrasteMínimoTextoNormal` y `ContrasteMínimoTextoGrande`. Para axe-core, grande es desde 24 píxeles, o desde unos 18,7 en negrita, que solo cuenta desde el peso 700.

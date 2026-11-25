@@ -175,12 +175,12 @@
 	<main class="mapa">
 		<h1>Mapa de las Habilidades</h1>
 		<p>Quién sigue a quién, qué usa cada habilidad de las bases, qué le propone al Director y qué se repite, con su techo. Se dibuja a mano a partir de las habilidades, que son las que mandan: si no coinciden, valen las habilidades.</p>
-		<p>Ninguna habilidad se sigue a sí misma ni vuelve a una anterior. Las únicas habilidades que otra sigue en el mismo flujo son <code>limpiar-pruebas</code>, que solo devuelve el control, y <code>use-css</code>, que el Implementador sigue cuando su etapa toca HTML o CSS. Lo demás que se sigue son archivos con instrucciones comunes, que no siguen a ninguna habilidad. Todas solo las invoca el Director, salvo <code>incorporar-idea</code>, <code>use-css</code> y <code>usar-computador</code>.</p>
+		<p>Ninguna habilidad se sigue a sí misma ni vuelve a una anterior. Las únicas habilidades que otra sigue en el mismo flujo son <code>limpiar-pruebas</code>, que solo devuelve el control, y <code>use-css</code>, que el Implementador sigue cuando su etapa toca HTML o CSS. Lo demás que se sigue son archivos con instrucciones comunes, que no siguen a ninguna habilidad. Todas solo las invoca el Director, salvo <code>incluir-idea</code>, <code>use-css</code> y <code>usar-computador</code>.</p>
 		<section>
 			<h2>Implementar</h2>
-			<svg class="diagrama" viewBox="0 0 940 544" role="img" aria-labelledby="titulo-implementar descripcion-implementar"> <!-- Las habilidades que implementan, a la izquierda, con lo que leen y siguen en la columna del medio. -->
+			<svg class="diagrama" viewBox="0 0 940 604" role="img" aria-labelledby="titulo-implementar descripcion-implementar"> <!-- Las habilidades que implementan, a la izquierda, con lo que leen y siguen en la columna del medio. -->
 				<title id="titulo-implementar">Lo que siguen las habilidades que implementan</title>
-				<desc id="descripcion-implementar">implementar-paso sigue Comprobar Preferencias, Verificador, use-css, Copias de Trabajo, Llamar a Revisores, limpiar-pruebas, Escribir el Resumen y Llenar las Plantillas. implementar-cambio sigue Comprobar Preferencias, Copias de Trabajo, Llamar a Revisores, limpiar-pruebas, Escribir el Resumen y Llenar las Plantillas. implementar-cambio e implementar-cambio-minimo también siguen Gestión de Ideas si el Director pide implementar una idea aprobada. Llamar a Revisores sigue Revisores. implementar-paso, implementar-cambio y los revisores leen las bases del proyecto. El cambio mínimo lee la entrada y el documento dueño si parte de una idea aprobada.</desc>
+				<desc id="descripcion-implementar">realizar-paso sigue Comprobar Preferencias, Verificador, use-css, Copias de Trabajo, Llamar a Revisores, limpiar-pruebas, Escribir el Resumen y Llenar las Plantillas, y Gestión de Pasos al empezar y al cerrar el paso. Gestión de Pasos sigue Gestión de Contactos al anotar quién confirma un criterio, que está en el dibujo de «Revisar e incluir». realizar-cambio sigue Comprobar Preferencias, Copias de Trabajo, Llamar a Revisores, limpiar-pruebas, Escribir el Resumen y Llenar las Plantillas. realizar-cambio y realizar-ajuste también siguen Gestión de Ideas si el Director pide realizar una idea aprobada. Llamar a Revisores sigue Revisores. realizar-paso, realizar-cambio y los revisores leen las bases del proyecto. El ajuste lee la entrada y el documento dueño si parte de una idea aprobada.</desc>
 				<defs>
 					<marker id="cabeza-implementar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
 				</defs>
@@ -206,14 +206,17 @@
 				<line class="flecha" x1="150" y1="392" x2="150" y2="432" marker-end="url(#cabeza-implementar)"/>
 				<rect class="caja caja-archivo" x="40" y="436" width="220" height="40" rx="6"/>
 				<text class="texto-titulo" x="150" y="456" text-anchor="middle" dominant-baseline="central">Gestión de Ideas.md</text>
+				<path class="flecha" d="M40 106H8V516H36" marker-end="url(#cabeza-implementar)"/> <!-- realizar-paso sigue Gestión de Pasos al empezar y al cerrar el paso. -->
+				<rect class="caja caja-archivo" x="40" y="496" width="220" height="40" rx="6"/>
+				<text class="texto-titulo" x="150" y="516" text-anchor="middle" dominant-baseline="central">Gestión de Pasos.md</text>
 				<rect class="caja caja-habilidad" x="40" y="92" width="220" height="56" rx="8"/>
-				<text class="texto-titulo texto-titulo-habilidad" x="150" y="111" text-anchor="middle" dominant-baseline="central">implementar-paso</text>
+				<text class="texto-titulo texto-titulo-habilidad" x="150" y="111" text-anchor="middle" dominant-baseline="central">realizar-paso</text>
 				<text class="texto-secundario-habilidad" x="150" y="130" text-anchor="middle" dominant-baseline="central">flechas verdes</text>
 				<rect class="caja caja-habilidad" x="40" y="228" width="220" height="56" rx="8"/>
-				<text class="texto-titulo texto-titulo-habilidad" x="150" y="247" text-anchor="middle" dominant-baseline="central">implementar-cambio</text>
+				<text class="texto-titulo texto-titulo-habilidad" x="150" y="247" text-anchor="middle" dominant-baseline="central">realizar-cambio</text>
 				<text class="texto-secundario-habilidad" x="150" y="266" text-anchor="middle" dominant-baseline="central">flechas rojizas</text>
 				<rect class="caja caja-habilidad" x="40" y="336" width="220" height="56" rx="8"/>
-				<text class="texto-titulo texto-titulo-habilidad" x="150" y="355" text-anchor="middle" dominant-baseline="central">implementar-cambio-minimo</text>
+				<text class="texto-titulo texto-titulo-habilidad" x="150" y="355" text-anchor="middle" dominant-baseline="central">realizar-ajuste</text>
 				<text class="texto-secundario-habilidad" x="150" y="374" text-anchor="middle" dominant-baseline="central">si parte de una idea aprobada</text>
 				<rect class="caja caja-archivo" x="440" y="20" width="220" height="40" rx="6"/>
 				<text class="texto-titulo" x="550" y="40" text-anchor="middle" dominant-baseline="central">Comprobar Preferencias.md</text>
@@ -236,19 +239,19 @@
 				<rect class="caja caja-bases" x="440" y="452" width="220" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-bases" x="550" y="467" text-anchor="middle" dominant-baseline="central">Bases del proyecto</text>
 				<text class="texto-secundario-bases" x="550" y="485" text-anchor="middle" dominant-baseline="central">Pasos, Diseño y más</text>
-				<rect class="caja caja-habilidad" x="215" y="518" width="12" height="12" rx="2"/> <!-- Leyenda de colores, igual en los tres dibujos. -->
-				<text class="texto-leyenda" x="233" y="524" dominant-baseline="central">Habilidad</text>
-				<rect class="caja caja-archivo" x="325" y="518" width="12" height="12" rx="2"/>
-				<text class="texto-leyenda" x="343" y="524" dominant-baseline="central">Archivo con instrucciones comunes</text>
-				<rect class="caja caja-bases" x="550" y="518" width="12" height="12" rx="2"/>
-				<text class="texto-leyenda" x="568" y="524" dominant-baseline="central">Documentos de cada proyecto</text>
+				<rect class="caja caja-habilidad" x="215" y="578" width="12" height="12" rx="2"/> <!-- Leyenda de colores, igual en los tres dibujos. -->
+				<text class="texto-leyenda" x="233" y="584" dominant-baseline="central">Habilidad</text>
+				<rect class="caja caja-archivo" x="325" y="578" width="12" height="12" rx="2"/>
+				<text class="texto-leyenda" x="343" y="584" dominant-baseline="central">Archivo con instrucciones comunes</text>
+				<rect class="caja caja-bases" x="550" y="578" width="12" height="12" rx="2"/>
+				<text class="texto-leyenda" x="568" y="584" dominant-baseline="central">Documentos de cada proyecto</text>
 			</svg>
 		</section>
 		<section>
-			<h2>Revisar e incorporar</h2>
-			<svg class="diagrama" viewBox="0 0 940 436" role="img" aria-labelledby="titulo-revisar descripcion-revisar"> <!-- Las habilidades que revisan o incorporan, con lo que leen y siguen. -->
-				<title id="titulo-revisar">Lo que siguen las habilidades que revisan o incorporan</title>
-				<desc id="descripcion-revisar">revisar-y-corregir sigue Comprobar Preferencias y Llamar a Revisores, que sigue Revisores. revisar-bases, revisar-codigo-vs-bases, incorporar-idea e iniciar-subproyecto siguen Comprobar Bases y leen las bases del proyecto. incorporar-idea sigue Gestión de Ideas al trasladar una idea aprobada. limpiar-pruebas no sigue nada.</desc>
+			<h2>Revisar e incluir</h2>
+			<svg class="diagrama" viewBox="0 0 940 496" role="img" aria-labelledby="titulo-revisar descripcion-revisar"> <!-- Las habilidades que revisan o incluyen, con lo que leen y siguen. -->
+				<title id="titulo-revisar">Lo que siguen las habilidades que revisan o incluyen</title>
+				<desc id="descripcion-revisar">revisar-y-corregir sigue Comprobar Preferencias y Llamar a Revisores, que sigue Revisores. revisar-bases, revisar-codigo-vs-bases, incluir-idea, iniciar-subproyecto y crear-paso siguen Comprobar Bases y leen las bases del proyecto. incluir-idea sigue Gestión de Ideas al registrar una idea, y crear-paso, al trasladar la que convierte en paso. incluir-idea sigue Gestión de Tareas al guardar una tarea, y Gestión de Tareas sigue Gestión de Contactos al anotar quién la completó. Gestión de Ideas e iniciar-subproyecto siguen Gestión de Decisiones al registrar una decisión. limpiar-pruebas no sigue nada.</desc>
 				<defs>
 					<marker id="cabeza-revisar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
 				</defs>
@@ -257,9 +260,9 @@
 				<line class="flecha" x1="260" y1="132" x2="436" y2="186" marker-end="url(#cabeza-revisar)"/>
 				<line class="flecha" x1="260" y1="192" x2="436" y2="192" marker-end="url(#cabeza-revisar)"/>
 				<line class="flecha" x1="260" y1="252" x2="436" y2="198" marker-end="url(#cabeza-revisar)"/>
-				<line class="flecha" x1="260" y1="132" x2="436" y2="252" marker-end="url(#cabeza-revisar)"/>
-				<line class="flecha" x1="260" y1="192" x2="436" y2="262" marker-end="url(#cabeza-revisar)"/>
-				<line class="flecha" x1="260" y1="252" x2="436" y2="272" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="132" x2="436" y2="248" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="192" x2="436" y2="256" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="252" x2="436" y2="264" marker-end="url(#cabeza-revisar)"/>
 				<line class="flecha" x1="660" y1="94" x2="756" y2="94" marker-end="url(#cabeza-revisar)"/>
 				<rect class="caja caja-habilidad" x="40" y="45" width="220" height="44" rx="8"/>
 				<text class="texto-titulo texto-titulo-habilidad" x="150" y="67" text-anchor="middle" dominant-baseline="central">revisar-y-corregir</text>
@@ -270,14 +273,29 @@
 				<line class="flecha" x1="260" y1="252" x2="436" y2="314" marker-end="url(#cabeza-revisar)"/>
 				<rect class="caja caja-archivo" x="440" y="294" width="220" height="40" rx="6"/>
 				<text class="texto-titulo" x="550" y="314" text-anchor="middle" dominant-baseline="central">Gestión de Ideas.md</text>
+				<line class="flecha" x1="660" y1="314" x2="716" y2="314" marker-end="url(#cabeza-revisar)"/> <!-- Gestión de Ideas sigue Gestión de Decisiones al registrar una decisión. -->
+				<line class="flecha" x1="260" y1="252" x2="436" y2="420" marker-end="url(#cabeza-revisar)"/> <!-- incluir-idea sigue Gestión de Tareas al guardar una tarea. -->
+				<rect class="caja caja-archivo" x="440" y="400" width="220" height="40" rx="6"/>
+				<text class="texto-titulo" x="550" y="420" text-anchor="middle" dominant-baseline="central">Gestión de Tareas.md</text>
+				<line class="flecha" x1="660" y1="420" x2="716" y2="420" marker-end="url(#cabeza-revisar)"/> <!-- Gestión de Tareas sigue Gestión de Contactos al anotar quién completó una tarea. -->
+				<rect class="caja caja-archivo" x="720" y="400" width="200" height="40" rx="6"/>
+				<text class="texto-titulo" x="820" y="420" text-anchor="middle" dominant-baseline="central">Gestión de Contactos.md</text>
+				<path class="flecha" d="M260 372H820V338" marker-end="url(#cabeza-revisar)"/> <!-- iniciar-subproyecto sigue Gestión de Decisiones para numerar las decisiones del subproyecto. -->
+				<rect class="caja caja-archivo" x="720" y="294" width="200" height="40" rx="6"/>
+				<text class="texto-titulo" x="820" y="314" text-anchor="middle" dominant-baseline="central">Gestión de Decisiones.md</text>
 				<rect class="caja caja-habilidad" x="40" y="230" width="220" height="44" rx="8"/>
-				<text class="texto-titulo texto-titulo-habilidad" x="150" y="252" text-anchor="middle" dominant-baseline="central">incorporar-idea</text>
+				<text class="texto-titulo texto-titulo-habilidad" x="150" y="252" text-anchor="middle" dominant-baseline="central">incluir-idea</text>
 				<rect class="caja caja-habilidad" x="40" y="290" width="220" height="44" rx="8"/> <!-- La siguen el paso y el cambio, y también la puede invocar el Director. -->
 				<text class="texto-titulo texto-titulo-habilidad" x="150" y="312" text-anchor="middle" dominant-baseline="central">limpiar-pruebas</text>
 				<rect class="caja caja-habilidad" x="40" y="350" width="220" height="44" rx="8"/>
 				<text class="texto-titulo texto-titulo-habilidad" x="150" y="372" text-anchor="middle" dominant-baseline="central">iniciar-subproyecto</text>
 				<line class="flecha" x1="260" y1="372" x2="436" y2="204" marker-end="url(#cabeza-revisar)"/>
-				<line class="flecha" x1="260" y1="372" x2="436" y2="282" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="372" x2="436" y2="272" marker-end="url(#cabeza-revisar)"/>
+				<rect class="caja caja-habilidad" x="40" y="410" width="220" height="44" rx="8"/> <!-- Convierte en pasos las ideas aprobadas a las que ya les toca. -->
+				<text class="texto-titulo texto-titulo-habilidad" x="150" y="432" text-anchor="middle" dominant-baseline="central">crear-paso</text>
+				<line class="flecha" x1="260" y1="432" x2="436" y2="210" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="432" x2="436" y2="280" marker-end="url(#cabeza-revisar)"/>
+				<line class="flecha" x1="260" y1="432" x2="436" y2="324" marker-end="url(#cabeza-revisar)"/>
 				<rect class="caja caja-archivo" x="440" y="20" width="220" height="40" rx="6"/>
 				<text class="texto-titulo" x="550" y="40" text-anchor="middle" dominant-baseline="central">Comprobar Preferencias.md</text>
 				<rect class="caja caja-archivo" x="440" y="74" width="220" height="40" rx="6"/>
@@ -289,12 +307,12 @@
 				<rect class="caja caja-bases" x="440" y="238" width="220" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-bases" x="550" y="253" text-anchor="middle" dominant-baseline="central">Bases del proyecto</text>
 				<text class="texto-secundario-bases" x="550" y="271" text-anchor="middle" dominant-baseline="central">Todas</text>
-				<rect class="caja caja-habilidad" x="215" y="410" width="12" height="12" rx="2"/> <!-- Leyenda de colores, igual en los tres dibujos. -->
-				<text class="texto-leyenda" x="233" y="416" dominant-baseline="central">Habilidad</text>
-				<rect class="caja caja-archivo" x="325" y="410" width="12" height="12" rx="2"/>
-				<text class="texto-leyenda" x="343" y="416" dominant-baseline="central">Archivo con instrucciones comunes</text>
-				<rect class="caja caja-bases" x="550" y="410" width="12" height="12" rx="2"/>
-				<text class="texto-leyenda" x="568" y="416" dominant-baseline="central">Documentos de cada proyecto</text>
+				<rect class="caja caja-habilidad" x="215" y="470" width="12" height="12" rx="2"/> <!-- Leyenda de colores, igual en los tres dibujos. -->
+				<text class="texto-leyenda" x="233" y="476" dominant-baseline="central">Habilidad</text>
+				<rect class="caja caja-archivo" x="325" y="470" width="12" height="12" rx="2"/>
+				<text class="texto-leyenda" x="343" y="476" dominant-baseline="central">Archivo con instrucciones comunes</text>
+				<rect class="caja caja-bases" x="550" y="470" width="12" height="12" rx="2"/>
+				<text class="texto-leyenda" x="568" y="476" dominant-baseline="central">Documentos de cada proyecto</text>
 			</svg>
 		</section>
 		<section>
@@ -339,22 +357,23 @@
 		</section>
 		<section>
 			<h2>Lo que usan de las bases de cada proyecto</h2>
-			<p>Las habilidades leen las bases, y casi todo lo que las cambia pasa por <code>incorporar-idea</code>, con la aprobación del Director.</p>
+			<p>Las habilidades leen las bases, y casi todo lo que las cambia pasa por <code>incluir-idea</code>, con la aprobación del Director.</p>
 			<table>
 				<thead>
 					<tr><th>Quién</th><th>Lee</th><th>Cambia</th></tr>
 				</thead>
 				<tbody>
-					<tr><td><code>implementar-paso</code></td><td>El paso en <code>Pasos Pendientes.md</code>, el <code>Glosario</code>, lo que necesite de las demás y, si la etapa toca la interfaz, <code>Diseño.md</code></td><td>Mueve el paso con su fecha de cierre a <code>Pasos Terminados.md</code>. Antes del plan, resuelve con el Director, por <code>incorporar-idea</code>, lo que el paso tenga en «Falta definir», y completa con él lo que falte de <code>Diseño.md</code>, si él quiere. Lo demás se lo propone al Director</td></tr>
-					<tr><td><code>implementar-cambio</code></td><td>Lo que necesite, para saber si el cambio cabe y, si toca la interfaz, <code>Diseño.md</code></td><td>Lo que falte de <code>Diseño.md</code>, con el Director, si él quiere. Si el cambio parte de <code>Ideas Aprobadas.md</code>, traslada la idea al documento dueño</td></tr>
-					<tr><td><code>implementar-cambio-minimo</code></td><td>La entrada y el documento dueño si el Director pide implementar una idea aprobada</td><td>En ese caso, traslada la idea al documento dueño</td></tr>
+					<tr><td><code>realizar-paso</code></td><td>El paso en <code>Pasos Pendientes.md</code>, el <code>Glosario</code>, lo que necesite de las demás y, si la etapa toca la interfaz, <code>Diseño.md</code></td><td>Cierra el paso como dice <code>Gestión de Pasos.md</code>: lo mueve con su fecha de cierre a <code>Pasos Terminados.md</code> o, si le falta un criterio que confirma una persona, marca los demás y lo deja abierto. Antes del plan, resuelve con el Director, por <code>incluir-idea</code>, lo que el paso tenga en «Falta definir», y completa con él lo que falte de <code>Diseño.md</code>, si él quiere. Lo demás se lo propone al Director</td></tr>
+					<tr><td><code>realizar-cambio</code></td><td>Lo que necesite, para saber si el cambio cabe y, si toca la interfaz, <code>Diseño.md</code></td><td>Lo que falte de <code>Diseño.md</code>, con el Director, si él quiere. Si el cambio parte de <code>Ideas Aprobadas.md</code>, traslada la idea al documento dueño</td></tr>
+					<tr><td><code>realizar-ajuste</code></td><td>La entrada y el documento dueño si el Director pide realizar una idea aprobada</td><td>En ese caso, traslada la idea al documento dueño</td></tr>
 					<tr><td>Los revisores, con <code>Revisores.md</code></td><td>Si el cambio toca la interfaz, <code>Diseño.md</code>. El de Plan recibe además el paso de <code>Pasos Pendientes.md</code></td><td>Nada: solo leen</td></tr>
-					<tr><td><code>incorporar-idea</code></td><td>El <code>Leeme.md</code>, lo relacionado con la idea, <code>Decisiones.md</code>, <code>Ideas por Decidir.md</code>, <code>Ideas Aprobadas.md</code>, <code>Tareas Pendientes.md</code>, <code>Ideas Descartadas.md</code> y <code>Glosario.md</code></td><td><code>Ideas por Decidir.md</code>, <code>Ideas Aprobadas.md</code> o <code>Ideas Descartadas.md</code>, según lo que decida el Director. Al aprobar una idea, la IA deja una referencia en el documento dueño, salvo que ya esté hecha o que escribirla sea todo lo que pide: entonces la escribe de una vez en él. Si pasa a <code>Pasos Pendientes.md</code>, traslada la especificación al documento dueño y anota los pasos. Las tareas van en <code>Tareas Pendientes.md</code>.</td></tr>
+					<tr><td><code>incluir-idea</code></td><td>El <code>Leeme.md</code>, lo relacionado con la idea, <code>Decisiones.md</code>, <code>Ideas por Decidir.md</code>, <code>Ideas Aprobadas.md</code>, <code>Tareas Pendientes.md</code>, <code>Ideas Descartadas.md</code> y <code>Glosario.md</code></td><td><code>Ideas por Decidir.md</code>, <code>Ideas Aprobadas.md</code> o <code>Ideas Descartadas.md</code>, según lo que decida el Director. Al aprobar una idea, la IA deja una referencia en el documento dueño, salvo que ya esté hecha o que escribirla sea todo lo que pide: entonces la escribe de una vez en él. Las tareas van en <code>Tareas Pendientes.md</code>.</td></tr>
 					<tr><td><code>iniciar-subproyecto</code></td><td>El <code>Leeme.md</code> y lo que haya del tema del subproyecto</td><td>Crea su carpeta, con su <code>Leeme.md</code>, su <code>Justificación.md</code> y sus <code>Decisiones.md</code>, le muda lo que ya había del tema y lo agrega al índice y a las <code>Decisiones.md</code> de arriba</td></tr>
-					<tr><td><code>revisar-bases</code></td><td>Todas, desde su <code>Leeme.md</code>, excepto <code>Ideas por Decidir.md</code></td><td>Nada: lo que el Director acepte va por <code>incorporar-idea</code></td></tr>
-					<tr><td><code>revisar-codigo-vs-bases</code></td><td>Todos los documentos de <code>Bases</code>, empezando por <code>Leeme.md</code>, excepto los archivos de ideas y <code>Pasos Terminados.md</code>. De <code>Pasos Pendientes.md</code> saca lo que falta construir, que no cuenta como diferencia.</td><td>Nada: lo que el Director acepte va por <code>incorporar-idea</code></td></tr>
-					<tr><td><code>explorar-marca</code></td><td>Para qué existe el proyecto, para quién es y con qué carácter</td><td>Por <code>incorporar-idea</code>, <code>Diseño.md</code>. Copia la opción elegida en <code>Bases/Diseño/</code></td></tr>
-					<tr><td><code>explorar-diseno-web</code></td><td><code>Diseño.md</code> y para quién es el proyecto</td><td>Lo que falte de <code>Diseño.md</code>, con el Director, si él quiere. Por <code>incorporar-idea</code>, <code>Diseño.md</code> y <code>Pasos Pendientes.md</code>. Copia la opción elegida en <code>Bases/Diseño/</code></td></tr>
+					<tr><td><code>crear-paso</code></td><td>La idea en <code>Ideas Aprobadas.md</code>, su documento dueño, las demás ideas aprobadas, <code>Tareas Pendientes.md</code>, <code>Pasos Pendientes.md</code> y <code>Pasos Terminados.md</code></td><td>Propone qué otras ideas y tareas van en el mismo paso. Con la aprobación del Director, anota los pasos en <code>Pasos Pendientes.md</code>, traslada las ideas a sus documentos dueños y saca de <code>Tareas Pendientes.md</code> las tareas puntuales que entraron. También corrige un paso que no cumple la definición, o le suma una idea</td></tr>
+					<tr><td><code>revisar-bases</code></td><td>Todas, desde su <code>Leeme.md</code>, excepto <code>Ideas por Decidir.md</code></td><td>Nada: lo que el Director acepte va por <code>incluir-idea</code></td></tr>
+					<tr><td><code>revisar-codigo-vs-bases</code></td><td>Todos los documentos de <code>Bases</code>, empezando por <code>Leeme.md</code>, excepto los archivos de ideas y <code>Pasos Terminados.md</code>. De <code>Pasos Pendientes.md</code> saca lo que falta construir, que no cuenta como diferencia.</td><td>Nada: lo que el Director acepte va por <code>incluir-idea</code></td></tr>
+					<tr><td><code>explorar-marca</code></td><td>Para qué existe el proyecto, para quién es y con qué carácter</td><td>Por <code>incluir-idea</code>, <code>Diseño.md</code>. Copia la opción elegida en <code>Bases/Diseño/</code></td></tr>
+					<tr><td><code>explorar-diseno-web</code></td><td><code>Diseño.md</code> y para quién es el proyecto</td><td>Lo que falte de <code>Diseño.md</code>, con el Director, si él quiere. Por <code>incluir-idea</code>, <code>Diseño.md</code>. Copia la opción elegida en <code>Bases/Diseño/</code></td></tr>
 					<tr><td><code>crear-logo</code> (borrador)</td><td><code>Diseño.md</code></td><td>Su sección «El logo»</td></tr>
 					<tr><td><code>limpiar-pruebas</code>, <code>revisar-y-corregir</code>, <code>use-css</code> y <code>usar-computador</code></td><td>Nada: no las usan</td><td>Nada</td></tr>
 				</tbody>
@@ -368,14 +387,15 @@
 					<tr><th>Habilidad</th><th>Le propone</th><th>Cuándo</th></tr>
 				</thead>
 				<tbody>
-					<tr><td><code>implementar-paso</code></td><td><code>incorporar-idea</code> y <code>explorar-marca</code></td><td>La primera, si el paso no cumple su definición, y al final, para corregir las bases o llevar la retroalimentación. La segunda, si el paso toca la interfaz y falta casi toda la marca.</td></tr>
-					<tr><td><code>implementar-cambio</code></td><td><code>incorporar-idea</code>, y después <code>implementar-paso</code>, o <code>explorar-marca</code></td><td>Las dos primeras, si el cambio no cabe en esa vía. <code>explorar-marca</code>, si el cambio toca la interfaz y falta casi toda la marca.</td></tr>
-					<tr><td><code>implementar-cambio-minimo</code></td><td><code>implementar-cambio</code>, <code>incorporar-idea</code> y después <code>implementar-paso</code>, o <code>revisar-y-corregir</code></td><td><code>implementar-cambio</code>, si el cambio no es mínimo o crece. <code>incorporar-idea</code> y <code>implementar-paso</code>, si toca la base de datos o la arquitectura. <code>revisar-y-corregir</code>, al final, si al Director le parece necesario que lo revise el Revisor Principal.</td></tr>
-					<tr><td><code>revisar-y-corregir</code></td><td><code>implementar-cambio</code></td><td>Para las sugerencias que el Director quiera.</td></tr>
-					<tr><td><code>revisar-bases</code></td><td><code>incorporar-idea</code></td><td>Para las respuestas que el Director quiera incorporar.</td></tr>
-					<tr><td><code>revisar-codigo-vs-bases</code></td><td><code>incorporar-idea</code>, y después <code>implementar-cambio</code></td><td>Por cada diferencia que el Director decida corregir.</td></tr>
-					<tr><td><code>explorar-marca</code></td><td><code>incorporar-idea</code>, <code>crear-logo</code> y <code>explorar-diseno-web</code></td><td>Al final, con la marca elegida.</td></tr>
-					<tr><td><code>explorar-diseno-web</code></td><td><code>explorar-marca</code>, y al final <code>incorporar-idea</code></td><td>Primero si el proyecto no tiene marca, y al final con la opción elegida.</td></tr>
+					<tr><td><code>realizar-paso</code></td><td><code>crear-paso</code>, <code>incluir-idea</code> y <code>explorar-marca</code></td><td><code>crear-paso</code>, si el paso no cumple su definición. <code>incluir-idea</code>, al final, para corregir las bases o llevar la retroalimentación. <code>explorar-marca</code>, si el paso toca la interfaz y falta casi toda la marca.</td></tr>
+					<tr><td><code>realizar-cambio</code></td><td><code>incluir-idea</code>, <code>crear-paso</code> y después <code>realizar-paso</code>, o <code>explorar-marca</code></td><td>Las tres primeras, si el cambio no cabe en esa vía. <code>explorar-marca</code>, si el cambio toca la interfaz y falta casi toda la marca.</td></tr>
+					<tr><td><code>realizar-ajuste</code></td><td><code>realizar-cambio</code>, <code>incluir-idea</code>, <code>crear-paso</code> y después <code>realizar-paso</code>, o <code>revisar-y-corregir</code></td><td><code>realizar-cambio</code>, si no es un ajuste o crece. <code>incluir-idea</code>, <code>crear-paso</code> y <code>realizar-paso</code>, si toca la base de datos o la arquitectura. <code>revisar-y-corregir</code>, al final, si al Director le parece necesario que lo revise el Revisor Principal.</td></tr>
+					<tr><td><code>incluir-idea</code></td><td><code>crear-paso</code></td><td>Si la idea encaja en un paso de la cola, o si ya le toca y conviene hacerla como paso.</td></tr>
+					<tr><td><code>revisar-y-corregir</code></td><td><code>realizar-cambio</code></td><td>Para las sugerencias que el Director quiera.</td></tr>
+					<tr><td><code>revisar-bases</code></td><td><code>incluir-idea</code></td><td>Para las respuestas que el Director quiera incluir.</td></tr>
+					<tr><td><code>revisar-codigo-vs-bases</code></td><td><code>incluir-idea</code>, y después <code>realizar-cambio</code></td><td>Por cada diferencia que el Director decida corregir.</td></tr>
+					<tr><td><code>explorar-marca</code></td><td><code>incluir-idea</code>, <code>crear-logo</code> y <code>explorar-diseno-web</code></td><td>Al final, con la marca elegida.</td></tr>
+					<tr><td><code>explorar-diseno-web</code></td><td><code>explorar-marca</code>, y al final <code>incluir-idea</code></td><td>Primero si el proyecto no tiene marca, y al final con la opción elegida.</td></tr>
 				</tbody>
 			</table>
 		</section>
@@ -387,16 +407,16 @@
 					<tr><th>Qué se repite</th><th>Dónde</th><th>Techo</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Revisor de Plan</td><td><code>implementar-paso</code></td><td>3 vueltas, <code>RevisorPlan</code></td></tr>
-					<tr><td>Revisor de Pruebas</td><td><code>implementar-paso</code></td><td>5 vueltas, <code>RevisorPruebas</code></td></tr>
-					<tr><td>Revisor de Etapa</td><td><code>implementar-paso</code> e <code>implementar-cambio</code></td><td>3 vueltas, <code>RevisorEtapa</code></td></tr>
-					<tr><td>Revisor de Puerta</td><td><code>implementar-paso</code></td><td>3 vueltas, <code>RevisorPuerta</code></td></tr>
-					<tr><td>Revisor Final</td><td><code>implementar-paso</code></td><td>5 vueltas, <code>RevisorFinal</code></td></tr>
+					<tr><td>Revisor de Plan</td><td><code>realizar-paso</code></td><td>3 vueltas, <code>RevisorPlan</code></td></tr>
+					<tr><td>Revisor de Pruebas</td><td><code>realizar-paso</code></td><td>5 vueltas, <code>RevisorPruebas</code></td></tr>
+					<tr><td>Revisor de Etapa</td><td><code>realizar-paso</code> y <code>realizar-cambio</code></td><td>3 vueltas, <code>RevisorEtapa</code></td></tr>
+					<tr><td>Revisor de Puerta</td><td><code>realizar-paso</code></td><td>3 vueltas, <code>RevisorPuerta</code></td></tr>
+					<tr><td>Revisor Final</td><td><code>realizar-paso</code></td><td>5 vueltas, <code>RevisorFinal</code></td></tr>
 					<tr><td>Revisor Principal</td><td><code>revisar-y-corregir</code></td><td>5 vueltas, <code>RevisarYCorregir</code></td></tr>
-					<tr><td>Verificador, mientras se trabaja</td><td><code>implementar-paso</code>, <code>implementar-cambio</code>, <code>implementar-cambio-minimo</code> y <code>revisar-y-corregir</code></td><td>10 vueltas, y avisa</td></tr>
-					<tr><td>Verificador, en la revisión integrada</td><td><code>implementar-paso</code></td><td>3 vueltas, y avisa</td></tr>
+					<tr><td>Verificador, mientras se trabaja</td><td><code>realizar-paso</code>, <code>realizar-cambio</code>, <code>realizar-ajuste</code> y <code>revisar-y-corregir</code></td><td>10 vueltas, y avisa</td></tr>
+					<tr><td>Verificador, en la revisión integrada</td><td><code>realizar-paso</code></td><td>3 vueltas, y avisa</td></tr>
 					<tr><td>Verificador, después de limpiar</td><td><code>limpiar-pruebas</code></td><td>Sin número: si la limpieza lo rompe, se arregla o se deshace</td></tr>
-					<tr><td>Correcciones del plan</td><td><code>implementar-paso</code> e <code>implementar-cambio</code></td><td>El Director, si la parada <code>AprobarElPlan</code> está encendida</td></tr>
+					<tr><td>Correcciones del plan</td><td><code>realizar-paso</code> y <code>realizar-cambio</code></td><td>El Director, si la parada <code>AprobarElPlan</code> está encendida</td></tr>
 					<tr><td>Rondas de diseño</td><td><code>explorar-marca</code> y <code>explorar-diseno-web</code></td><td>El Director, cuando escoge</td></tr>
 				</tbody>
 			</table>

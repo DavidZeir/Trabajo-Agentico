@@ -4,7 +4,7 @@
 
 Lo que identifica al proyecto y cómo se ve en todos sus medios: su esencia, su voz, su logo, sus colores, sus letras, sus espacios y sus formas, y las reglas que siguen sus piezas. Lo aplican sus páginas y todos sus textos, como los correos y los mensajes, y cualquier cambio de diseño conserva su esencia.
 
-La marca y el diseño van juntos en este documento, como en DESIGN.md, el formato de Google para que los agentes de IA sigan el diseño de un proyecto. Separados dejaban muchas zonas grises, porque la marca se nota justo en sus proporciones, como la escala de las letras, qué tan aireados son sus espacios o qué tan redondeadas son sus formas. Las empresas grandes los separan porque los manejan equipos distintos, uno para la marca y otro para sus productos. Si el proyecto se organiza así, este documento se puede dividir en dos.
+La marca y el diseño van juntos en este documento. Si el proyecto los maneja con equipos distintos, uno para la marca y otro para sus productos, se puede dividir en dos.
 
 Los valores van solo en las tablas, donde el Verificador los compara con el código. El resto del documento nombra la variable, como `color-primario` o `espacio-m`, y no repite su número, porque un número suelto se queda viejo cuando cambia el código, y nadie lo revisa.
 

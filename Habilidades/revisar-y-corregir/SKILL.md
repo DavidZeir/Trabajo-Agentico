@@ -1,6 +1,6 @@
 ---
 name: revisar-y-corregir
-description: Revisa código con el Revisor Principal y corrige lo que encuentre, vuelta tras vuelta, hasta que no encuentre nada bloqueante o hasta el techo de vueltas. El alcance puede ser lo preparado, un archivo o una carpeta, o un tema, y no puede haber nada sin preparar, para que las correcciones queden aparte. No prepara ni confirma nada. Úsala para el código que se hizo fuera de un paso o de un cambio menor. Solo la invoca el Director.
+description: Revisa código con el Revisor Principal y corrige lo que encuentre, vuelta tras vuelta, hasta que no encuentre nada bloqueante o hasta el techo de vueltas. El alcance puede ser lo preparado, un archivo o una carpeta, o un tema, y no puede haber nada sin preparar, para que las correcciones queden aparte. No prepara ni confirma nada. Úsala para el código que se hizo fuera de un paso o de un cambio. Solo la invoca el Director.
 argument-hint: "[alcance: preparados, una ruta o un tema] [tope N, opcional]"
 disable-model-invocation: true
 ---
@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 Alcance: $ARGUMENTS
 
-Revisas código con el Revisor Principal y corriges lo que encuentre, vuelta tras vuelta, hasta que no encuentre nada bloqueante o hasta el techo de vueltas. Sirve para el código que se hizo fuera de un paso o de un cambio menor, que no pasó por su propia revisión. Por ahora es solo para código: las bases se revisan con `revisar-bases`.
+Revisas código con el Revisor Principal y corriges lo que encuentre, vuelta tras vuelta, hasta que no encuentre nada bloqueante o hasta el techo de vueltas. Sirve para el código que se hizo fuera de un paso o de un cambio, que no pasó por su propia revisión. Por ahora es solo para código: las bases se revisan con `revisar-bases`.
 
 Nunca prepares ni confirmes nada, y no toques lo que el Director ya preparó. Tus correcciones quedan sin preparar, solas, para que él vea cuánto cambiaste sin que se mezcle con lo suyo.
 
@@ -42,5 +42,5 @@ Nunca prepares ni confirmes nada, y no toques lo que el Director ya preparó. Tu
 3. Dale al Director un resumen corto en el chat:
    - **Las vueltas:** Cuántas dio el revisor y qué corregiste en cada una, una línea por corrección.
    - **Lo que quedó sin resolver:** Lo bloqueante que seguía al llegar al techo, con por qué es bloqueante.
-   - **Las sugerencias:** Numeradas, para que el Director decida cuáles lleva a `implementar-cambio`.
+   - **Las sugerencias:** Numeradas, para que el Director decida cuáles lleva a `realizar-cambio`.
    - **El Verificador:** Si pasó el completo, y lo que corregiste para que pasara que quedó sin revisar. O si el proyecto no tiene Verificador.

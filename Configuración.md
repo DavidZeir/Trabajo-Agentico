@@ -40,7 +40,7 @@ Una sola vez en cada computador.
 
    > Vamos a empezar un proyecto nuevo en esta carpeta, con el flujo de Trabajo Agéntico. Haz esto, en orden:
    >
-   > 1. Busca la carpeta de Trabajo Agéntico en este computador. Para encontrarla, mira a dónde apunta el enlace `incorporar-idea`, que está en `%USERPROFILE%\.claude\skills` o en `%USERPROFILE%\.codex\skills`. Ese enlace apunta a la carpeta `Habilidades/incorporar-idea` de Trabajo Agéntico, así que Trabajo Agéntico es la carpeta que contiene a `Habilidades`. Si no encuentras el enlace, detente y avísame, porque es posible que falte configurar Trabajo Agéntico en este computador.
+   > 1. Busca la carpeta de Trabajo Agéntico en este computador. Para encontrarla, mira a dónde apunta el enlace `incluir-idea`, que está en `%USERPROFILE%\.claude\skills` o en `%USERPROFILE%\.codex\skills`. Ese enlace apunta a la carpeta `Habilidades/incluir-idea` de Trabajo Agéntico, así que Trabajo Agéntico es la carpeta que contiene a `Habilidades`. Si no encuentras el enlace, detente y avísame, porque es posible que falte configurar Trabajo Agéntico en este computador.
    > 2. Pregúntame qué tipo de proyecto es, y dame como opciones los archivos de la carpeta `Conectores/` de Trabajo Agéntico, menos su `Leeme.md`, y la opción «otro». Si elijo uno, léelo antes de seguir: dice cómo se empieza ese tipo de proyecto, y donde diga algo distinto de estos pasos, vale lo que dice él.
    > 3. Clona el repositorio https://github.com/[cuenta]/[repositorio] directamente en esta carpeta, sin crear otra adentro. Está vacío, y es donde va a quedar el proyecto.
    > 4. Copia aquí las carpetas `Plantillas/Bases` y `Plantillas/Archivos` de Trabajo Agéntico, con los nombres `Bases` y `Archivos`. En `Archivos` va lo del proyecto que no va en git, como lo explica su `Leeme.md`.
@@ -51,15 +51,15 @@ Una sola vez en cada computador.
    > 9. Pregúntame por el propósito del proyecto, y escríbelo en «El propósito» de `Bases/Justificación.md`, como dice `Habilidades/Llenar las Plantillas.md` de Trabajo Agéntico. Si todavía no lo tengo claro, déjalo para después.
    > 10. Pregúntame con qué nombre y correo se firman las confirmaciones de este proyecto, y configúralos solo en este repositorio. 
    > 11. Anota el nombre de esta carpeta en `Locales/Proyectos.md` de Trabajo Agéntico, la lista de los proyectos de este computador que usan el flujo, para que les lleguen los cambios de las plantillas. Si no existe, créalo. Ese archivo no va en git.
-   > 12. Al final, dime qué quedó en la carpeta y pregúntame si preparo, confirmo y subo los cambios.
+   > 12. Al final, dime qué quedó en la carpeta y pregúntame si preparo y subo los cambios.
 
    Si es la primera vez en ese computador, git pide entrar a GitHub.
 
-4. Cuando la IA pregunte si prepara, confirma y sube los cambios, decirle que sí.
+4. Cuando la IA pregunte si prepara y sube los cambios, decirle que sí.
 
-Desde ahí, las sesiones se abren siempre en la carpeta del proyecto. Si «El propósito» de `Justificación.md` quedó para después, es la primera idea que conviene incorporar, con `/incorporar-idea`.
+Desde ahí, las sesiones se abren siempre en la carpeta del proyecto. Si «El propósito» de `Justificación.md` quedó para después, es la primera idea que conviene incluir, con `/incluir-idea`.
 
-La carpeta `Archivos/` de cada proyecto es del Director y queda fuera de git. Si sus archivos se comparten con otras personas o se usan en varios computadores, algunas de sus carpetas pueden ser enlaces a carpetas compartidas de un servicio como Dropbox u OneDrive, que pone los permisos de cada persona. Su `Leeme.md` explica cómo, y sugiere un orden para la carpeta.
+La carpeta `Archivos/` de cada proyecto es del Director y queda fuera de git. Si sus archivos se comparten con otras personas o se usan en varios computadores, algunas de sus carpetas pueden ser enlaces a carpetas compartidas de un servicio como Dropbox u OneDrive, que pone los permisos de cada persona. Cómo se enlazan está en «Las carpetas compartidas de Archivos», más abajo, y el `Leeme.md` de la carpeta sugiere un orden para ella.
 
 Si el proyecto ya existía y tiene su propio `AGENTS.md`, no se crea uno nuevo: se le agrega al principio la sección de `Plantillas/Agents Proyecto.md`, y lo que ya tenía queda después de la línea con la que termina. También se le crea el `CLAUDE.md` con `@AGENTS.md`, o se le agrega esa línea al principio si ya tenía uno. Si no tiene `.gitignore`, también se le copia el de la plantilla, y si ya tiene uno, se le agrega lo que le falte de ella, con sus bloques tal cual, porque `Programas/Compartir/Copiar.mjs` los busca por su texto. Con el `.ignore` se hace lo mismo. Con el `.gitattributes` y el `.editorconfig` también, y si el proyecto ya tenía archivos en CRLF, se pasan a LF. Si no tiene `.claude/settings.json`, se le copia la carpeta de la plantilla, y si ya tiene uno, se le agregan las reglas que le falten. Y también se anota en `Locales/Proyectos.md` de Trabajo Agéntico.
 
@@ -67,4 +67,16 @@ Si el proyecto ya usa el flujo y solo se clona en otro computador, al clonarlo l
 
 - Anotarlo en `Locales/Proyectos.md` de Trabajo Agéntico, la lista de los proyectos de ese computador.
 - Copiarle las reglas personales del linter, si están en `Locales/`. El archivo de su tecnología, en `Conectores/`, dice en qué carpeta del proyecto van.
-- Copiarle desde el otro computador lo que dice su `Fuera de Git.md`, si lo tiene, como la carpeta `Archivos/`, y crear los enlaces a las carpetas compartidas que anote, preguntándole al Director dónde está cada una en ese computador.
+- Copiarle desde el otro computador lo que dice su `Fuera de Git.md`, si lo tiene, como la carpeta `Archivos/`, y crear los enlaces a las carpetas compartidas que anote, como dice «Las carpetas compartidas de Archivos».
+
+## Las carpetas compartidas de Archivos
+
+Una carpeta de `Archivos/` puede ser un enlace a una carpeta compartida de un servicio como Dropbox u OneDrive, como explica el `Leeme.md` de esa carpeta. El enlace se crea en cada computador, porque cada persona tiene la carpeta compartida en un lugar distinto: la IA le pregunta al Director dónde está y crea el enlace. En Windows, con el modo de programador activo y sin administrador:
+
+```
+cmd /c mklink /D "Archivos\[Nombre]" "[Ruta de la carpeta compartida en este computador]"
+```
+
+- **Se anota en `Fuera de Git.md`:** Cada carpeta enlazada, con su nombre en el servicio y no con su ruta, que cambia en cada computador.
+- **Disponible sin conexión:** Cada carpeta que se enlaza se marca así en el servicio, para que la IA siempre encuentre sus archivos en el computador.
+- **Para quitar un enlace:** Se borra solo el enlace, con `cmd /c rmdir "Archivos\[Nombre]"`, sin `/s`, que no toca lo que hay en la carpeta compartida.

@@ -26,14 +26,14 @@ Hay dos operaciones muy distintas:
 - **Ejecutar el conocimiento:** Aplicar las instrucciones, los procesos y las decisiones que ya están establecidos.
 - **Modificar el conocimiento:** Decidir qué ideas, principios o aprendizajes nuevos merecen volverse parte de esas instrucciones.
 
-La segunda es mucho más delicada. Un trabajo mal hecho se repite hasta que cumpla con las bases. En cambio, una idea mal incorporada a las bases daña todos los trabajos que vienen después. Y no todo lo que funcionó en una tarea sirve para las demás: pudo ser una excepción o una casualidad.
+La segunda es mucho más delicada. Un trabajo mal hecho se repite hasta que cumpla con las bases. En cambio, una idea mal incluida en las bases daña todos los trabajos que vienen después. Y no todo lo que funcionó en una tarea sirve para las demás: pudo ser una excepción o una casualidad.
 
 Por eso hay dos clases de autonomía:
 
 | Lo que hacen los agentes | Lo que decide el Director |
 | --- | --- |
 | Hacer el trabajo | Cambiar cómo se hace |
-| Aplicar las bases | Incorporar ideas nuevas a las bases |
+| Aplicar las bases | Incluir ideas nuevas en las bases |
 | Seguir los procesos | Cambiar los procesos |
 
 El Director no tiene que intervenir en cada acción para seguir siendo el centro del sistema. Él decide en qué momentos se detienen los agentes a esperarlo, como al aprobar el plan, después de cada parte del trabajo o solo al final, según la confianza que les tenga y lo que pida cada trabajo, y lo cambia cuando quiera en un archivo de preferencias. Así podría dedicarle más tiempo a lo que solo él aporta: la dirección, las ideas, la creatividad y la intuición de lo que pide su mercado.
@@ -50,7 +50,7 @@ Los agentes no tienen que saber inventar cómo se hace cualquier trabajo. Necesi
 | Revisar | Revisión del código | Crítica de diseño |
 | Entregar | Código y documentación | Archivos y especificaciones |
 
-Lo común va en unas instrucciones generales, que comparten todas las áreas, y lo propio de cada una va en sus habilidades, las instrucciones que sigue la IA en cada proceso. Así, mejorar una habilidad común, como la que incorpora las ideas a las bases, sirve para todas las áreas a la vez. Y cambiar la que implementa un paso de software no toca el trabajo de diseño gráfico, que tendría la suya, parecida pero aparte. Compartir las reglas no obliga a trabajar igual: dos áreas pueden guardar su conocimiento de la misma forma y hacer su trabajo de maneras distintas.
+Lo común va en unas instrucciones generales, que comparten todas las áreas, y lo propio de cada una va en sus habilidades, las instrucciones que sigue la IA en cada proceso. Así, mejorar una habilidad común, como la que incluye las ideas en las bases, sirve para todas las áreas a la vez. Y cambiar cómo se realiza un paso de software no toca el diseño gráfico, que tendría sus propias instrucciones, parecidas pero aparte. Compartir las reglas no obliga a trabajar igual: dos áreas pueden guardar su conocimiento de la misma forma y hacer su trabajo de maneras distintas.
 
 ## Lo que ya funciona en común
 

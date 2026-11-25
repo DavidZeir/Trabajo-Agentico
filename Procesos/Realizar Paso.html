@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es"> <!-- Vista solo para el Director, dibujada desde Implementar Paso.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
+<html lang="es"> <!-- Vista solo para el Director, dibujada desde Realizar Paso.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Implementar Paso</title>
+	<title>Realizar Paso</title>
 	<style>
 		@layer base, variables, semantica, utilidad, semantica_local, utilidad_local, excepciones; /* Orden de las capas de USE, declarado aquí porque esta página no tiene un CSS global. */
 
@@ -99,7 +99,7 @@
 					stroke: var(--flujo-director-borde);
 				}
 
-				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio menor. */
+				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio. */
 					fill: var(--flujo-misma-empresa-fondo);
 					stroke: var(--flujo-misma-empresa-borde);
 				}
@@ -205,15 +205,16 @@
 </head>
 <body>
 	<main class="flujo">
-		<h1>Implementar Paso</h1>
+		<h1>Realizar Paso</h1>
 		<p>Cada columna es un actor y el tiempo corre hacia abajo. Las flechas continuas son pedidos, y las punteadas, respuestas. Los recuadros punteados son ciclos que se repiten hasta cumplir su condición, o bloques que solo pasan si hace falta.</p>
 		<p>Las flechas al Verificador que dicen «completo» corren el Verificador completo, con todas las pruebas y la revisión de sus tipos. Las demás corren el Verificador ligero, que salta esa revisión, las pruebas de interfaz, las de errores ya arreglados y las pesadas, que son las pruebas que tardan más de 1 segundo.</p>
-		<p>Este diagrama se dibuja a partir de Implementar Paso.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<p>Este diagrama se dibuja a partir de Realizar Paso.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<p>Muestra el área del software. Cada paso es de una sola área, y cada área tiene sus instrucciones en su propio archivo, en la carpeta de /realizar-paso.</p>
 		<section>
-			<h2>Cómo se implementa un paso</h2>
+			<h2>Cómo se realiza un paso</h2>
 			<svg class="diagrama" viewBox="0 0 940 4176" role="img" aria-labelledby="titulo-paso descripcion-paso"> <!-- Diagrama de secuencia con seis actores en columnas: un paso, desde su plan hasta su cierre. -->
-				<title id="titulo-paso">Quién habla con quién al implementar un paso</title>
-				<desc id="descripcion-paso">Implementar un paso: con /implementar-paso el Líder revisa que la rama principal no tenga cambios sin confirmar y que el paso cumpla la definición de paso, o le propone al Director corregirlo. Si el paso tiene «Falta definir», lo resuelve con el Director con /incorporar-idea. Después escribe los planes, que revisa el Revisor de Plan y aprueba el Director, y luego las pruebas de aceptación, que corre para comprobar que fallan y que revisa el Revisor de Pruebas, hasta su techo de vueltas, sin pasar por el Director. Las pruebas se confirman en la rama de integración y quedan protegidas. Antes de las etapas, la rama principal tiene que pasar el Verificador completo. Cada etapa, en paralelo o en serie, la programa un Implementador en su propia rama y su propia copia de trabajo, que alista con npm run alistar: corre solo las pruebas enfocadas mientras programa, y las de interfaz solo en Chromium, mira la aplicación con capturas y registros, corre el Verificador ligero hasta que pase, con un techo de 10 vueltas, confirma en su rama y conversa con el Revisor de Etapa hasta que apruebe. Si necesita una decisión del Director, pregunta a través del Líder. En la puerta de cada etapa, el Líder vuelve a correr el Verificador ligero, corre las gemelas de sus pruebas de aceptación, con otros datos, si están encendidas, y llama al Revisor de Puerta, y corrige él mismo lo que encuentren, hasta que el revisor le da vía libre. Después la fusiona y corre el Verificador ligero sobre la integración. Con todas fusionadas corre el Verificador completo, y el Revisor Final revisa todo a ciegas. El Líder descarta lo que fue a propósito, discute lo teórico, que solo en la última vuelta puede pasar a sugerencias, y corrige lo demás. Al final limpia las pruebas con /limpiar-pruebas, incluidas las de aceptación, y corre el Verificador completo. Después escribe el resumen, que es el registro completo de lo que pasó, anota sus cifras en Métricas.csv y dibuja la vista del código. La fusión, que la hace el Líder, deja todo sin preparar en la rama principal, con los archivos del paso en Pasos/, y el Líder corre el Verificador completo sobre esa combinación. Después le enlaza al Director el resumen y la vista, sin repetir el resumen en el chat, y el Director lleva las correcciones que elija, una a una, a /incorporar-idea. Después prepara, confirma, sube y despliega. Cuando el paso termina, da su retroalimentación, el Líder propone ajustes y reglas para el Verificador, revisa las bases contra el código, mueve la entrada de Pasos Pendientes.md al principio de la lista de Pasos Terminados.md, con la fecha y borra las copias de trabajo, las ramas y las respuestas de los revisores. Las bolas numeradas marcan lo que el Director ajusta en sus preferencias, y los recuadros punteados del Director, las paradas apagadas de forma predeterminada.</desc>
+				<title id="titulo-paso">Quién habla con quién al realizar un paso</title>
+				<desc id="descripcion-paso">Realizar un paso: con /realizar-paso el Líder revisa que la rama principal no tenga cambios sin confirmar y que el paso cumpla la definición de paso, o le propone al Director corregirlo. Si el paso tiene «Falta definir», lo resuelve con el Director con /incluir-idea. Después escribe los planes, que revisa el Revisor de Plan y aprueba el Director, y luego las pruebas de aceptación, que corre para comprobar que fallan y que revisa el Revisor de Pruebas, hasta su techo de vueltas, sin pasar por el Director. Las pruebas se confirman en la rama de integración y quedan protegidas. Antes de las etapas, la rama principal tiene que pasar el Verificador completo. Cada etapa, en paralelo o en serie, la programa un Implementador en su propia rama y su propia copia de trabajo, que alista con npm run alistar: corre solo las pruebas enfocadas mientras programa, y las de interfaz solo en Chromium, mira la aplicación con capturas y registros, corre el Verificador ligero hasta que pase, con un techo de 10 vueltas, confirma en su rama y conversa con el Revisor de Etapa hasta que apruebe. Si necesita una decisión del Director, pregunta a través del Líder. En la puerta de cada etapa, el Líder vuelve a correr el Verificador ligero, corre las gemelas de sus pruebas de aceptación, con otros datos, si están encendidas, y llama al Revisor de Puerta, y corrige él mismo lo que encuentren, hasta que el revisor le da vía libre. Después la fusiona y corre el Verificador ligero sobre la integración. Con todas fusionadas corre el Verificador completo, y el Revisor Final revisa todo a ciegas. El Líder descarta lo que fue a propósito, discute lo teórico, que solo en la última vuelta puede pasar a sugerencias, y corrige lo demás. Al final limpia las pruebas con /limpiar-pruebas, incluidas las de aceptación, y corre el Verificador completo. Después escribe el resumen, que es el registro completo de lo que pasó, anota sus cifras en Métricas.csv y dibuja la vista del código. La fusión, que la hace el Líder, deja todo sin preparar en la rama principal, con los archivos del paso en Pasos/, y el Líder corre el Verificador completo sobre esa combinación. Después le enlaza al Director el resumen y la vista, sin repetir el resumen en el chat, y el Director lleva las correcciones que elija, una a una, a /incluir-idea. Después prepara, confirma, sube y despliega. Cuando el paso termina, da su retroalimentación, el Líder propone ajustes y reglas para el Verificador, revisa las bases contra el código, mueve la entrada de Pasos Pendientes.md al principio de la lista de Pasos Terminados.md, con la fecha y borra las copias de trabajo, las ramas y las respuestas de los revisores. Las bolas numeradas marcan lo que el Director ajusta en sus preferencias, y los recuadros punteados del Director, las paradas apagadas de forma predeterminada.</desc>
 				<defs>
 					<marker id="cabeza-paso" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
 				</defs>
@@ -246,8 +247,8 @@
 				<text class="texto-secundario texto-secundario-otra-empresa" x="845" y="56" text-anchor="middle" dominant-baseline="central">Otra empresa</text>
 				<g><title>Preferencia: el programa, el modelo y el razonamiento del Revisor Principal, que puede ser de la misma empresa si hay una sola suscripción.</title><circle class="bola-preferencia" cx="913" cy="20" r="9"/><text class="texto-preferencia" x="913" y="20" text-anchor="middle" dominant-baseline="central">1</text></g>
 				<rect class="caja caja-neutra" x="20" y="88" width="900" height="22" rx="4"/> <!-- Punto 1: el plan principal y el de cada etapa, revisados por el Revisor de Plan hasta el visto bueno del Director. -->
-				<text class="texto-secundario" x="32" y="99" dominant-baseline="central">Planear el paso, con /implementar-paso</text>
-				<text class="texto-secundario" x="170" y="134" text-anchor="middle">/implementar-paso</text>
+				<text class="texto-secundario" x="32" y="99" dominant-baseline="central">Planear el paso, con /realizar-paso</text>
+				<text class="texto-secundario" x="170" y="134" text-anchor="middle">/realizar-paso</text>
 				<line class="flecha" x1="99" y1="142" x2="241" y2="142" marker-end="url(#cabeza-paso)"/>
 				<rect class="marco-ciclo" x="20" y="154" width="900" height="274" rx="6"/> <!-- Ciclo del plan: el Líder escribe o corrige, el Revisor de Plan busca huecos, hasta su techo de vueltas, y el Director aprueba o pide cambios. -->
 				<text class="texto-secundario" x="470" y="172" text-anchor="middle">Hasta el visto bueno del Director,</text>
@@ -391,7 +392,7 @@
 				<rect class="caja caja-misma-empresa" x="180" y="2462" width="130" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="2478" text-anchor="middle" dominant-baseline="central">Corrige</text>
 				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="2495" text-anchor="middle" dominant-baseline="central">lo demás</text>
-				<rect class="caja caja-neutra" x="20" y="2542" width="900" height="22" rx="4"/> <!-- Punto 6: la limpieza de las pruebas con /limpiar-pruebas, que termina con el Verificador completo, el resumen completo de lo que pasó, su fila en Métricas.csv y la vista del código, la fusión a la rama principal, que deja todo sin preparar, con los archivos del paso en Pasos/, seguida del Verificador completo en la carpeta principal, y las correcciones que el Director incorpora una a una. -->
+				<rect class="caja caja-neutra" x="20" y="2542" width="900" height="22" rx="4"/> <!-- Punto 6: la limpieza de las pruebas con /limpiar-pruebas, que termina con el Verificador completo, el resumen completo de lo que pasó, su fila en Métricas.csv y la vista del código, la fusión a la rama principal, que deja todo sin preparar, con los archivos del paso en Pasos/, seguida del Verificador completo en la carpeta principal, y las correcciones que el Director incluye una a una. -->
 				<text class="texto-secundario" x="32" y="2553" dominant-baseline="central">Final</text>
 				<rect class="caja caja-misma-empresa" x="152" y="2580" width="186" height="48" rx="6"/> <!-- Con el código ya terminado, el Líder limpia con /limpiar-pruebas las pruebas que agregó o cambió el paso, incluidas las de aceptación: deja las que nunca se borran, borra las que siempre se borran, decide las de la zona gris según si cuidan más de lo que cuestan y ordena las que quedan por clase y por tema. Al terminar corre el Verificador completo, porque la limpieza puede tocar cualquier prueba, también las pesadas y las de interfaz. -->
 				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="2596" text-anchor="middle" dominant-baseline="central">Limpia las pruebas</text>
@@ -421,8 +422,8 @@
 				<text class="texto-secundario" x="170" y="3058" text-anchor="middle">Las que elija</text>
 				<line class="flecha" x1="99" y1="3066" x2="241" y2="3066" marker-end="url(#cabeza-paso)"/>
 				<rect class="caja caja-misma-empresa" x="144.5" y="3080" width="201" height="48" rx="6"/>
-				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="3096" text-anchor="middle" dominant-baseline="central">Incorpora una a una</text>
-				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="3113" text-anchor="middle" dominant-baseline="central">con /incorporar-idea</text>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="245" y="3096" text-anchor="middle" dominant-baseline="central">Incluye una a una</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="245" y="3113" text-anchor="middle" dominant-baseline="central">con /incluir-idea</text>
 				<rect class="caja caja-director" x="27" y="3174" width="136" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-director" x="95" y="3190" text-anchor="middle" dominant-baseline="central">Prepara</text>
 				<text class="texto-secundario texto-secundario-director" x="95" y="3207" text-anchor="middle" dominant-baseline="central">lo que aprueba</text>
@@ -456,8 +457,8 @@
 				<text class="texto-secundario" x="470" y="3790" text-anchor="middle">Si al aprobar el plan el Director pide ver un resultado intermedio, el Líder se detiene ahí y se lo muestra.</text>
 				<text class="texto-secundario" x="470" y="3812" text-anchor="middle">Cuando el proyecto se llena de pruebas, el Director corre /limpiar-pruebas sobre todo el proyecto.</text>
 				<text class="texto-secundario" x="470" y="3834" text-anchor="middle">↻ Si la rama principal tiene cambios sin confirmar, el Líder le avisa al Director y no empieza.</text>
-				<text class="texto-secundario" x="470" y="3856" text-anchor="middle">↻ Si el paso no cumple la definición del Glosario, el Líder se detiene y le propone al Director corregirlo con /incorporar-idea.</text>
-				<text class="texto-secundario" x="470" y="3878" text-anchor="middle">↻ Si el paso tiene «Falta definir», el Líder lo resuelve con el Director con /incorporar-idea antes de escribir los planes.</text>
+				<text class="texto-secundario" x="470" y="3856" text-anchor="middle">↻ Si el paso no cumple la definición del Glosario, el Líder se detiene y le propone al Director corregirlo con /crear-paso.</text>
+				<text class="texto-secundario" x="470" y="3878" text-anchor="middle">↻ Si el paso tiene «Falta definir», el Líder lo resuelve con el Director con /incluir-idea antes de escribir los planes.</text>
 				<text class="texto-secundario" x="470" y="3900" text-anchor="middle">↻ Si faltan las Bases, o el Verificador con sus dos modos, alistar o iniciar, y no es el primer paso con código, el Líder se detiene y le avisa al Director.</text>
 				<text class="texto-secundario" x="470" y="3922" text-anchor="middle">↻ Si una prueba de aceptación necesita un navegador u otro programa que el Verificador no corre, el Líder le pide al Director agregarlo.</text>
 				<text class="texto-secundario" x="470" y="3944" text-anchor="middle">↻ Si una etapa tocó algo protegido (las pruebas o el Verificador), el Líder reversa el cambio, detiene el paso y le avisa al Director.</text>
@@ -466,7 +467,7 @@
 				<text class="texto-secundario" x="470" y="4010" text-anchor="middle">↻ Si algo no pasa en la puerta o en la integración, el Líder lo corrige él mismo.</text>
 				<text class="texto-secundario" x="470" y="4032" text-anchor="middle">↻ Si un revisor llega a su techo, lo que quede va a «Hallazgos sin resolver» y el paso sigue, salvo con el Verificador: ahí le avisa al Director.</text>
 				<text class="texto-secundario" x="470" y="4054" text-anchor="middle">↻ Si un revisor se queda sin cupo, el Líder lo vuelve a llamar a la hora que dice su mensaje, o le avisa al Director si faltan más de 12 horas.</text>
-				<text class="texto-secundario" x="470" y="4076" text-anchor="middle">↻ Si hay que corregir las bases o un ajuste toca el diseño, entra por /incorporar-idea.</text>
+				<text class="texto-secundario" x="470" y="4076" text-anchor="middle">↻ Si hay que corregir las bases o un ajuste toca el diseño, entra por /incluir-idea.</text>
 				<text class="texto-secundario" x="470" y="4098" text-anchor="middle">El Líder puede pedir Computer Use para revisar aplicaciones de escritorio.</text>
 				<rect class="caja caja-director" x="213" y="4128" width="12" height="12" rx="2"/> <!-- Leyenda de colores de los actores de este diagrama. -->
 				<text class="texto-secundario" x="231" y="4134" dominant-baseline="central">Director</text>

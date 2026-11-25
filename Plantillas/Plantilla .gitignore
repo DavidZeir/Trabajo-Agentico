@@ -1,7 +1,7 @@
 # Caché local de Visual Studio: índices y ajustes de cada PC, que nunca entran al repositorio.
 .vs/
 
-# Lo temporal de los pasos y los cambios menores: las copias de trabajo de las etapas, las respuestas de los revisores, y las capturas y los registros de la aplicación.
+# Lo temporal de los pasos y los cambios: las copias de trabajo de las etapas, las respuestas de los revisores, y las capturas y los registros de la aplicación.
 /Temporal/
 
 # La configuración personal de Claude Code en este proyecto, como los permisos que cada quien aprueba con «No volver a preguntar». La compartida, .claude/settings.json, con las reglas duras del proyecto, sí entra.

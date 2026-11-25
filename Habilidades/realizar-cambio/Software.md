@@ -1,21 +1,10 @@
----
-name: implementar-cambio
-description: Hace un cambio menor o corrige un error de un proyecto de software que queda fuera de los pasos previstos, directo en la rama principal, con un plan corto que aprueba el Director, el Verificador y el Revisor de Etapa, hasta dejarlo sin preparar para que el Director lo revise. Solo la invoca el Director.
-argument-hint: "[el cambio, o el error que hay que corregir]"
-disable-model-invocation: true
----
-
-# Implementar un cambio menor
-
-Cambio: $ARGUMENTS
-
-Si no viene nada, pregunta qué cambio hacer.
+# Realizar un cambio de software
 
 En esta sesión haces lo que en un paso hacen el Líder y el Implementador: planeas, programas y llamas al Revisor de Etapa. La sesión está abierta en la raíz del proyecto, donde están el `AGENTS.md` y la carpeta `Bases`. El Verificador está en la raíz o en cada subproyecto, y se corre en cada uno que toca el cambio. Trabajas directo en la rama principal, sin rama ni copia de trabajo, y nunca preparas ni confirmas nada: la preparación es del Director.
 
 ## Las preferencias
 
-Antes de todo, comprueba las preferencias del Director como dice `<Trabajo Agéntico>/Habilidades/Comprobar Preferencias.md`. En un cambio menor cuentan cuatro: el modelo y el razonamiento del Líder, que son los de tu sesión, los del Revisor de Etapa, que usa `<Trabajo Agéntico>/Habilidades/Llamar a Revisores.md`, la parada `AprobarElPlan` y el techo de vueltas `RevisorEtapa`. Si la conversación se compactó, vuelve a comprobarlas antes de seguir, porque lo que mostró el programa pudo quedar fuera del resumen.
+Antes de todo, comprueba las preferencias del Director como dice `<Trabajo Agéntico>/Habilidades/Comprobar Preferencias.md`. En un cambio cuentan cuatro: el modelo y el razonamiento del Líder, que son los de tu sesión, los del Revisor de Etapa, que usa `<Trabajo Agéntico>/Habilidades/Llamar a Revisores.md`, la parada `AprobarElPlan` y el techo de vueltas `RevisorEtapa`. Si la conversación se compactó, vuelve a comprobarlas antes de seguir, porque lo que mostró el programa pudo quedar fuera del resumen.
 
 ## 1. Antes de empezar
 
@@ -24,9 +13,9 @@ Revisa esto, y si algo falla, detente y avísale al Director:
 - La carpeta está en la rama principal, y no tiene nada sin preparar, tampoco archivos nuevos, porque al final tus cambios tienen que quedar solos. Lo que el Director ya preparó puede estar, y no lo tocas.
 - El proyecto tiene la carpeta `Bases` y su Verificador, con sus dos modos, `npm run verificador ligero` y `npm run verificador completo`.
 - `/Temporal/` está en el `.gitignore` del proyecto, porque ahí van las capturas y los registros, para que no se mezclen con el cambio.
-- El cambio cabe en esta vía. No cabe si toca la base de datos o la arquitectura, si toca muchos archivos o si exige cambiar lo que dicen las bases. En ese caso, propón primero actualizar las bases con la habilidad `incorporar-idea`, y después implementarlo como un paso, con `/implementar-paso`.
+- El cambio cabe en esta vía. No cabe si toca la base de datos o la arquitectura, si toca muchos archivos o si exige cambiar lo que dicen las bases. En ese caso, propón primero actualizar las bases con la habilidad `incluir-idea`, convertirlo en paso con `/crear-paso` y después realizarlo con `/realizar-paso`. Si no cambia lo que dicen las bases, porque arregla algo que ya piden, es una tarea: propón guardarla con `incluir-idea`, para sumarla al próximo paso que toque esa parte.
 
-Si el cambio implementa una idea de `Ideas Aprobadas.md`, lee ahora «Cuándo sale una idea de Ideas Aprobadas» y su apartado «Implementarla», en `<Trabajo Agéntico>/Habilidades/Gestión de Ideas.md`, y síguelos: dicen qué revisar antes de empezar y cómo actualizar las bases al terminar.
+Si el cambio realiza una idea de `Ideas Aprobadas.md`, lee ahora «Cuándo sale una idea de Ideas Aprobadas» y su apartado «Realizarla», en `<Trabajo Agéntico>/Habilidades/Gestión de Ideas.md`, y síguelos: dicen qué revisar antes de empezar y cómo actualizar las bases al terminar.
 
 Si todo está bien, avísale al Director que, mientras trabajas, no use esta carpeta ni su servidor de desarrollo.
 

@@ -1,6 +1,6 @@
 # Copias de Trabajo
 
-Así se crean los dos comandos de las copias de trabajo de un proyecto, `npm run alistar` y `npm run iniciar`. Los crea el primer paso con código del proyecto, junto con el Verificador, que explica `<Trabajo Agéntico>/Habilidades/Verificador.md`. Si a un proyecto que ya tiene código le faltan los comandos, se los agrega un cambio menor, que también llena la subsección «Copias de trabajo» de su `AGENTS.md`.
+Así se crean los dos comandos de las copias de trabajo de un proyecto, `npm run alistar` y `npm run iniciar`. Los crea el primer paso con código del proyecto, junto con el Verificador, que explica `<Trabajo Agéntico>/Habilidades/Verificador.md`. Si a un proyecto que ya tiene código le faltan los comandos, se los agrega un cambio, que también llena la subsección «Copias de trabajo» de su `AGENTS.md`.
 
 ## Lo que se crea
 

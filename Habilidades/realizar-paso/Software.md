@@ -1,15 +1,4 @@
----
-name: implementar-paso
-description: Implementa un paso pendiente de un proyecto de software con una o varias etapas, en paralelo o en serie: el plan con el Revisor de Plan, las pruebas de aceptación con el Revisor de Pruebas, los Implementadores en sus propias ramas y copias de trabajo, el Revisor de Puerta y el Revisor Final, y la rama de integración, hasta fusionarlo en la rama principal, sin preparar. Solo la invoca el Director.
-argument-hint: "[el paso pendiente]"
-disable-model-invocation: true
----
-
-# Implementar un paso
-
-Paso: $ARGUMENTS
-
-Si no viene nada, pregunta qué paso implementar.
+# Realizar un paso de software
 
 Eres el Líder: planeas, repartes las etapas entre los Implementadores, las fusionas, corriges lo que encuentren el Revisor de Puerta y el Revisor Final, y le reportas al Director. Si en cambio el Líder te lanzó como Implementador, sigue solo la sección «El trabajo del Implementador». La sesión está abierta en la raíz del proyecto, la carpeta principal, donde están el `AGENTS.md` y la carpeta `Bases`. El Verificador está en la raíz o en cada subproyecto, y se corre en cada uno que toca el paso.
 
@@ -20,7 +9,7 @@ Eres el Líder: planeas, repartes las etapas entre los Implementadores, las fusi
 - **Las ramas:** La de integración, `paso/nombre-paso-corto`, sale de la rama principal. La de cada etapa, `etapa/nombre-paso-corto/nombre-etapa`, sale de la de integración. Los nombres van en minúsculas, con guiones y sin tildes.
 - **Las copias de trabajo:** En `Temporal/nombre-paso-corto/`: `integracion/` para la rama de integración, y una carpeta por etapa, con el nombre de la etapa. Cada una se alista con `npm run alistar`. Si el proyecto tiene subproyectos de código, los que nombra la sección «Subproyectos» de su `AGENTS.md`, la copia trae solo los que toca, como dice «Las copias de un proyecto con subproyectos» en `<Trabajo Agéntico>/Habilidades/Copias de Trabajo.md`, y `npm run alistar` se corre dentro de cada uno.
 - **Las respuestas de los revisores:** En `Temporal/nombre-paso-corto/revisores/` de la carpeta principal, fuera de git, porque solo sirven mientras corre el paso. Las de cada etapa van en su propia carpeta, `revisores/nombre-etapa/`. Se borran al cerrar el paso.
-- **Los archivos protegidos:** Las pruebas de aceptación y los archivos del Verificador, como los dice la subsección «Verificador» del `AGENTS.md` del proyecto. Desde que las pruebas se confirman en la rama de integración, ningún agente los cambia. Solo al final del paso se permite la limpieza de las pruebas.
+- **Los archivos protegidos:** Las pruebas de aceptación y los archivos del Verificador, como los dice la subsección «Verificador» del `AGENTS.md` del proyecto. Desde que empiezan las etapas, ningún agente los cambia. Solo al final del paso se permite la limpieza de las pruebas.
 
 ## Cómo se llama a los revisores
 
@@ -28,19 +17,19 @@ Antes de llamar a cualquier revisor, lee `<Trabajo Agéntico>/Habilidades/Llamar
 
 ## Las preferencias
 
-Antes de todo, comprueba las preferencias del Director como dice `<Trabajo Agéntico>/Habilidades/Comprobar Preferencias.md`. En un paso cuentan todas: los modelos de tu programa, para los Implementadores y los revisores, las paradas `AprobarElPlan`, `RevisarLasPruebas` y `RevisarCadaEtapa`, que esta habilidad dice dónde van, el techo de vueltas de cada revisor, en `VueltasMáximas`, si haces las gemelas de «La revisión integrada», en `PruebasGemelas`, y desde cuántas líneas una pieza va en su propia etapa, en `LíneasParaEtapaPropia`. Si la conversación se compactó, vuelve a comprobarlas antes de seguir, porque lo que mostró el programa pudo quedar fuera del resumen.
+Antes de todo, comprueba las preferencias del Director como dice `<Trabajo Agéntico>/Habilidades/Comprobar Preferencias.md`. En un paso cuentan todas: los modelos de tu programa, para los Implementadores y los revisores, las paradas `AprobarElPlan`, `RevisarLasPruebas` y `RevisarCadaEtapa`, que este archivo dice dónde van, el techo de vueltas de cada revisor, en `VueltasMáximas`, si haces las gemelas de «La revisión integrada», en `PruebasGemelas`, y desde cuántas líneas una pieza va en su propia etapa, en `LíneasParaEtapaPropia`. Si la conversación se compactó, vuelve a comprobarlas antes de seguir, porque lo que mostró el programa pudo quedar fuera del resumen.
 
 ## 1. Antes de empezar
 
 Revisa esto, y si algo falla, detente y avísale al Director:
 
 - La carpeta está en la rama principal, y la rama no tiene cambios sin confirmar, porque al final no se podría hacer la fusión.
-- El paso cumple la definición de «Paso» del Glosario. Si no la cumple, propón corregirlo en `Pasos Pendientes.md` con la habilidad `incorporar-idea`.
+- El paso cumple la definición de «Paso» del Glosario. Si no la cumple, propón corregirlo en `Pasos Pendientes.md` con la habilidad `crear-paso`.
 - El proyecto tiene la carpeta `Bases`.
 - El proyecto tiene su Verificador, con sus dos modos, `npm run verificador ligero` y `npm run verificador completo`, los comandos de las copias de trabajo, `npm run alistar` y `npm run iniciar`, y las subsecciones «Copias de trabajo» y «Verificador» de su `AGENTS.md` ya están llenas, sin corchetes dobles. La excepción es el primer paso con código del proyecto, o el de un subproyecto de código nuevo: ahí el plan crea el Verificador y los dos comandos de las copias de trabajo, y llena las subsecciones, como dicen `<Trabajo Agéntico>/Habilidades/Verificador.md` e `<Trabajo Agéntico>/Habilidades/Copias de Trabajo.md`.
 - `/Temporal/` está en el `.gitignore` del proyecto.
 
-Si el paso tiene «Falta definir», resuélvelo con el Director con la habilidad `incorporar-idea`, que escribe cada respuesta donde corresponde y quita la nota. Si el paso toca la interfaz y a `Diseño.md` le falta algo por llenar, complétalo con el Director, como dice `<Trabajo Agéntico>/Habilidades/Llenar las Plantillas.md`. Los dos van antes del plan, porque los Implementadores no le pueden preguntar al Director. Si con eso cambian las bases, pídele al Director que confirme esos cambios antes de seguir, porque las copias de trabajo salen de la última confirmación, y la fusión, al final, pide la rama principal sin cambios.
+Si el paso tiene «Falta definir», resuélvelo con el Director, como dice «Lo que falta definir», en `<Trabajo Agéntico>/Habilidades/Gestión de Pasos.md`. Si el paso toca la interfaz y a `Diseño.md` le falta algo por llenar, complétalo con el Director, como dice `<Trabajo Agéntico>/Habilidades/Llenar las Plantillas.md`. Los dos van antes del plan, porque los Implementadores no le pueden preguntar al Director. Si con eso cambian las bases, pídele al Director que confirme esos cambios antes de seguir, porque las copias de trabajo salen de la última confirmación, y la fusión, al final, pide la rama principal sin cambios.
 
 Si todo está bien, avísale al Director que, hasta la fusión, no haga cambios en la rama principal, para que lo que llegue con la fusión sea exactamente lo que se verificó, y que no suspenda el computador. Recomiéndale también activar el control remoto de esta sesión, si quiere seguir el paso desde el celular.
 
@@ -74,12 +63,14 @@ Si la parada `AprobarElPlan` está apagada, los planes quedan aprobados cuando e
 
 ## 3. Las pruebas de aceptación
 
+Si ningún criterio del paso se vuelve prueba, porque todos los comprueba la IA o los confirma una persona, haz solo el punto 1 y salta los demás.
+
 1. Crea la rama de integración y su copia de trabajo, y alístala con `npm run alistar`.
-2. En la copia de trabajo de integración, convierte los criterios de aceptación del paso en pruebas. Cada prueba va en la carpeta `aceptacion/` de su clase, como dice el `AGENTS.md`. Prueban lo que el paso tiene que lograr, no cómo está hecho por dentro. Si un criterio depende de lo que hace un navegador u otro programa, como enviar un formulario, la prueba usa ese programa, como Playwright para el navegador, y no lo imita con código propio. La que necesita ese programa es de interfaz, y a las de interfaz y a las pesadas solo las corre el Verificador completo. Si el Verificador todavía no corre ese programa, pídele al Director agregarlo.
+2. En la copia de trabajo de integración, convierte los criterios de aceptación del paso en pruebas. Un criterio que ningún programa puede comprobar, porque lo comprueba la IA, como al leer un documento, o lo confirma una persona, como el que dice «Lo confirma Rubén», no se vuelve prueba: queda para el registro del paso. Cada prueba va en la carpeta `aceptacion/` de su clase, como dice el `AGENTS.md`. Prueban lo que el paso tiene que lograr, no cómo está hecho por dentro. Si un criterio depende de lo que hace un navegador u otro programa, como enviar un formulario, la prueba usa ese programa, como Playwright para el navegador, y no lo imita con código propio. La que necesita ese programa es de interfaz, y a las de interfaz y a las pesadas solo las corre el Verificador completo. Si el Verificador todavía no corre ese programa, pídele al Director agregarlo.
 3. Córrelas como pruebas enfocadas y comprueba que todas fallan, porque falta lo que el paso tiene que lograr y no por un error de la misma prueba. Si alguna pasa, está mal: corrígela, o avísale al Director si pasa porque su criterio ya se cumple. Repite esto cada vez que las corrijas.
 4. Llama al Revisor de Pruebas, desde la copia de trabajo de integración. En el pedido van los criterios de aceptación, el plan principal y las pruebas. Corrige lo que encuentre y vuelve a llamarlo, hasta que no encuentre nada bloqueante. Lo que creas teórico lo discutes con él, como dice «Las respuestas» de `<Trabajo Agéntico>/Habilidades/Llamar a Revisores.md`. Su techo de vueltas es `RevisorPruebas`: si en la última todavía queda algo bloqueante, anótalo para la sección «Hallazgos sin resolver» del resumen.
 5. Si la parada `RevisarLasPruebas` está apagada, las pruebas no pasan por el Director: quedan aprobadas cuando el Revisor de Pruebas no encuentra nada bloqueante, o al llegar al techo. Si está encendida, muéstrale al Director la lista de las pruebas, con lo que comprueba cada una en palabras y el enlace a su archivo, y espera su aprobación. Si pide cambios, vuelven a pasar por el Revisor de Pruebas.
-6. Confirma las pruebas en la rama de integración. Desde ahí, son archivos protegidos.
+6. Confirma las pruebas en la rama de integración, si el paso tiene alguna. Desde ahí, son archivos protegidos.
 
 ## 4. Las etapas
 
@@ -87,7 +78,7 @@ Antes de empezar las etapas, corre el Verificador completo en la carpeta princip
 
 Para cada etapa, crea su rama y su copia de trabajo desde la rama de integración, y lánzale un Implementador: un agente de tu propio programa, con el modelo y el razonamiento de `Implementador` en las preferencias. En Claude, lánzalo con la familia, como `sonnet`, y en Codex, con su nombre exacto, el que muestra el comprobador. Las etapas que van en paralelo se lanzan al mismo tiempo, y las que van en serie, cuando la anterior ya esté fusionada.
 
-A cada Implementador le dices cuál es su etapa, la ruta de su copia de trabajo, la de su rama, la del plan principal y la de su plan en la carpeta principal, la de `Temporal/nombre-paso-corto/revisores/nombre-etapa/` y la de esta habilidad, su techo de vueltas con el Revisor de Etapa, que es `RevisorEtapa` en las preferencias, y que siga la sección «El trabajo del Implementador».
+A cada Implementador le dices cuál es su etapa, la ruta de su copia de trabajo, la de su rama, la del plan principal y la de su plan en la carpeta principal, la de `Temporal/nombre-paso-corto/revisores/nombre-etapa/` y la de este archivo, su techo de vueltas con el Revisor de Etapa, que es `RevisorEtapa` en las preferencias, y que siga la sección «El trabajo del Implementador».
 
 Si un Implementador necesita una decisión del Director, te la pasa: tú se la preguntas al Director y la escribes también en la sección «Preguntas» del plan principal, para que no se pierda si la sesión se reinicia. Esa etapa espera la respuesta, y las demás siguen. Si un Implementador te entrega hallazgos sin resolver del Revisor de Etapa, anótalos para la sección «Hallazgos sin resolver» del resumen, y su etapa sigue igual a la revisión integrada. Si el Director te escribe en medio del paso para detener o dirigir algo, avísales a los Implementadores que corresponda.
 
@@ -95,7 +86,7 @@ Si alguna etapa tiene una aplicación de escritorio, puedes pedir permisos de Co
 
 ## 5. El trabajo del Implementador
 
-En esta sección eres el Implementador de una etapa: la sigues en tu propia copia de trabajo, y el resto de la habilidad es para el Líder.
+En esta sección eres el Implementador de una etapa: la sigues en tu propia copia de trabajo, y el resto de este archivo es para el Líder.
 
 1. Lee el plan principal, el plan de tu etapa, lo que necesites de `Bases` y lo que ellas citen de `Archivos/`, en la carpeta principal, porque tu copia de trabajo no trae `Archivos/`. Si tu etapa toca la interfaz, lee también `Diseño.md`, si las bases lo tienen, y síguelo. Si hace falta un color o un tamaño que no está en `Diseño.md`, no lo inventes ni cambies las bases: avísale al Líder. Haz solo lo que pide el plan de tu etapa, y no cambies nada que no haga falta para cumplirlo. El plan principal es solo contexto, para que entiendas el paso y sus decisiones de negocio: lo que pide para otras etapas no lo haces. Si crees que necesitas tocar algo fuera de tu plan, detente y avísale al Líder.
 2. Alista tu copia de trabajo con `npm run alistar`. Si falla, o si necesita algún paso a mano, avísale al Líder, con el mensaje del comando, en vez de resolverlo por tu cuenta. Nunca copies las claves.
@@ -153,7 +144,7 @@ Después viene la fusión, que haces tú, y se la cuentas al Director junto con 
 
 ## 8. La retroalimentación y el cierre
 
-- **La retroalimentación:** El Director te cuenta lo que hay que ajustar para la próxima vez. Propón los cambios a los archivos de Trabajo Agéntico o a las bases. El Director decide qué se agrega. Lo que toque el diseño entra por `incorporar-idea`.
-- **Las bases:** Revisa que las bases sigan describiendo lo que hace el código. Si hay que corregirlas, sugiérele al Director usar `incorporar-idea`.
-- **El registro del paso:** Cuando un paso termina, mueve su entrada completa de `Pasos Pendientes.md` al principio de la lista de `Pasos Terminados.md` y añade la fecha de hoy con `**Terminado:**`. Actualiza las citas que apuntaban a su antigua sección. La especificación sigue en su documento dueño.
+- **La retroalimentación:** El Director te cuenta lo que hay que ajustar para la próxima vez. Propón los cambios a los archivos de Trabajo Agéntico o a las bases. El Director decide qué se agrega. Lo que toque el diseño entra por `incluir-idea`.
+- **Las bases:** Revisa que las bases sigan describiendo lo que hace el código. Si hay que corregirlas, sugiérele al Director usar `incluir-idea`.
+- **El registro del paso:** Cierra el paso como dice «Cerrar un paso», en `<Trabajo Agéntico>/Habilidades/Gestión de Pasos.md`. Si le queda un criterio que confirma una persona, el paso se queda abierto.
 - **Lo temporal:** Cuando el Director confirme los cambios en la rama principal, cierra lo que quede abierto en las copias de trabajo y bórralas junto con sus ramas, las de las etapas y la de integración, con `git worktree remove --force` y `git branch -D`. Después borra `Temporal/nombre-paso-corto/revisores/`, con las respuestas de los revisores, y `Temporal/nombre-paso-corto/`, si quedó vacía.

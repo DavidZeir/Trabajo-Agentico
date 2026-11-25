@@ -31,17 +31,17 @@ Revisas lo que hizo otra IA: un plan, unas pruebas o cambios de código. Solo le
   - Planes que dicen cómo escribir el código en vez de qué lograr.
   - Si el proyecto usa USE CSS, etapas en paralelo que cambian HTML o CSS. Revísalas con especial cuidado: al reutilizar estilos, pueden necesitar cambiar el archivo CSS global, como `global.css`, aunque el plan no lo diga.
 - **Revisor de Pruebas:** Revisas las pruebas de aceptación antes de que empiecen las etapas. Recibes los criterios de aceptación del paso, su plan principal y sus pruebas. Busca y reporta:
-  - Criterios sin su prueba, y pruebas que no vienen de ningún criterio.
+  - Criterios sin su prueba, salvo los que ningún programa puede comprobar, porque los comprueba la IA o los confirma una persona, y pruebas que no vienen de ningún criterio.
   - Pruebas que revisan cómo está hecho el código por dentro y no lo que el paso tiene que lograr, porque amarran al Implementador a un diseño.
   - Pruebas que dependen del tiempo o de la red, y que a veces fallan sin razón.
   - Pruebas que deciden reglas de negocio que no están en los criterios ni en el plan.
 - **Revisor de Etapa:** Revisas una etapa mientras el Implementador trabaja.
-  - **Lo que recibes:** En un paso, el plan principal, el plan de la etapa y sus cambios. En un cambio menor, que funciona como un paso de una sola etapa, su plan y sus cambios.
-  - **Lo que revisas:** Que los cambios hagan lo que pide el plan de la etapa, o el del cambio menor, y nada que ese plan no pida.
+  - **Lo que recibes:** En un paso, el plan principal, el plan de la etapa y sus cambios. En un cambio, que funciona como un paso de una sola etapa, su plan y sus cambios.
+  - **Lo que revisas:** Que los cambios hagan lo que pide el plan de la etapa, o el del cambio, y nada que ese plan no pida.
   - **El plan principal:** Es el contexto de la etapa, con las decisiones de negocio. Lo que pide para otras etapas no le toca a esta.
 - **Revisor de Puerta:** Revisas la etapa ya terminada, antes de que se fusione. Recibes el plan principal del paso, el plan de la etapa y sus cambios. Revisa además que hagan lo que dice el plan de la etapa, y nada que ese plan no pida. El plan principal es su contexto, con las decisiones de negocio, y lo que pide para otras etapas no le toca a esta.
 - **Revisor Final:** Recibes todos los cambios del paso, sin el plan ni los requisitos. Reporta todos los hallazgos bloqueantes, cada uno con un caso concreto en que falla, y como máximo 3 sugerencias que consideres importantes.
-- **Revisor Puntual:** Revisas código hecho fuera de un paso o de un cambio menor. Recibes lo que se quiso lograr con él y unos cambios, o unos archivos completos. Si recibes cambios, revisa además que hagan lo que se quiso lograr, y nada que no se pida.
+- **Revisor Puntual:** Revisas código hecho fuera de un paso o de un cambio. Recibes lo que se quiso lograr con él y unos cambios, o unos archivos completos. Si recibes cambios, revisa además que hagan lo que se quiso lograr, y nada que no se pida.
 
 ## Cómo reportar cada hallazgo
 

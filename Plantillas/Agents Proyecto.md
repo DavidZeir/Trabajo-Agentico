@@ -20,7 +20,7 @@ Ninguno por ahora: todo el código está en la raíz.
 
 [[La llena la IA en el primer paso que escribe código, con lo que lleva entre corchetes dobles, cuando ya existan los comandos de las copias de trabajo. Hasta entonces se deja así.]]
 
-Cada etapa de `/implementar-paso` se hace en su propia copia de trabajo, dentro de `Temporal/`. Dos comandos dejan lista la copia de trabajo e inician la aplicación, sin pasos a mano, y los escribe el primer paso con código. Como `/implementar-cambio` trabaja en la carpeta principal, de aquí solo usa `npm run iniciar`.
+Cada etapa de `/realizar-paso` se hace en su propia copia de trabajo, dentro de `Temporal/`. Dos comandos dejan lista la copia de trabajo e inician la aplicación, sin pasos a mano, y los escribe el primer paso con código. Como `/realizar-cambio` trabaja en la carpeta principal, de aquí solo usa `npm run iniciar`.
 
 - **`npm run alistar`:** Deja la copia de trabajo lista y nunca se corre en la carpeta principal. Si algo falla, se detiene con un mensaje que dice qué hacer.
 - **`npm run iniciar`:** Inicia la aplicación sin chocar con la del Director ni con la de otra copia de trabajo, deja su salida en `Temporal/` y dice su proceso, para cerrar solo esa.
@@ -29,7 +29,7 @@ Cada etapa de `/implementar-paso` se hace en su propia copia de trabajo, dentro 
 
 [[La llena la IA en el primer paso que escribe código, con lo que lleva entre corchetes dobles, cuando ya exista el Verificador. Hasta entonces se deja así.]]
 
-Estos archivos deciden si el código pasa el Verificador, así que en `/implementar-paso`, desde que se confirman las pruebas de aceptación, ningún agente los cambia.
+Estos archivos deciden si el código pasa el Verificador, así que en `/realizar-paso`, desde que empiezan las etapas, ningún agente los cambia.
 
 [[Se dejan las líneas de lo que tiene el Verificador del proyecto, y se agregan las que falten, como las pruebas de interfaz.]]
 

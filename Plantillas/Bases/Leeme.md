@@ -7,7 +7,7 @@ Las bases del proyecto. Los nombres de todos los documentos siguen el [Glosario]
 ## Orden de lectura
 
 1. [Justificación](Justificación.md): Para qué existe el proyecto, y por qué se hace así.
-2. [Pasos Pendientes](Pasos%20Pendientes.md): Qué se construye, en qué orden, por qué cada paso va en ese lugar y cuándo se da por terminado.
+2. [Pasos Pendientes](Pasos%20Pendientes.md): Los próximos pasos, en el orden en que se van a hacer, y cuándo se da por terminado cada uno.
 3. [Glosario](Glosario.md): Un nombre por concepto.
 
 Después, según el tema.
@@ -16,11 +16,7 @@ Después, según el tema.
 
 Cada tema tiene un solo documento dueño, y los demás lo enlazan en vez de repetirlo. Si otro documento dice algo distinto sobre ese tema, vale lo que dice el documento dueño, y el otro se corrige.
 
-Los documentos dueños especifican cada parte del proyecto en presente («se guarda», no «se guardará»). [Decisiones](Decisiones.md) conserva qué decidió el Director, cuándo y por qué.
-
-[Ideas por Decidir](Ideas%20por%20Decidir.md) guarda las propuestas que el Director quiere retomar antes de decidir. [Ideas Aprobadas](Ideas%20Aprobadas.md) reúne las que ya decidió hacer. Mientras una idea esté allí, el documento dueño lleva una referencia. Cuando la idea [se programa como paso](Pasos%20Pendientes.md) o se implementa, la especificación completa sustituye esa referencia en el documento dueño. [Ideas Descartadas](Ideas%20Descartadas.md) conserva las propuestas que se discutieron a fondo y el motivo del descarte.
-
-Las decisiones que falten para preparar un paso se anotan en el propio paso. Los arreglos, la deuda técnica y el mantenimiento van en [Tareas Pendientes](Tareas%20Pendientes.md).
+Los documentos dueños especifican cada parte del proyecto en presente («se guarda», no «se guardará»).
 
 | Tema | Documento dueño |
 | --- | --- |
@@ -35,4 +31,6 @@ Las decisiones que falten para preparar un paso se anotan en el propio paso. Los
 
 ## Otros
 
-- [Tareas Pendientes](Tareas%20Pendientes.md): Arreglos, deuda técnica y mantenimiento. Las tareas puntuales se agrupan por prioridad y las periódicas tienen su propia sección.
+- [Tareas Pendientes](Tareas%20Pendientes.md): Los pendientes que no cambian el plan, como arreglos, mantenimiento, encargos y preguntas. Las tareas puntuales se agrupan por prioridad y las periódicas tienen su propia sección.
+- [Tareas Terminadas](Tareas%20Terminadas.md): Las tareas puntuales que se completaron, con quién las completó y cuándo.
+- [Contactos](Contactos.md): Las personas que trabajan en el proyecto y los contactos de afuera, con sus datos de trabajo.

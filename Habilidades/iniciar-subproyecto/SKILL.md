@@ -17,7 +17,7 @@ Un subproyecto es una parte del proyecto con sus propios documentos, como una l�
 
 Los documentos de una carpeta de las bases valen para ella y para las que tiene adentro. Una carpeta de adentro puede tener sus propios documentos, aunque se llamen igual, pero solo para agregar lo suyo, como sus decisiones o el diseño de un producto: nunca contradicen lo de arriba. Si algo choca, es una inconsistencia de las bases, y se resuelve con el Director. Lo que no está en una carpeta se busca en las de arriba. Puede haber tantos niveles como el Director quiera, y los intermedios no tienen reglas propias: cada carpeta tiene los documentos que necesite.
 
-Cada subproyecto tiene una letra, en el orden en que se crean: A para el primero, B para el segundo, y después de Z siguen AA, AB y así. Sus decisiones se numeran con D y su letra, como DA-01, para no confundirse con las del proyecto, que van como D-01, y sus pasos, si los tiene, con su letra, como A1, para no chocar con los pasos del proyecto ni con los de otro subproyecto.
+Cada subproyecto tiene una letra, en el orden en que se crean: A para el primero, B para el segundo y así. Con ella se numeran sus decisiones, como dice `<Trabajo Agéntico>/Habilidades/Gestión de Decisiones.md`, y sus pasos, si los tiene, como A1, para no chocar con los pasos del proyecto ni con los de otro subproyecto.
 
 ## 2. Antes de crear
 
@@ -41,7 +41,7 @@ En `Bases/[ruta]/` crea siempre tres documentos:
   - **«Cuándo termina»:** Si tiene un final, como la renovación de una bodega, qué tiene que pasar para darlo por terminado. Si sigue mientras exista el proyecto, como una línea de productos, se omite.
 - **`Decisiones.md`:** Dice que sus decisiones se numeran con D y su letra.
 
-Los demás documentos, como `Tareas Pendientes.md`, las listas de ideas o `Pasos Pendientes.md` con `Pasos Terminados.md`, se crean en la carpeta del subproyecto la primera vez que hacen falta, desde las plantillas de `<Trabajo Agéntico>/Plantillas/Bases/`. `Diseño.md` y el Glosario casi nunca hacen falta, porque lo común es que todo el proyecto comparta su marca y sus definiciones.
+Los demás documentos, como `Tareas Pendientes.md` con `Tareas Terminadas.md`, las listas de ideas o `Pasos Pendientes.md` con `Pasos Terminados.md`, se crean en la carpeta del subproyecto la primera vez que hacen falta, desde las plantillas de `<Trabajo Agéntico>/Plantillas/Bases/`. `Diseño.md` y el Glosario casi nunca hacen falta, porque lo común es que todo el proyecto comparta su marca y sus definiciones.
 
 Cada documento de la carpeta que se llame igual que uno de arriba, como `Leeme.md`, `Decisiones.md` o `Tareas Pendientes.md`, empieza, justo después de su título, con este aviso, que enlaza al de su mismo nombre más cercano hacia arriba. Así, una sesión que abre solo el de la carpeta sabe que le falta leer el otro:
 
@@ -64,7 +64,7 @@ Si las bases ya tenían cosas del subproyecto, sueltas en otros documentos o en 
 
 ## 5. Conectar con las bases de arriba
 
-- **El índice:** El `Leeme.md` más cercano hacia arriba apunta al `Leeme.md` del subproyecto, en su tabla «Por tema». Si es la primera carpeta de un subproyecto en las bases, agrégale al `Leeme.md` de las bases un párrafo que explique lo que vale en cada carpeta y la numeración por letras, como en el punto 1.
+- **El índice:** Agrega el subproyecto a la tabla «Por tema» del índice de arriba, con un enlace a su `Leeme.md`. El índice de arriba es el `Leeme.md` de la carpeta que contiene al subproyecto. Si esa carpeta no tiene uno, como `Bases/Marca/` cuando solo agrupa subproyectos, es el de la siguiente carpeta hacia arriba que sí lo tenga, como el de `Bases/`.
 - **La decisión:** Las `Decisiones.md` de arriba registran que se creó el subproyecto, con su ruta y su letra.
 
 ## 6. Cerrar

@@ -1,6 +1,6 @@
 ---
 name: explorar-marca
-description: Explora la marca de un proyecto que todavía no la tiene, o que la quiere cambiar. En rondas, varios agentes proponen cada uno una marca distinta, con su paleta, sus letras, su voz y su tono, sus formas y una muestra aplicada, a partir de referencias de galerías de diseño escogidas según el público, hasta que el Director escoge una. La elegida entra a las bases con incorporar-idea. No hace el logo. Solo la invoca el Director.
+description: Explora la marca de un proyecto que todavía no la tiene, o que la quiere cambiar. En rondas, varios agentes proponen cada uno una marca distinta, con su paleta, sus letras, su voz y su tono, sus formas y una muestra aplicada, a partir de referencias de galerías de diseño escogidas según el público, hasta que el Director escoge una. La elegida entra a las bases con incluir-idea. No hace el logo. Solo la invoca el Director.
 argument-hint: "[lo que se busca en la marca, opcional]"
 disable-model-invocation: true
 ---
@@ -32,6 +32,6 @@ Sigue `<Trabajo Agéntico>/Habilidades/Rondas de Diseño.md`. Escoge las referen
 
 ## 3. El final
 
-1. Con la opción elegida, propón su entrada en `Diseño.md` de las bases con `incorporar-idea`: la esencia, los colores, también los de la interfaz, las letras, los espacios, las formas y los íconos, y la voz y el tono.
+1. Con la opción elegida, propón su entrada en `Diseño.md` de las bases con `incluir-idea`: la esencia, los colores, también los de la interfaz, las letras, los espacios, las formas y los íconos, y la voz y el tono.
 2. Guarda la opción elegida y archiva las demás, como dice «Al terminar» de `<Trabajo Agéntico>/Habilidades/Rondas de Diseño.md`.
 3. Dile al Director que el logo va aparte, con `crear-logo`, y que para aplicar la marca a la web está `explorar-diseno-web`.

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Limpiar las pruebas
 
-Si te invocó el Director, recorres todas las pruebas del proyecto. Si la sigues desde `/implementar-paso` o desde `/implementar-cambio`, recorres todas las pruebas que agregó o cambió el paso o el cambio: en un paso, según `git diff` contra la rama principal, y en un cambio, las que no están preparadas y las nuevas. En ambos casos, se revisan todos los tipos de pruebas: las de aceptación, las hechas por los Implementadores, etc.
+Si te invocó el Director, recorres todas las pruebas del proyecto. Si la sigues desde `/realizar-paso` o desde `/realizar-cambio`, recorres todas las pruebas que agregó o cambió el paso o el cambio: en un paso, según `git diff` contra la rama principal, y en un cambio, las que no están preparadas y las nuevas. En ambos casos, se revisan todos los tipos de pruebas: las de aceptación, las hechas por los Implementadores, etc.
 
 ## 1. Antes de empezar
 

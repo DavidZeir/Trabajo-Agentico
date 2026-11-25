@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es"> <!-- Vista solo para el Director, dibujada desde Implementar Cambio.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
+<html lang="es"> <!-- Vista solo para el Director, dibujada desde Realizar Cambio.md: las IAs leen el .md y no este archivo, salvo para volver a dibujarlo cuando el .md cambie. -->
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Implementar Cambio</title>
+	<title>Realizar Cambio</title>
 	<style>
 		@layer base, variables, semantica, utilidad, semantica_local, utilidad_local, excepciones; /* Orden de las capas de USE, declarado aquí porque esta página no tiene un CSS global. */
 
@@ -99,7 +99,7 @@
 					stroke: var(--flujo-director-borde);
 				}
 
-				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio menor. */
+				& .caja-misma-empresa { /* Variante de caja para las IAs de la misma empresa del Líder, sea Claude o Codex: el Líder, los Implementadores y la sesión de un cambio. */
 					fill: var(--flujo-misma-empresa-fondo);
 					stroke: var(--flujo-misma-empresa-borde);
 				}
@@ -200,15 +200,16 @@
 </head>
 <body>
 	<main class="flujo">
-		<h1>Implementar Cambio</h1>
+		<h1>Realizar Cambio</h1>
 		<p>Cada columna es un actor y el tiempo corre hacia abajo. Las flechas continuas son pedidos, y las punteadas, respuestas. Los recuadros punteados son ciclos que se repiten hasta cumplir su condición, o bloques que solo pasan si hace falta.</p>
 		<p>Las flechas al Verificador que dicen «completo» corren el Verificador completo, con todas las pruebas y la revisión de sus tipos. Las demás corren el Verificador ligero, que salta esa revisión, las pruebas de interfaz, las de errores ya arreglados y las pesadas, que son las pruebas que tardan más de 1 segundo.</p>
-		<p>Este diagrama se dibuja a partir de Implementar Cambio.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<p>Este diagrama se dibuja a partir de Realizar Cambio.md, que es el que manda: si no coinciden, vale el .md.</p>
+		<p>Muestra el área del software. Cada cambio es de una sola área, y cada área tiene sus instrucciones en su propio archivo, en la carpeta de /realizar-cambio.</p>
 		<section>
-			<h2>Cómo se hace un cambio menor</h2>
-			<svg class="diagrama" viewBox="0 0 940 1772" role="img" aria-labelledby="titulo-cambios descripcion-cambios"> <!-- Diagrama de secuencia de un cambio menor, con cuatro actores en columnas: una sola sesión hace de Líder y de Implementador. -->
-				<title id="titulo-cambios">Quién habla con quién en un cambio menor</title>
-				<desc id="descripcion-cambios">Con /implementar-cambio, un cambio menor funciona como un paso de una sola etapa que hace una sola sesión, como Líder y como Implementador, directo en la rama principal, sin rama y sin copia de trabajo. Escribe un plan corto que aprueba el Director sin pasar por el Revisor Principal, comprueba que la rama principal pase el Verificador completo y programa, empezando por la prueba que atrape el error, si es uno. Mientras programa corre solo las pruebas enfocadas, y las de interfaz solo en Chromium, y cuando termina, el Verificador completo hasta que pase, con un techo de 10 vueltas. Nunca prepara ni confirma nada, y conversa con el Revisor de Etapa, al que le pasa en cada vuelta todo lo no preparado y los archivos nuevos, hasta que apruebe o se llegue a su techo de vueltas, cuyo valor predeterminado es 3. Después limpia las pruebas con /limpiar-pruebas y corre el Verificador completo. Al final, la sesión escribe el resumen, que es el registro completo de lo que pasó, anota sus cifras en Métricas.csv, borra las respuestas del Revisor de Etapa y le enlaza el resumen al Director, y sus cambios le quedan sin preparar en la rama principal, sin fusión. El resumen trae los aprendizajes que dejó el cambio, y si el error se escapó de un paso o de un cambio anterior, uno de ellos es la capa que debió atraparlo. El Director decide qué se hace con ellos. El Director lleva las correcciones que elija, una a una, a /incorporar-idea, y después prepara, confirma, sube y despliega. Las bolas numeradas marcan lo que el Director ajusta en sus preferencias.</desc>
+			<h2>Cómo se hace un cambio</h2>
+			<svg class="diagrama" viewBox="0 0 940 1772" role="img" aria-labelledby="titulo-cambios descripcion-cambios"> <!-- Diagrama de secuencia de un cambio, con cuatro actores en columnas: una sola sesión hace de Líder y de Implementador. -->
+				<title id="titulo-cambios">Quién habla con quién en un cambio</title>
+				<desc id="descripcion-cambios">Con /realizar-cambio, un cambio funciona como un paso de una sola etapa que hace una sola sesión, como Líder y como Implementador, directo en la rama principal, sin rama y sin copia de trabajo. Escribe un plan corto que aprueba el Director sin pasar por el Revisor Principal, comprueba que la rama principal pase el Verificador completo y programa, empezando por la prueba que atrape el error, si es uno. Mientras programa corre solo las pruebas enfocadas, y las de interfaz solo en Chromium, y cuando termina, el Verificador completo hasta que pase, con un techo de 10 vueltas. Nunca prepara ni confirma nada, y conversa con el Revisor de Etapa, al que le pasa en cada vuelta todo lo no preparado y los archivos nuevos, hasta que apruebe o se llegue a su techo de vueltas, cuyo valor predeterminado es 3. Después limpia las pruebas con /limpiar-pruebas y corre el Verificador completo. Al final, la sesión escribe el resumen, que es el registro completo de lo que pasó, anota sus cifras en Métricas.csv, borra las respuestas del Revisor de Etapa y le enlaza el resumen al Director, y sus cambios le quedan sin preparar en la rama principal, sin fusión. El resumen trae los aprendizajes que dejó el cambio, y si el error se escapó de un paso o de un cambio anterior, uno de ellos es la capa que debió atraparlo. El Director decide qué se hace con ellos. El Director lleva las correcciones que elija, una a una, a /incluir-idea, y después prepara, confirma, sube y despliega. Las bolas numeradas marcan lo que el Director ajusta en sus preferencias.</desc>
 				<defs>
 					<marker id="cabeza-cambios" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="cabeza-flecha" d="M2 1L8 5L2 9"/></marker>
 				</defs>
@@ -230,9 +231,9 @@
 				<text class="texto-titulo texto-titulo-otra-empresa" x="695" y="38" text-anchor="middle" dominant-baseline="central">Revisor de Etapa</text>
 				<text class="texto-secundario texto-secundario-otra-empresa" x="695" y="56" text-anchor="middle" dominant-baseline="central">Otra empresa</text>
 				<g><title>Preferencia: el programa, el modelo y el razonamiento del Revisor de Etapa, que puede ser de la misma empresa si hay una sola suscripción.</title><circle class="bola-preferencia" cx="763" cy="20" r="9"/><text class="texto-preferencia" x="763" y="20" text-anchor="middle" dominant-baseline="central">1</text></g>
-				<rect class="caja caja-neutra" x="20" y="88" width="900" height="22" rx="4"/> <!-- Cambios menores: todo es como en un paso, salvo el plan corto sin el Revisor Principal, las pruebas de aceptación, la rama y la copia de trabajo, la revisión integrada, la vista del código, la fusión y casi todo el punto 7. -->
-				<text class="texto-secundario" x="32" y="99" dominant-baseline="central">Cambio menor, con /implementar-cambio: un paso de una sola etapa, directo en la rama principal</text>
-				<text class="texto-secundario" x="320" y="134" text-anchor="middle">/implementar-cambio</text>
+				<rect class="caja caja-neutra" x="20" y="88" width="900" height="22" rx="4"/> <!-- Cambios: todo es como en un paso, salvo el plan corto sin el Revisor Principal, las pruebas de aceptación, la rama y la copia de trabajo, la revisión integrada, la vista del código, la fusión y casi todo el punto 7. -->
+				<text class="texto-secundario" x="32" y="99" dominant-baseline="central">Cambio, con /realizar-cambio: un paso de una sola etapa, directo en la rama principal</text>
+				<text class="texto-secundario" x="320" y="134" text-anchor="middle">/realizar-cambio</text>
 				<line class="flecha" x1="249" y1="142" x2="391" y2="142" marker-end="url(#cabeza-cambios)"/>
 				<rect class="caja caja-misma-empresa" x="293" y="156" width="204" height="48" rx="6"/>
 				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="172" text-anchor="middle" dominant-baseline="central">Escribe un plan corto</text>
@@ -298,8 +299,8 @@
 				<text class="texto-secundario" x="320" y="1326" text-anchor="middle">Las que elija</text>
 				<line class="flecha" x1="249" y1="1334" x2="391" y2="1334" marker-end="url(#cabeza-cambios)"/>
 				<rect class="caja caja-misma-empresa" x="294.5" y="1348" width="201" height="48" rx="6"/>
-				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1364" text-anchor="middle" dominant-baseline="central">Incorpora una a una</text>
-				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1381" text-anchor="middle" dominant-baseline="central">con /incorporar-idea</text>
+				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1364" text-anchor="middle" dominant-baseline="central">Incluye una a una</text>
+				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1381" text-anchor="middle" dominant-baseline="central">con /incluir-idea</text>
 				<rect class="caja caja-misma-empresa" x="307" y="1412" width="176" height="48" rx="6"/> <!-- Al terminar, los cambios de la sesión quedan sin preparar, porque nunca prepara nada: no hay fusión, porque trabajó directo en la rama principal. -->
 				<text class="texto-titulo texto-titulo-misma-empresa" x="395" y="1428" text-anchor="middle" dominant-baseline="central">Quedan sin preparar</text>
 				<text class="texto-secundario texto-secundario-misma-empresa" x="395" y="1445" text-anchor="middle" dominant-baseline="central">en la principal</text>
@@ -312,7 +313,7 @@
 				<g><title>Preferencia: aprobar antes de subir. Siempre encendida: no se puede apagar.</title><circle class="bola-preferencia" cx="326" cy="1540" r="9"/><text class="texto-preferencia" x="326" y="1540" text-anchor="middle" dominant-baseline="central">3</text></g>
 				<text class="texto-secundario" x="470" y="1628" text-anchor="middle">Lo que no aparece aquí funciona igual que en un paso.</text> <!-- Notas de lo que no cabe en las flechas: lo que pasa cuando algo falla y lo que solo pasa a veces. -->
 				<text class="texto-secundario" x="470" y="1650" text-anchor="middle">↻ Si la rama principal tiene cambios sin preparar, le avisa al Director y no empieza.</text>
-				<text class="texto-secundario" x="470" y="1672" text-anchor="middle">↻ Si el cambio crece demasiado para esta vía, se detiene y propone /incorporar-idea y después /implementar-paso.</text>
+				<text class="texto-secundario" x="470" y="1672" text-anchor="middle">↻ Si el cambio crece demasiado para esta vía, se detiene y propone /incluir-idea, /crear-paso y después /realizar-paso.</text>
 				<text class="texto-secundario" x="470" y="1694" text-anchor="middle">↻ Si la rama principal ya falla antes de empezar, le avisa al Director antes de seguir.</text>
 				<rect class="caja caja-director" x="219" y="1724" width="12" height="12" rx="2"/> <!-- Leyenda de colores de los actores de este diagrama. -->
 				<text class="texto-secundario" x="237" y="1730" dominant-baseline="central">Director</text>

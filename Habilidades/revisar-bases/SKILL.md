@@ -1,6 +1,6 @@
 ---
 name: revisar-bases
-description: Revisa en frío las bases del proyecto, como un implementador que solo tiene esos documentos, y busca especificaciones de lógica de negocio incompletas o contradictorias, arquitectura defectuosa y tecnologías desaconsejables. Úsala antes de implementar un paso pendiente.
+description: Revisa en frío las bases del proyecto, como un implementador que solo tiene esos documentos, y busca especificaciones de lógica de negocio incompletas o contradictorias, arquitectura defectuosa y tecnologías desaconsejables. Úsala antes de realizar un paso pendiente.
 argument-hint: "[tema o paso a revisar, opcional]"
 disable-model-invocation: true
 ---
@@ -37,4 +37,4 @@ En español, corto y concreto, con el documento y la sección de cada punto, y p
 2. **Problemas**, por tipo (lógica de negocio, arquitectura, tecnologías y prácticas actuales). Cada uno en una o dos líneas: qué está mal, por qué y qué harías en su lugar.
 3. **Preguntas** para terminar de cerrar la especificación, primero las que cambiarían la lógica de negocio o la arquitectura.
 
-Después, resuelve las preguntas con el Director. Cuando te pida incorporar una respuesta, hazlo con la habilidad `incorporar-idea`.
+Después, resuelve las preguntas con el Director. Cuando te pida incluir una respuesta, hazlo con la habilidad `incluir-idea`.

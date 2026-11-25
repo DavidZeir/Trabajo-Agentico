@@ -4,25 +4,29 @@
 - **Director:** Yo. Dirijo el trabajo en su conjunto: defino los objetivos, decido, apruebo y priorizo. Las IAs y los agentes me proponen. Así me llaman la documentación y las habilidades, nunca me llaman 'el humano'.
 - **Usuario:** Quien usa el resultado del trabajo, como una aplicación, una web, un manual o un servicio. A mí no se me llama así.
 - **Resultado del trabajo:** Lo que produce el trabajo de un proyecto, sea del área que sea. Puede ser código, un documento, un informe, una presentación, una plantilla, un diseño, un video, una hoja de cálculo o un tablero de indicadores.
-- **Líder:** La sesión principal de la IA en un paso o en un cambio menor, con el modelo y el razonamiento que piden mis preferencias, en `<Trabajo Agéntico>/Locales/Preferencias.json`. Planea, reparte las etapas, las junta, corrige lo que encuentran los revisores y me reporta.
+- **Líder:** La sesión principal de la IA en un paso o en un cambio, con el modelo y el razonamiento que piden mis preferencias, en `<Trabajo Agéntico>/Locales/Preferencias.json`. Planea, reparte las etapas, las junta, corrige lo que encuentran los revisores y me reporta.
 - **Implementador:** Agente que lanza el Líder para hacer una etapa. Pueden ser varios en paralelo.
 - **Verificador:** El programa sin IA que comprueba el trabajo de un proyecto con un solo comando, en su raíz o en la de cada subproyecto. Responde si pasa o no pasa, y qué falló. En el software corre el linter, los tipos, las pruebas y las reglas de estructura, siempre en uno de sus dos modos: el Verificador ligero, `npm run verificador ligero`, que salta la revisión de los tipos de las pruebas, las pruebas pesadas, las de interfaz y las de errores ya arreglados, y el Verificador completo, `npm run verificador completo`, que corre todo.
 - **Revisor de Etapa:** Una IA en solo lectura, que revisa cada etapa con su plan y sus cambios. Su programa, su modelo y su razonamiento los fijan mis preferencias, como los del Revisor Principal.
-- **Revisor Principal:** Una IA en solo lectura, por lo general de otra empresa. Su programa, su modelo y su razonamiento los fijan mis preferencias, en `<Trabajo Agéntico>/Locales/Preferencias.json`, cuando lo llama una habilidad, o los elijo yo cuando lo abro en su propia aplicación. En el software, con `/implementar-paso`, revisa como Revisor de Plan los planes del paso, como Revisor de Pruebas las pruebas de aceptación, como Revisor de Puerta cada etapa antes de que se fusione y como Revisor Final el conjunto completo.
-- **Bases:** Los documentos de cada proyecto que dicen lo que el proyecto ya es y lo que se va a hacer, con sus razones. Son su fuente de verdad, junto con el resultado del trabajo, y cada cambio en ellas lo aprueba el Director con `/incorporar-idea`, con `/iniciar-subproyecto` o con el traslado de una idea aprobada a su documento dueño.
-- **Pasos Pendientes:** El documento del proyecto, o de un subproyecto, con los pasos que faltan por terminar, incluido el que está en curso, en orden y con sus criterios de aceptación.
+- **Revisor Principal:** Una IA en solo lectura, por lo general de otra empresa. Su programa, su modelo y su razonamiento los fijan mis preferencias, en `<Trabajo Agéntico>/Locales/Preferencias.json`, cuando lo llama una habilidad, o los elijo yo cuando lo abro en su propia aplicación. En el software, con `/realizar-paso`, revisa como Revisor de Plan los planes del paso, como Revisor de Pruebas las pruebas de aceptación, como Revisor de Puerta cada etapa antes de que se fusione y como Revisor Final el conjunto completo.
+- **Bases:** Los documentos de cada proyecto que dicen lo que el proyecto ya es y lo que se va a hacer, con sus razones. Son su fuente de verdad, junto con el resultado del trabajo, y el Director revisa cada cambio en ellas.
+- **Pasos Pendientes:** El documento del proyecto, o de un subproyecto, con el paso en curso y los próximos pasos, los que ya tienen su turno, en orden y con sus criterios de aceptación.
 - **Pasos Terminados:** El documento del proyecto, o de un subproyecto, con los pasos finalizados, sus criterios de aceptación y su fecha de cierre.
-- **Paso:** Un avance previsto en los pasos pendientes del proyecto, que en el software se implementa con `/implementar-paso`:
-  - Debe estar acotado. Antes de empezar, queda claro qué resultado se va a entregar y qué cambios quedan fuera del paso, aunque estén relacionados con el mismo tema.
-  - Se hace en una sola sesión del Líder.
-  - Tiene un solo objetivo, que se dice en una frase sin objetivos secundarios enlazados con la palabra «y».
-  - Tiene criterios de aceptación claros que el Verificador puede comprobar al terminar la sesión.
+- **Paso:** Un avance planeado del proyecto, que se logra en una tanda de trabajo. Junta en un núcleo de trabajo coherente una o más ideas aprobadas, y las tareas puntuales que conviene hacer con ellas. Se crea con `/crear-paso` y, cuando lo hace la IA, se realiza con `/realizar-paso`:
+  - Está acotado: antes de empezar, queda claro qué resultado entrega y qué queda por fuera.
+  - Lo que entrega puede ser más de una cosa, si están relacionadas y salen de la misma tanda de trabajo.
+  - Es de una sola área, como el software. Si mezcla áreas, se parte en un paso por área.
+  - Cuando lo hace la IA, se hace en una sola sesión del Líder.
+  - Tiene criterios de aceptación claros, que se comprueban al terminar: con el Verificador, por la IA o por una persona.
   - Deja el proyecto funcionando, aunque el paso siguiente no exista todavía.
-  - Puede tener decisiones pendientes, anotadas en su «Falta definir», que el Líder resuelve con el Director antes de escribir su plan.
-- **Criterios de aceptación:** Lo que tiene que cumplirse para dar un paso por terminado. Antes de hacer el paso, el Líder los convierte en comprobaciones, que después corre el Verificador. En el software, esas comprobaciones son las pruebas de aceptación.
+  - Puede tener decisiones pendientes, anotadas en su «Falta definir», que se resuelven con el Director antes de escribir su plan.
+- **Cambio:** Un trabajo directo, sin cola ni criterios aprobados antes, que corrige o agrega algo pequeño y necesita probarse, como corregir una fórmula que hay que probar con varios casos. Cuando lo hace la IA, se realiza con `/realizar-cambio`, en una sola sesión, con un plan corto y un revisor.
+- **Ajuste:** Un trabajo directo que se comprueba con solo mirarlo, como corregir una errata. Cuando lo hace la IA, se realiza con `/realizar-ajuste`, en una sola sesión, sin plan ni revisor.
+- **Área:** El tipo de trabajo de un paso, un cambio o un ajuste, que decide cómo se hace y cómo se comprueba, como el software, una pieza gráfica o un informe. Cada área tiene sus instrucciones en su propio archivo, como `Software.md`, dentro de la carpeta de cada una de estas habilidades: `/realizar-paso`, `/realizar-cambio` y `/realizar-ajuste`.
+- **Criterios de aceptación:** Lo que tiene que cumplirse para dar un paso por terminado. Antes de hacer el paso, el Líder convierte en comprobaciones los que puede comprobar un programa, que después corre el Verificador, y los demás los comprueba la IA o los confirma una persona. En el software, esas comprobaciones son las pruebas de aceptación.
 - **Etapa:** La parte de un paso que un Implementador hace solo. En el software, tiene su propia rama y su propia copia de trabajo.
-- **Habilidad:** Un programa escrito en español que ejecuta la IA: instrucciones de texto que le dicen qué hacer en un proceso, en qué orden y con qué límites, como `/implementar-paso`. Las de Trabajo Agéntico están en `<Trabajo Agéntico>/Habilidades/`.
-- **Aprendizaje:** Lo que la IA aprende de un tropiezo en un paso o en un cambio menor, algo que le hizo perder tiempo o la hizo equivocarse, para que no le vuelva a pasar en otra sesión. El tropiezo puede estar en el código, en las pruebas, en las herramientas, en un servicio externo o en el mismo flujo de Trabajo Agéntico. Un hallazgo de un revisor o una falla del Verificador pueden dejar un aprendizaje, pero no lo dejan un error que se arregla enseguida, una decisión que se toma en el camino ni un problema que ya venía de antes. Hay un aprendizaje si el tropiezo cumple tres cosas:
+- **Habilidad:** Un programa escrito en español que ejecuta la IA: instrucciones de texto que le dicen qué hacer en un proceso, en qué orden y con qué límites, como `/realizar-paso`. Las de Trabajo Agéntico están en `<Trabajo Agéntico>/Habilidades/`.
+- **Aprendizaje:** Lo que la IA aprende de un tropiezo en un paso o en un cambio, algo que le hizo perder tiempo o la hizo equivocarse, para que no le vuelva a pasar en otra sesión. El tropiezo puede estar en el código, en las pruebas, en las herramientas, en un servicio externo o en el mismo flujo de Trabajo Agéntico. Un hallazgo de un revisor o una falla del Verificador pueden dejar un aprendizaje, pero no lo dejan un error que se arregla enseguida, una decisión que se toma en el camino ni un problema que ya venía de antes. Hay un aprendizaje si el tropiezo cumple tres cosas:
   - **Costó:** Tiempo investigando, un intento que no funcionó o un error que alguien tuvo que atrapar, sea el Verificador, un revisor o yo.
   - **Se puede repetir:** La próxima sesión, sin saberlo, caería igual.
   - **No se ve:** No se descubre leyendo el código o los documentos.
@@ -38,9 +42,8 @@
 
 No hagas nada con git que no sea una simple lectura por tu cuenta. Solo actúa cuando yo lo pida en ese momento, con estas frases:
 
-- 'Prepara los cambios': Agrégalos al área de preparación (Staged), sin confirmarlos.
-- 'Confirma los cambios': Confirma solo lo que ya está en el área de preparación (Staged), sin preparar nada más ni tocar los cambios que quedan sin preparar. Si no hay nada preparado, avísame y no confirmes nada. En git esto se llama commit, pero al hablarme di siempre 'confirmar', como en '¿confirmo los cambios?'.
-- 'Sube los cambios': Primero, trae lo nuevo que tenga esa rama en el remoto y pon encima las confirmaciones que todavía no estén allá (en git es un `pull --rebase`). Si hay conflictos, deja todo como estaba, dime qué archivos chocan y cómo los resolverías, y no subas nada hasta que yo decida. Si no hay conflictos, sube los cambios normalmente. Nunca subas a la fuerza (`push --force`).
+- 'Prepara los cambios': Agrégalos al área de preparación (Staged), sin confirmarlos. Por lo general los preparo yo, y esta frase es para cuando quiero que lo hagas tú.
+- 'Sube los cambios': Si hay algo en el área de preparación (Staged), confírmalo, sin preparar nada más ni tocar los cambios que quedan sin preparar. En git esto se llama commit, pero al hablarme di siempre 'confirmar'. Después, trae lo nuevo que tenga esa rama en el remoto y sube (en git es un `pull --no-rebase --no-edit --no-autostash` y un `push`). Si git no deja traer lo nuevo, porque cambia un archivo que tengo sin preparar, o si hay conflictos, no subas nada y dime qué archivos chocan y cómo los resolverías. Si hubo conflictos, anota qué archivos chocan y después cancela la mezcla (`merge --abort`). Las confirmaciones quedan en este computador hasta que yo decida. Si no había nada preparado ni confirmaciones por subir, avísame. Nunca subas a la fuerza (`push --force`).
 - 'Baja los cambios': Trae lo nuevo que tenga la rama en el remoto, pero solo si se puede sin mezclar nada (en git es un `pull --ff-only`). Si git no lo deja, porque aquí hay cambios que chocan con los del remoto o porque la rama se separó, no hagas nada más y avísame. Si llegó algo, dime en pocas líneas qué llegó y quién lo hizo, agrupado por tema, como unas novedades. Si no llegó nada, dime que ya estaba al día.
 
 Antes de empezar una tarea que va a cambiar archivos de un repositorio con remoto, haz lo mismo que con 'Baja los cambios'.
@@ -49,8 +52,8 @@ Una autorización que te haya dado antes no vale para cambios nuevos.
 
 En el flujo de Trabajo Agéntico, los agentes tienen estos permisos de git, sin preguntarme:
 
-- **`/implementar-paso`:** Los agentes crean y borran sus ramas y sus copias de trabajo, confirman en ellas y las fusionan en la rama de integración. Al terminar el paso, el Líder trae sus cambios a la rama principal, sin prepararlos ni confirmarlos, para que yo los revise.
-- **`/implementar-cambio`:** La misma sesión hace de Líder y de Implementador, y trabaja directo en la rama principal, sin rama ni copia de trabajo. Nunca prepara ni confirma nada: lo que yo ya preparé se queda como está, y sus cambios quedan sin preparar.
+- **`/realizar-paso`:** Los agentes crean y borran sus ramas y sus copias de trabajo, confirman en ellas y las fusionan en la rama de integración. Al terminar el paso, el Líder trae sus cambios a la rama principal, sin prepararlos ni confirmarlos, para que yo los revise.
+- **`/realizar-cambio`:** La misma sesión hace de Líder y de Implementador, y trabaja directo en la rama principal, sin rama ni copia de trabajo. Nunca prepara ni confirma nada: lo que yo ya preparé se queda como está, y sus cambios quedan sin preparar.
 
 En los dos, nada se confirma en la rama principal ni se sube sin mis frases.
 

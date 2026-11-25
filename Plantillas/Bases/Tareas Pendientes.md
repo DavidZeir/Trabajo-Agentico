@@ -1,12 +1,12 @@
 # Tareas Pendientes
 
-Aquí se anotan arreglos, deuda técnica y mantenimiento que no cambian el plan. Las tareas puntuales se ordenan por prioridad alta, media o baja y se retiran al completarlas. Si una tarea depende de algo, anota qué espera. Las tareas que se repiten tienen su propia sección, «Periódicas».
+Aquí se anotan los pendientes que no cambian el plan, como arreglos, mantenimiento, encargos, trámites y preguntas por resolver, y en el software, la deuda técnica. Las tareas puntuales van por prioridad, alta, media o baja, y las que se repiten, en «Periódicas», con cada cuánto se repiten y la fecha y el nombre de quien las hizo la última vez. Las tareas puntuales completadas están en [Tareas Terminadas](Tareas%20Terminadas.md).
+
+Las reglas para guardar y completar una tarea están en `<Trabajo Agéntico>/Habilidades/Gestión de Tareas.md`.
 
 ## Alta prioridad
 
 ## Periódicas
-
-Anota cada cuánto se repite la tarea y la fecha de su última ejecución. Si aún no se ha realizado, anota la fecha prevista para la primera vez. Al completarla, conserva la entrada y actualiza la fecha de la última ejecución. A partir de esa fecha y de la frecuencia se calcula cuándo vuelve a tocar.
 
 ## Media prioridad
 

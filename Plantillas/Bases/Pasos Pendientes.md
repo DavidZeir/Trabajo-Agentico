@@ -1,23 +1,31 @@
 # Pasos Pendientes
 
-Aquí figuran el paso en curso, si lo hay, y los próximos pasos del proyecto en el orden previsto. Los pasos terminados están en [Pasos Terminados](Pasos%20Terminados.md).
-
-Cada paso dice qué se construye y por qué va en ese lugar. No repite la especificación: dice qué piezas junta, en qué documento dueño está cada una y cómo se conectan. Si varios pasos comparten un límite de alcance o una condición de cierre que conviene explicar, basta un párrafo al comienzo de este documento.
-
-Si falta una decisión para poder implementar un paso, anota solo en ese paso qué falta definir. Cuando se resuelva, incorpora la respuesta donde corresponda y quita la nota. Si el paso empieza con algo sin resolver, el Líder lo resuelve con el Director antes de escribir el plan.
+Aquí figuran el paso en curso, si lo hay, y los próximos pasos del proyecto, en el orden en que se van a hacer. Un paso entra aquí con `/crear-paso`, cuando ya le toca y tiene sus criterios de aceptación. Las ideas a las que todavía no les toca se quedan en `Ideas Aprobadas.md`, con su prioridad. Los pasos terminados están en [Pasos Terminados](Pasos%20Terminados.md).
 
 Los números de los pasos siguen los de `Pasos Terminados.md`, sin repetir ninguno. Cada paso tiene esta forma:
 
 ```
 ## 1. Nombre del paso
 
-**Lo que se construye:** El objetivo del paso en una frase y la referencia a la sección del documento dueño que lo especifica.
+**Lo que se construye:** Lo que entrega el paso en un texto corto, y las referencias con la ubicación de cada idea que incluye en los documentos dueños. Las tareas que incluye van escritas aquí, completas.
 
-**Listo cuando:** Los criterios de aceptación, cada uno con una condición y un resultado, como en "Cuando [condición], [resultado]".
+**Listo cuando:**
+
+- Un criterio de aceptación, con una condición y un resultado, como en "Cuando [condición], [resultado]". Si lo tiene que confirmar una persona en particular, lo dice al final, como en "Lo confirma Rubén".
+- Otro criterio, con la misma forma.
 
 **Falta definir:** Las decisiones que quedan por tomar antes de escribir el plan de este paso. Si no hay ninguna, se omite esta línea.
 
 **Por qué aquí:** La razón de su lugar en el orden.
 ```
 
-Al cumplir sus criterios de aceptación, el paso sale de esta lista y pasa completo a `Pasos Terminados.md`, con su fecha de cierre. La especificación se conserva en el documento dueño.
+Si un criterio se cumple mientras el paso sigue abierto, como cuando otro espera a una persona, se marca debajo de él, con la fecha, quién lo comprobó y cómo:
+
+```
+- Cuando llegan las cajas, cada camiseta trae la etiqueta aprobada y su talla marcada. Lo confirma Rubén.
+  **Cumplido el AAAA-MM-DD:** Lo confirmó [su nombre]: [lo que contó].
+- Cuando llega la factura, cuadra con la cotización.
+  **Cumplido el AAAA-MM-DD:** Lo comprobó la IA: [cómo lo comprobó].
+```
+
+Las reglas para resolver lo que falta definir, marcar los criterios y cerrar un paso están en `<Trabajo Agéntico>/Habilidades/Gestión de Pasos.md`.
